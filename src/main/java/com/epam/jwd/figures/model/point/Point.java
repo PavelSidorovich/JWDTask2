@@ -25,6 +25,14 @@ public class Point implements Figure {
     }
 
     @Override
+    public String toString() {
+        return "Point{" +
+               "x=" + x +
+               ", y=" + y +
+               '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
