@@ -9,8 +9,6 @@ public class QuadrangleActions implements FigureActions {
         this.quadrangle = quadrangle;
     }
 
-    //todo methods
-
     @Override
     public double perimeter() {
         return distanceBetweenTwoPoints(quadrangle.getPoint1(), quadrangle.getPoint2())
@@ -28,4 +26,8 @@ public class QuadrangleActions implements FigureActions {
                          * (semiPerimeter - distanceBetweenTwoPoints(quadrangle.getPoint4(), quadrangle.getPoint1())));
     }
 
+    //todo check for the type and convex
+//    public boolean isConvex() {
+//        return
+//    }
 }
