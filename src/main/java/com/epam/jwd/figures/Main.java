@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +26,6 @@ public class Main {
         try {
             Scanner fileScanner = new Scanner(new File(FILEPATH));
             Validator validator = new PointValidator();
-
             while (fileScanner.hasNext()) {
                 String[] coordinates = fileScanner.nextLine().split(" ");
                 if (coordinates.length != NUMBER_OF_COORDINATES) {
