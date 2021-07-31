@@ -39,6 +39,16 @@ public class Quadrangle implements Figure {
     }
 
     @Override
+    public String toString() {
+        return "Quadrangle{" +
+               "point1=" + point1 +
+               ", point2=" + point2 +
+               ", point3=" + point3 +
+               ", point4=" + point4 +
+               '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
