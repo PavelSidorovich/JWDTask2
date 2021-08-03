@@ -1,6 +1,7 @@
 package com.epam.jwd.figures.model.point;
 
 import com.epam.jwd.figures.model.Figure;
+import com.epam.jwd.figures.model.FigureTypes;
 
 import java.util.Objects;
 
@@ -8,6 +9,8 @@ import java.util.Objects;
  * This class is immutable
  */
 public class Point implements Figure {
+    public static final FigureTypes FIGURE_TYPE = FigureTypes.POINT;
+
     private final double x;
     private final double y;
 
@@ -16,12 +19,22 @@ public class Point implements Figure {
         this.y = y;
     }
 
+    public Point(Point point) {
+        this.x = point.getX();
+        this.y = point.getY();
+    }
+
     public double getX() {
         return x;
     }
 
     public double getY() {
         return y;
+    }
+
+    @Override
+    public int getNumberOfPoints() {
+        return FIGURE_TYPE.getNumberOfPoints();
     }
 
     @Override
