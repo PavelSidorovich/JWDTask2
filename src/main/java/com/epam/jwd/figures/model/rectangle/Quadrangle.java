@@ -3,8 +3,8 @@ package com.epam.jwd.figures.model.rectangle;
 import com.epam.jwd.figures.model.Figure;
 import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.point.Point;
-import com.epam.jwd.figures.model.point.PointFabric;
 
+import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -12,34 +12,11 @@ import java.util.Objects;
  */
 public class Quadrangle implements Figure {
     private static final FigureTypes FIGURE_TYPE = FigureTypes.QUADRANGLE;
-    private static final PointFabric POINT_FABRIC = new PointFabric();
 
-    private final Point point1;
-    private final Point point2;
-    private final Point point3;
-    private final Point point4;
+    private final LinkedList<Point> points;
 
-    Quadrangle(Point point1, Point point2, Point point3, Point point4) {
-        this.point1 = point1;
-        this.point2 = point2;
-        this.point3 = point3;
-        this.point4 = point4;
-    }
-
-    public Point getPoint1() {
-        return POINT_FABRIC.newInstance(point1);
-    }
-
-    public Point getPoint2() {
-        return POINT_FABRIC.newInstance(point2);
-    }
-
-    public Point getPoint3() {
-        return POINT_FABRIC.newInstance(point3);
-    }
-
-    public Point getPoint4() {
-        return POINT_FABRIC.newInstance(point4);
+    public Quadrangle(LinkedList<Point> points) {
+            this.points = points;
     }
 
     @Override
@@ -48,12 +25,14 @@ public class Quadrangle implements Figure {
     }
 
     @Override
+    public LinkedList<Point> getPoints() {
+        return new LinkedList<>(points);
+    }
+
+    @Override
     public String toString() {
         return "Quadrangle{" +
-               "point1=" + point1 +
-               ", point2=" + point2 +
-               ", point3=" + point3 +
-               ", point4=" + point4 +
+               "points=" + points +
                '}';
     }
 
@@ -65,13 +44,12 @@ public class Quadrangle implements Figure {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Quadrangle quadrangle = (Quadrangle) o;
-        return Objects.equals(point1, quadrangle.point1) && Objects.equals(point2, quadrangle.point2) &&
-               Objects.equals(point3, quadrangle.point3) && Objects.equals(point4, quadrangle.point4);
+        Quadrangle that = (Quadrangle) o;
+        return Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point1, point2, point3, point4);
+        return Objects.hash(points);
     }
 }
