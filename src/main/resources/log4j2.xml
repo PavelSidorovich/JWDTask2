@@ -23,7 +23,7 @@
 
   <Loggers>
     <Logger name="com.epam.jwd" level="trace" additivity="true">
-      <appender-ref ref="loggerFile" level="debug"/>
+      <appender-ref ref="loggerFile" level="trace"/>
     </Logger>
 
     <Root level="TRACE">

@@ -1,6 +1,7 @@
 package com.epam.jwd.figures.model.rectangle;
 
 import com.epam.jwd.figures.model.Figure;
+import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.point.Point;
 import com.epam.jwd.figures.model.point.PointFabric;
 
@@ -10,6 +11,9 @@ import java.util.Objects;
  * This class is immutable
  */
 public class Quadrangle implements Figure {
+    private static final FigureTypes FIGURE_TYPE = FigureTypes.QUADRANGLE;
+    private static final PointFabric POINT_FABRIC = new PointFabric();
+
     private final Point point1;
     private final Point point2;
     private final Point point3;
@@ -23,19 +27,24 @@ public class Quadrangle implements Figure {
     }
 
     public Point getPoint1() {
-        return PointFabric.newInstance(point1);
+        return POINT_FABRIC.newInstance(point1);
     }
 
     public Point getPoint2() {
-        return PointFabric.newInstance(point2);
+        return POINT_FABRIC.newInstance(point2);
     }
 
     public Point getPoint3() {
-        return PointFabric.newInstance(point3);
+        return POINT_FABRIC.newInstance(point3);
     }
 
     public Point getPoint4() {
-        return PointFabric.newInstance(point4);
+        return POINT_FABRIC.newInstance(point4);
+    }
+
+    @Override
+    public int getNumberOfPoints() {
+        return FIGURE_TYPE.getNumberOfPoints();
     }
 
     @Override

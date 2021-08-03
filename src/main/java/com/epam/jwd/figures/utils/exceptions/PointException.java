@@ -1,16 +1,24 @@
 package com.epam.jwd.figures.utils.exceptions;
 
-public class PointException extends IllegalArgumentException {
-    public static final String ERROR_MSG = "Point cannot be build from coordinate: %s";
-    private final String point;
+import com.epam.jwd.figures.model.point.Point;
 
-    public PointException(String s, String point) {
+import java.util.List;
+
+public class PointException extends IllegalArgumentException {
+    private static final String ILLEGAL_ARGUMENT_MSG = "%s cannot be build from coordinates: %s";
+
+    private final List<String> coordinates;
+
+    public PointException(String s, List<String> coordinates) {
         super(s);
-        this.point = point;
+        this.coordinates = coordinates;
     }
 
     @Override
     public String toString() {
-        return String.format(getClass().getCanonicalName() + ": " + getMessage(), point);
+        String message = getClass().getCanonicalName() + ": ";
+        message += String.format(getMessage() + ILLEGAL_ARGUMENT_MSG,
+                                 Point.class.getSimpleName(), coordinates);
+        return message;
     }
 }
