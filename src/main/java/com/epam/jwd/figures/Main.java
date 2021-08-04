@@ -18,12 +18,25 @@ public class Main {
     public static void main(String[] args) {
         FigureReader figureReader = new FigureReader(FILEPATH, FigureTypes.QUADRANGLE);
         LinkedList<Quadrangle> quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures();
-        FigureActions actions;
+        QuadrangleActions actions;
 
         for (Quadrangle quadrangle : quadrangles) {
             actions = new QuadrangleActions(quadrangle);
             LOGGER.trace(Precision.round(actions.perimeter(), 2));
             LOGGER.trace(Precision.round(actions.square(), 2));
+            LOGGER.trace(actions.isConvex());
+            LOGGER.trace(actions.defineTheType());
         }
     }
 }
+
+//0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0
+//0.0 0.0 0.0 1.0 1.0 0.0 1.0 1.0
+//0.0 0.0 0.0 1.0 1.0 0.0 1.0 1.0 1.0
+//0.0 0.0 0.0 1.0 1.0 1.0
+//0.0 f 0.0 1.0 1.0 0.0 1.0 1.0
+//0.0 2.0 2.0 1.0 4.0 3.0 2.0 0.5
+
+//0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0
+//        0.0 2.0 2.0 1.0 4.0 3.0 2.0 0.5
+//        0.0 0.0 1.0 1.0 3.0 1.0 4.0 0.0

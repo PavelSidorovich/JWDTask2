@@ -3,7 +3,7 @@ package com.epam.jwd.figures.model.point;
 import com.epam.jwd.figures.model.Figure;
 import com.epam.jwd.figures.model.FigureTypes;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -41,7 +41,7 @@ public class Point implements Figure {
 
     @Override
     public LinkedList<Point> getPoints() {
-        return new LinkedList<>(Arrays.asList(new Point(this.x, this.y)));
+        return new LinkedList<>(Collections.singletonList(new Point(this)));
     }
 
     @Override

@@ -81,9 +81,7 @@ public class FigureReader {
                     }
                     figure = figureFabric.newInstance(points);
                     figureList.add(figure);
-                } catch (PointException e) {
-                    LOGGER.error(e);
-                } catch (FigureException e) {
+                } catch (PointException | FigureException e) {
                     LOGGER.error(e);
                 }
             }
