@@ -5,4 +5,5 @@ public enum TypesOfQuadrangle {
     SQUARE,
     TRAPEZOID,
     DIAMOND,
+    PARALLELOGRAM,
 }
