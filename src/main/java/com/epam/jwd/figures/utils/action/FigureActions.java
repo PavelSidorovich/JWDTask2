@@ -31,22 +31,22 @@ public class FigureActions {
     }
 
     public double square() {
-        double square = 1;
-        double semiPerimeter = perimeter() / 2;
+        double square = 0;
 
         if (figure instanceof Point) {
             return 0;
+
         }
         for (int i = 0; i < figure.getNumberOfPoints(); i++) {
             if (i != figure.getNumberOfPoints() - 1) {
-                square *= Math.sqrt(semiPerimeter - distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                                             figure.getPoints().get(i + 1)));
+                square += figure.getPoints().get(i).getX() * figure.getPoints().get(i + 1).getY()
+                          - figure.getPoints().get(i).getY() * figure.getPoints().get(i + 1).getX();
             } else {
-                square *= Math.sqrt(semiPerimeter - distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                                             figure.getPoints().get(0)));
+                square += figure.getPoints().get(i).getX() * figure.getPoints().get(0).getY()
+                          - figure.getPoints().get(i).getY() * figure.getPoints().get(0).getX();
             }
         }
-        return square;
+        return Math.abs(square / 2);
     }
 
     public Double distanceBetweenTwoPoints(Point point1, Point point2) {
