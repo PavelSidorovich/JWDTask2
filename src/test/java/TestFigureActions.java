@@ -22,7 +22,7 @@ public class TestFigureActions {
             new LinkedList<>(Arrays.asList(6.75, 4.0, 50.0, 60.0, 8.0, 15.0));
 
     private static final LinkedList<Boolean> CONVEX_LIST =
-            new LinkedList<>(Arrays.asList(false, false, false, false, false, true));
+            new LinkedList<>(Arrays.asList(true, true, true, true, true, false));
 
     private static final LinkedList<TypesOfQuadrangle> TYPES_LIST =
             new LinkedList<>(
