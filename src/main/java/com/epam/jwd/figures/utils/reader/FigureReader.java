@@ -80,6 +80,9 @@ public class FigureReader {
                         break;
                     }
                     figure = figureFabric.newInstance(points);
+                    LOGGER.trace(String.format("Figure was builded (%s): %s",
+                                               figure.getClass().getSimpleName(),
+                                               figure.getPoints()));
                     figureList.add(figure);
                 } catch (PointException | FigureException e) {
                     LOGGER.error(e);

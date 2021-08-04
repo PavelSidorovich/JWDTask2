@@ -3,14 +3,12 @@ package com.epam.jwd.figures.utils.validation;
 import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.point.Point;
 import com.epam.jwd.figures.utils.action.MathVector;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 
 public class QuadrangleValidator {
 
-    LinkedList<Point> points;
+    private final LinkedList<Point> points;
 
     public QuadrangleValidator(LinkedList<Point> points) {
         this.points = points;
@@ -38,10 +36,6 @@ public class QuadrangleValidator {
         }
 
         //checking crossing of the lines
-        Logger LOGGER = LogManager.getLogger(QuadrangleValidator.class);
-        LOGGER.debug(intersect(points.get(0), points.get(1), points.get(2), points.get(3)));
-        LOGGER.debug(intersect(points.get(0), points.get(3), points.get(1), points.get(2)));
-
         return !intersect(points.get(0), points.get(1), points.get(2), points.get(3))
                && !intersect(points.get(0), points.get(3), points.get(1), points.get(2));
     }
