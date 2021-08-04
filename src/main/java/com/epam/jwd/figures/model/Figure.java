@@ -1,6 +1,7 @@
 package com.epam.jwd.figures.model;
 
 import com.epam.jwd.figures.model.point.Point;
+import com.epam.jwd.figures.utils.action.MathVector;
 
 import java.util.LinkedList;
 
@@ -11,4 +12,19 @@ public interface Figure {
     int getNumberOfPoints();
 
     LinkedList<Point> getPoints();
+
+    default LinkedList<MathVector> getVectors() {
+        LinkedList<MathVector> vectors = new LinkedList<>();
+
+        for (int i = 0; i < this.getNumberOfPoints(); i++) {
+            if (i != this.getNumberOfPoints() - 1) {
+                vectors.add(new MathVector(this.getPoints().get(i),
+                                           this.getPoints().get(i + 1)));
+            } else {
+                vectors.add(new MathVector(this.getPoints().get(i),
+                                           this.getPoints().get(0)));
+            }
+        }
+        return vectors;
+    }
 }
