@@ -1,7 +1,6 @@
 package com.epam.jwd.figures.utils.action;
 
 import com.epam.jwd.figures.model.Figure;
-import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.rectangle.TypesOfQuadrangle;
 
 import java.util.LinkedList;
@@ -15,18 +14,8 @@ public class QuadrangleActions extends FigureActions {
     }
 
     public TypesOfQuadrangle defineTheType() {
-        LinkedList<MathVector> vectors = new LinkedList<>();
+        LinkedList<MathVector> vectors = getFigure().getVectors();
         LinkedList<MathVector> diagonals = new LinkedList<>();
-
-        for (int i = 0; i < FigureTypes.QUADRANGLE.getNumberOfPoints(); i++) {
-            if (i != FigureTypes.QUADRANGLE.getNumberOfPoints() - 1) {
-                vectors.add(new MathVector(getFigure().getPoints().get(i),
-                                           getFigure().getPoints().get(i + 1)));
-            } else {
-                vectors.add(new MathVector(getFigure().getPoints().get(i),
-                                           getFigure().getPoints().get(0)));
-            }
-        }
 
         //special list(contains vectors of diagonals) for the diamond
         for (int i = 0; i < NUMBER_OF_DIAGONALS; i++) {
