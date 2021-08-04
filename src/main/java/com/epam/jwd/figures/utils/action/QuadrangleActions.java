@@ -34,25 +34,34 @@ public class QuadrangleActions extends FigureActions {
                                          getFigure().getPoints().get(i + 2)));
         }
 
-        if (vectors.get(0).multiply(vectors.get(2)) == 0
-            && vectors.get(1).multiply(vectors.get(3)) == 0) {
-            return TypesOfQuadrangle.SQUARE;
-        } else if (vectors.get(0).multiply(vectors.get(2)) == 0
-                   || vectors.get(1).multiply(vectors.get(3)) == 0) {
+        if (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(1),
+                                                     getFigure().getPoints().get(2)))
+            && distanceBetweenTwoPoints(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
+                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
+                                                     getFigure().getPoints().get(0)))
+            && distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
+                                                     getFigure().getPoints().get(3)))) {
+            if (vectors.get(0).perpendicular(vectors.get(1))
+                && vectors.get(2).perpendicular(vectors.get(3))) {
+                return TypesOfQuadrangle.SQUARE;
+            } else if (diagonals.get(0).perpendicular(diagonals.get(1))) {
+                return TypesOfQuadrangle.DIAMOND;
+            }
+        } else if (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                           .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
+                                                            getFigure().getPoints().get(3)))
+                   && distanceBetweenTwoPoints(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
+                           .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
+                                                            getFigure().getPoints().get(0)))) {
+            return TypesOfQuadrangle.PARALLELOGRAM;
+        } else if ((vectors.get(0).multiply(vectors.get(2)) == 0
+                    && vectors.get(1).multiply(vectors.get(3)) != 0)
+                   || (vectors.get(0).multiply(vectors.get(2)) != 0
+                       && vectors.get(1).multiply(vectors.get(3)) == 0)) {
             return TypesOfQuadrangle.TRAPEZOID;
-        } else if (diagonals.get(0).multiply(diagonals.get(1)) == 0
-                   && (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                               .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(1),
-                                                                getFigure().getPoints().get(2)))
-                       && distanceBetweenTwoPoints(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
-                               .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
-                                                                getFigure().getPoints().get(0)))
-                       && distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                               .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
-                                                                getFigure().getPoints().get(3))))) {
-            return TypesOfQuadrangle.DIAMOND;
-        } else {
-            return TypesOfQuadrangle.ARBITRARY;
         }
+        return TypesOfQuadrangle.ARBITRARY;
     }
 }
