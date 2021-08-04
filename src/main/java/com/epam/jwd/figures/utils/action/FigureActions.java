@@ -53,11 +53,10 @@ public class FigureActions {
         return Math.sqrt(Math.pow((point2.getX() - point1.getX()), 2) + Math.pow((point2.getY() - point1.getY()), 2));
     }
 
-    public boolean isConvex() {
+    public Boolean isConvex() {
         if (figure instanceof Point) {
             return false;
         }
-
         boolean isConvex = true;
         LinkedList<Point> points = figure.getPoints();
         double T = points.get(figure.getNumberOfPoints() - 1).getX() * points.get(0).getY()
