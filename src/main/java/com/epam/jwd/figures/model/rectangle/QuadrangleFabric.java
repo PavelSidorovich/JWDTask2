@@ -8,7 +8,22 @@ import com.epam.jwd.figures.utils.validation.QuadrangleValidator;
 
 import java.util.LinkedList;
 
+/**
+ * The {@code QuadrangleFabric} class is a fabric designed to
+ * create {@link Point} objects
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ * @see FigureFabric
+ */
 public class QuadrangleFabric implements FigureFabric {
+
+    /**
+     * Creates new instance of {@code Quadrangle} class
+     * @param pointList list of points
+     * @return created object of {@code Quadrangle} class
+     * @throws FigureException if pointList is invalid
+     */
     @Override
     public Quadrangle newInstance(LinkedList<Point> pointList) {
         if (pointList.size() == FigureTypes.QUADRANGLE.getNumberOfPoints()) {

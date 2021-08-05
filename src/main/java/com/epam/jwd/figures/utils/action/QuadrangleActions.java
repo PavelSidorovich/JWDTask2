@@ -5,6 +5,13 @@ import com.epam.jwd.figures.model.rectangle.TypesOfQuadrangle;
 
 import java.util.LinkedList;
 
+/**
+ * The {@code QuadrangleActions} class contains some actions which can be applied only to quadrangles
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ * @see FigureActions
+ */
 public class QuadrangleActions extends FigureActions {
 
     private static final int NUMBER_OF_DIAGONALS = 2;

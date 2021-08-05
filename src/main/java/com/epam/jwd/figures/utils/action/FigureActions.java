@@ -5,6 +5,12 @@ import com.epam.jwd.figures.model.point.Point;
 
 import java.util.LinkedList;
 
+/**
+ * The {@code FigureActions} class contains methods which realise different actions applied to figures
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ */
 public class FigureActions {
     private final Figure figure;
 

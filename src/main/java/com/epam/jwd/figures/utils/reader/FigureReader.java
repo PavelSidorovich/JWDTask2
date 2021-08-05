@@ -6,6 +6,7 @@ import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.point.Point;
 import com.epam.jwd.figures.model.point.PointFabric;
 import com.epam.jwd.figures.model.rectangle.QuadrangleFabric;
+import com.epam.jwd.figures.utils.action.FigureActions;
 import com.epam.jwd.figures.utils.exceptions.FigureException;
 import com.epam.jwd.figures.utils.exceptions.PointException;
 import com.epam.jwd.figures.utils.validation.PointValidator;
@@ -19,6 +20,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * The {@code FigureReader} class is designed to extract figures from file
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ */
 public class FigureReader {
     private static final Logger LOGGER = LogManager.getLogger(FigureReader.class);
 
@@ -26,6 +33,8 @@ public class FigureReader {
     private Scanner fileScanner;
     private int numberOfCoordinates;
     private FigureTypes figureType;
+    private int numberOfFiguresInFile = 0;
+    private int numberOfBuiltFigures = 0;
 
     public FigureReader(String filepath, FigureTypes figureType) {
         try {
@@ -39,6 +48,10 @@ public class FigureReader {
         }
     }
 
+    /**
+     * Builds figures from coordinates specified in a file
+     * @return list of built figures
+     */
     public LinkedList<? extends Figure> scanFigures() {
         LinkedList<Figure> figureList = new LinkedList<>();
         FigureFabric figureFabric;
@@ -46,6 +59,7 @@ public class FigureReader {
         if (fileScanner != null && numberOfCoordinates > 0) {
             while (fileScanner.hasNext()) {
                 String[] coordinates = fileScanner.nextLine().split(" ");
+                numberOfFiguresInFile++;
                 LinkedList<Point> points = new LinkedList<>();
 
                 try {
@@ -80,7 +94,8 @@ public class FigureReader {
                         break;
                     }
                     figure = figureFabric.newInstance(points);
-                    LOGGER.trace(String.format("Figure was builded (%s): %s",
+                    numberOfBuiltFigures++;
+                    LOGGER.trace(String.format("Figure was built (%s): %s",
                                                figure.getClass().getSimpleName(),
                                                figure.getPoints()));
                     figureList.add(figure);
@@ -90,5 +105,13 @@ public class FigureReader {
             }
         }
         return figureList;
+    }
+
+    public int getNumberOfFiguresInFile() {
+        return numberOfFiguresInFile;
+    }
+
+    public int getNumberOfBuiltFigures() {
+        return numberOfBuiltFigures;
     }
 }

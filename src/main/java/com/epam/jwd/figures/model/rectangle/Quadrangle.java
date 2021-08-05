@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 /**
- * This class is immutable
+ * The {@code Quadrangle} class is immutable. It implements the {@code Figure} interface
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ * @see Figure
  */
 public class Quadrangle implements Figure {
     private static final FigureTypes FIGURE_TYPE = FigureTypes.QUADRANGLE;

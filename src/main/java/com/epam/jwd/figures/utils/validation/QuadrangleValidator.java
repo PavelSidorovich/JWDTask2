@@ -6,6 +6,12 @@ import com.epam.jwd.figures.utils.action.MathVector;
 
 import java.util.LinkedList;
 
+/**
+ * The {@code QuadrangleValidator} class is designed to check the ability to build a quadrangle on coordinates
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ */
 public class QuadrangleValidator {
 
     private final LinkedList<Point> points;
@@ -36,8 +42,8 @@ public class QuadrangleValidator {
         }
 
         //checking crossing of the lines
-        return !intersect(points.get(0), points.get(1), points.get(2), points.get(3))
-               && !intersect(points.get(0), points.get(3), points.get(1), points.get(2));
+        return intersect(points.get(0), points.get(1), points.get(2), points.get(3))
+               && intersect(points.get(0), points.get(3), points.get(1), points.get(2));
     }
 
     private Double area(Point a, Point b, Point c) {
@@ -56,13 +62,13 @@ public class QuadrangleValidator {
             c = d;
             d = temp;
         }
-        return Math.max(a, c) <= Math.min(b, d);
+        return !(Math.max(a, c) <= Math.min(b, d));
     }
 
     private boolean intersect(Point point1, Point point2, Point point3, Point point4) {
         return intersect_1(point1.getX(), point2.getX(), point3.getX(), point4.getX())
-               && intersect_1(point1.getY(), point2.getY(), point3.getY(), point4.getY())
-               && area(point1, point2, point3) * area(point1, point2, point4) <= 0
-               && area(point3, point4, point1) * area(point3, point4, point2) <= 0;
+               || intersect_1(point1.getY(), point2.getY(), point3.getY(), point4.getY())
+               || !(area(point1, point2, point3) * area(point1, point2, point4) <= 0)
+               || !(area(point3, point4, point1) * area(point3, point4, point2) <= 0);
     }
 }
