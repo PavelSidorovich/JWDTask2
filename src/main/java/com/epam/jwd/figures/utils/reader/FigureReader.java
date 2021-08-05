@@ -26,8 +26,14 @@ import java.util.Scanner;
  * @since 1.0
  */
 public class FigureReader {
-    private static final Logger LOGGER = LogManager.getLogger(FigureReader.class);
+    private static final Logger LOG = LogManager.getLogger(FigureReader.class);
     private static final String RESULT_MSG = "Number of figures in file: %d. Successfully built %d figures.";
+    private static final String NOT_ENOUGH_COORDINATES_MSG = "Not enough coordinates to build a figure! ";
+    private static final String WRONG_COORDINATE_MSG = "Wrong coordinate! ";
+    private static final String FIGURE_WAS_BUILT_MSG = "Figure was built (%s): %s";
+    private static final String TRY_TO_OPEN_FILE_MSG = "Trying to open file <%s>";
+    private static final String FILE_OPENED_MSG = "Successfully opened file <%s>";
+    private static final String ERROR_WHILE_OPENING_FILE_MSG = "Error occurred while opening file <%s>";
 
     private final Validator validator = new PointValidator();
     private Scanner fileScanner;
@@ -38,13 +44,13 @@ public class FigureReader {
 
     public FigureReader(String filepath, FigureTypes figureType) {
         try {
-            LOGGER.trace(String.format("Trying to open file <%s>", filepath));
+            LOG.trace(String.format(TRY_TO_OPEN_FILE_MSG, filepath));
             fileScanner = new Scanner(new File(filepath));
             this.figureType = figureType;
             this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
-            LOGGER.info(String.format("Successfully opened file <%s>", filepath));
+            LOG.info(String.format(FILE_OPENED_MSG, filepath));
         } catch (FileNotFoundException e) {
-            LOGGER.error(String.format("Error occurred while opening file <%s>", filepath));
+            LOG.error(String.format(ERROR_WHILE_OPENING_FILE_MSG, filepath));
         }
     }
 
@@ -67,18 +73,17 @@ public class FigureReader {
                     figureFabric = new PointFabric();
 
                     if (coordinates.length % 2 != 0) {
-                        throw new PointException("Not enough coordinates to build a figure! ",
+                        throw new PointException(NOT_ENOUGH_COORDINATES_MSG,
                                                  new LinkedList<>(Arrays.asList(coordinates)));
                     }
                     for (int i = 0; i < coordinates.length; i += 2) {
-                        if (validator.isValid(coordinates[i])
-                            && validator.isValid(coordinates[i + 1])) {
+                        if (validator.isValid(coordinates[i]) && validator.isValid(coordinates[i + 1])) {
                             points.add(((PointFabric) figureFabric).newInstance(
                                     Double.parseDouble(coordinates[i]),
                                     Double.parseDouble(coordinates[i + 1]))
                             );
                         } else {
-                            throw new PointException("Wrong coordinate! ",
+                            throw new PointException(WRONG_COORDINATE_MSG,
                                                      new LinkedList<>(Arrays.asList(coordinates)));
                         }
                     }
@@ -96,18 +101,16 @@ public class FigureReader {
                     }
                     figure = figureFabric.newInstance(points);
                     numberOfBuiltFigures++;
-                    LOGGER.trace(String.format("Figure was built (%s): %s",
-                                               figure.getClass().getSimpleName(),
-                                               figure.getPoints()));
+                    LOG.trace(String.format(FIGURE_WAS_BUILT_MSG,
+                                            figure.getClass().getSimpleName(),
+                                            figure.getPoints()));
                     figureList.add(figure);
                 } catch (PointException | FigureException e) {
-                    LOGGER.error(e);
-                } finally {
-                    fileScanner.close();
+                    LOG.error(e.getMessage());
                 }
             }
         }
-        LOGGER.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
+        LOG.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
         return figureList;
     }
 

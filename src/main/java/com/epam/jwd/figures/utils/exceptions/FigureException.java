@@ -6,8 +6,6 @@ import com.epam.jwd.figures.model.point.Point;
 import java.util.List;
 
 public class FigureException extends IllegalArgumentException {
-    public static final String ARGUMENTS_ERROR_MSG = "%s cannot be built on %s coordinates: ";
-
     private final Class<? extends Figure> figure;
     private final List<Point> points;
 
@@ -18,10 +16,7 @@ public class FigureException extends IllegalArgumentException {
     }
 
     @Override
-    public String toString() {
-        String message = getClass().getCanonicalName() + ": ";
-        message += String.format(getMessage(), figure.getSimpleName(), points.size());
-        message += points;
-        return message;
+    public String getMessage() {
+        return String.format(super.getMessage(), figure.getSimpleName(), points.size(), points);
     }
 }
