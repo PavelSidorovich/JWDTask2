@@ -7,9 +7,11 @@
   <Appenders>
     <RollingFile name="loggerFile" fileName="${basePath}/app-info.log"
                  filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
-            <PatternLayout>
-              <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
-            </PatternLayout>
+<!--            <PatternLayout>-->
+<!--              <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>-->
+<!--            </PatternLayout>-->
+      <PatternLayout disableAnsi="false"
+                     pattern="%d{HH:mm:ss} [%-5level] %logger{36}.%M() @%L - %msg%n"/>
       <Policies>
         <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
       </Policies>
