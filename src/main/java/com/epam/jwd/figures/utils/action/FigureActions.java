@@ -14,15 +14,11 @@ import java.util.LinkedList;
  * @since 1.0
  */
 public class FigureActions {
-    private static final Logger LOGGER = LogManager.getLogger(FigureActions.class);
+    private static final Logger LOG = LogManager.getLogger(FigureActions.class);
 
-    private Figure figure;
+    private final Figure figure;
 
     public FigureActions(Figure figure) {
-        this.figure = figure;
-    }
-
-    public void setFigure(Figure figure) {
         this.figure = figure;
     }
 
@@ -41,7 +37,7 @@ public class FigureActions {
                                                       figure.getPoints().get(0));
             }
         }
-        LOGGER.info(figure + ": " + perimeter);
+        LOG.info(figure + ": " + perimeter);
         return perimeter;
     }
 
@@ -50,7 +46,6 @@ public class FigureActions {
 
         if (figure instanceof Point) {
             return 0;
-
         }
         for (int i = 0; i < figure.getNumberOfPoints(); i++) {
             if (i != figure.getNumberOfPoints() - 1) {
@@ -61,7 +56,7 @@ public class FigureActions {
                           - figure.getPoints().get(i).getY() * figure.getPoints().get(0).getX();
             }
         }
-        LOGGER.info(figure + ": " + Math.abs(square / 2));
+        LOG.info(figure + ": " + Math.abs(square / 2));
         return Math.abs(square / 2);
     }
 
@@ -89,7 +84,7 @@ public class FigureActions {
                 break;
             }
         }
-        LOGGER.info(figure + ": " + convex);
+        LOG.info(figure + ": " + convex);
         return convex;
     }
 

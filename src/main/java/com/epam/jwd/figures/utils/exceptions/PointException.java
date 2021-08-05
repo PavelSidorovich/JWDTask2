@@ -15,10 +15,7 @@ public class PointException extends IllegalArgumentException {
     }
 
     @Override
-    public String toString() {
-        String message = getClass().getCanonicalName() + ": ";
-        message += String.format(getMessage() + ILLEGAL_ARGUMENT_MSG,
-                                 Point.class.getSimpleName(), coordinates);
-        return message;
+    public String getMessage() {
+        return String.format(super.getMessage() + ILLEGAL_ARGUMENT_MSG, Point.class.getSimpleName(), coordinates);
     }
 }

@@ -18,11 +18,14 @@ import java.util.LinkedList;
  */
 public class QuadrangleFabric implements FigureFabric {
 
+    private static final String LINES_ARE_CROSSING_MSG = "Lines are crossing! ";
+    private static final String WRONG_NUMBER_OF_COORDINATES_MSG = "Wrong number of coordinates! ";
+    private static final String ARGUMENTS_ERROR_MSG = "%s cannot be built on %s coordinates: %s";
+
     /**
      * Creates new instance of {@code Quadrangle} class
      * @param pointList list of points
      * @return created object of {@code Quadrangle} class
-     * @throws FigureException if pointList is invalid
      */
     @Override
     public Quadrangle newInstance(LinkedList<Point> pointList) {
@@ -30,12 +33,12 @@ public class QuadrangleFabric implements FigureFabric {
             if (new QuadrangleValidator(pointList).canBeBuild()) {
                 return new Quadrangle(pointList);
             } else {
-                throw new FigureException("Lines are crossing! "
-                                          + FigureException.ARGUMENTS_ERROR_MSG, Quadrangle.class, pointList);
+                throw new FigureException(LINES_ARE_CROSSING_MSG + ARGUMENTS_ERROR_MSG,
+                                          Quadrangle.class, pointList);
             }
         } else {
-            throw new FigureException("Wrong number of coordinates! "
-                                      + FigureException.ARGUMENTS_ERROR_MSG, Quadrangle.class, pointList);
+            throw new FigureException(WRONG_NUMBER_OF_COORDINATES_MSG + ARGUMENTS_ERROR_MSG,
+                                      Quadrangle.class, pointList);
         }
     }
 }
