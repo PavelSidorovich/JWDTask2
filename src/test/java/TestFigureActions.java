@@ -29,8 +29,7 @@ public class TestFigureActions {
                     Arrays.asList(TypesOfQuadrangle.ARBITRARY, TypesOfQuadrangle.SQUARE,
                                   TypesOfQuadrangle.PARALLELOGRAM, TypesOfQuadrangle.TRAPEZOID,
                                   TypesOfQuadrangle.DIAMOND, TypesOfQuadrangle.ARBITRARY));
-
-    private static final int NUMBER_OF_BUILT_FIGURES = 6;
+    private static final String RESULT_MSG = "Number of figures in file: %d. Successfully built %d figures.";
 
     private QuadrangleActions actions = null;
     private LinkedList<Quadrangle> quadrangles = null;
@@ -39,7 +38,9 @@ public class TestFigureActions {
     public void buildingFigureTest() {
         FigureReader figureReader = new FigureReader(FILEPATH, FigureTypes.QUADRANGLE);
         quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures();
-        Assert.assertEquals(quadrangles.size(), NUMBER_OF_BUILT_FIGURES);
+        Assert.assertEquals(quadrangles.size(), figureReader.getNumberOfBuiltFigures());
+        LOGGER.trace(String.format(RESULT_MSG, figureReader.getNumberOfFiguresInFile(),
+                                   figureReader.getNumberOfBuiltFigures()));
     }
 
     @Test
@@ -77,5 +78,4 @@ public class TestFigureActions {
             Assert.assertEquals(TYPES_LIST.get(i), actions.defineTheType());
         }
     }
-
 }

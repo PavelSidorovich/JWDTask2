@@ -8,7 +8,11 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 /**
- * This class is immutable
+ * The {@code Point} class is immutable. It implements the {@code Figure} interface
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ * @see Figure
  */
 public class Point implements Figure {
     public static final FigureTypes FIGURE_TYPE = FigureTypes.POINT;

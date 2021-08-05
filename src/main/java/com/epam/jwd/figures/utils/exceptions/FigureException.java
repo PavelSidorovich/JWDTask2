@@ -22,9 +22,6 @@ public class FigureException extends IllegalArgumentException {
         String message = getClass().getCanonicalName() + ": ";
         message += String.format(getMessage(), figure.getSimpleName(), points.size());
         message += points;
-        //for (Point point: points) {
-            //message += point + " ";
-        //}
         return message;
     }
 }

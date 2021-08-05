@@ -2,6 +2,12 @@ package com.epam.jwd.figures.utils.action;
 
 import com.epam.jwd.figures.model.point.Point;
 
+/**
+ * The {@code MathVector} class represents mathematical vector and some actions applied to him
+ *
+ * @author Pavel Sidorovich
+ * @since 1.0
+ */
 public class MathVector {
     private final double x;
     private final double y;
