@@ -22,12 +22,12 @@
   </Appenders>
 
   <Loggers>
-    <Logger name="com.epam.jwd" level="trace" additivity="true">
-      <appender-ref ref="loggerFile" level="trace"/>
-    </Logger>
-
+<!--    <Logger name="com.epam.jwd" level="info" additivity="true">-->
+<!--      <appender-ref ref="loggerFile" level="trace"/>-->
+<!--    </Logger>-->
     <Root level="TRACE">
       <AppenderRef ref="Console"/>
+      <appender-ref ref="loggerFile"/>
     </Root>
   </Loggers>
 </Configuration>
