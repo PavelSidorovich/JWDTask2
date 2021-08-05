@@ -1,24 +1,24 @@
-[TRACE] 2021-08-05 21:58:04.177 [main] FigureReader - Trying to open file <files/quadrangles.txt>
-[INFO ] 2021-08-05 21:58:04.191 [main] FigureReader - Successfully opened file <files/quadrangles.txt>
-[TRACE] 2021-08-05 21:58:04.298 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]
-[TRACE] 2021-08-05 21:58:04.299 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=0.0, y=2.0}, Point{x=2.0, y=2.0}, Point{x=2.0, y=0.0}]
-[TRACE] 2021-08-05 21:58:04.300 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=10.0, y=5.0}, Point{x=20.0, y=5.0}, Point{x=10.0, y=0.0}]
-[TRACE] 2021-08-05 21:58:04.301 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=5.0, y=4.0}, Point{x=15.0, y=4.0}, Point{x=20.0, y=0.0}]
-[TRACE] 2021-08-05 21:58:04.303 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=1.0, y=3.0}, Point{x=4.0, y=4.0}, Point{x=3.0, y=1.0}]
-[TRACE] 2021-08-05 21:58:04.304 [main] FigureReader - Figure was built (Quadrangle): [Point{x=0.0, y=4.0}, Point{x=3.0, y=4.0}, Point{x=5.0, y=9.0}, Point{x=6.0, y=1.0}]
-[ERROR] 2021-08-05 21:58:04.305 [main] FigureReader - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=3.0, y=4.0}, Point{x=0.0, y=3.0}, Point{x=3.0, y=0.0}]
-[ERROR] 2021-08-05 21:58:04.306 [main] FigureReader - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=0.0}, Point{x=2.0, y=1.0}, Point{x=3.0, y=0.0}]
-[ERROR] 2021-08-05 21:58:04.307 [main] FigureReader - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=0.0}, Point{x=2.0, y=0.0}, Point{x=3.0, y=0.0}]
-[ERROR] 2021-08-05 21:58:04.308 [main] FigureReader - Not enough coordinates to build a figure! Point cannot be build from coordinates: [0.0, 0.0, 1.0, 3.0, 4.0, 4.0, 3.0, 1.0, 9.0]
-[ERROR] 2021-08-05 21:58:04.309 [main] FigureReader - Wrong coordinate! Point cannot be build from coordinates: [0.0, 0.0, 1.0, z, 2.0, 0.0, 3.0, 0.0]
-[ERROR] 2021-08-05 21:58:04.310 [main] FigureReader - Wrong number of coordinates! Quadrangle cannot be built on 3 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=1.0}, Point{x=2.0, y=3.0}]
-[TRACE] 2021-08-05 21:58:04.311 [main] FigureReader - Number of figures in file: 12. Successfully built 6 figures.
-[INFO ] 2021-08-05 21:58:04.353 [main] QuadrangleActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: ARBITRARY
-[INFO ] 2021-08-05 21:58:04.360 [main] FigureActions - Quadrangle{points=[Point{x=0.0, y=4.0}, Point{x=3.0, y=4.0}, Point{x=5.0, y=9.0}, Point{x=6.0, y=1.0}]}: false
-[INFO ] 2021-08-05 21:58:04.361 [main] QuadrangleActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=3.0}, Point{x=4.0, y=4.0}, Point{x=3.0, y=1.0}]}: DIAMOND
-[INFO ] 2021-08-05 21:58:04.362 [main] FigureActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: true
-[INFO ] 2021-08-05 21:58:04.363 [main] QuadrangleActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=10.0, y=5.0}, Point{x=20.0, y=5.0}, Point{x=10.0, y=0.0}]}: PARALLELOGRAM
-[INFO ] 2021-08-05 21:58:04.365 [main] FigureActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: 11.013517220148689
-[INFO ] 2021-08-05 21:58:04.367 [main] QuadrangleActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=0.0, y=2.0}, Point{x=2.0, y=2.0}, Point{x=2.0, y=0.0}]}: SQUARE
-[INFO ] 2021-08-05 21:58:04.368 [main] FigureActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: 6.75
-[INFO ] 2021-08-05 21:58:04.369 [main] QuadrangleActions - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=5.0, y=4.0}, Point{x=15.0, y=4.0}, Point{x=20.0, y=0.0}]}: TRAPEZOID
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.<init>() @47 - Trying to open file <files/quadrangles.txt>
+22:08:52 [INFO ] com.epam.jwd.figures.utils.reader.FigureReader.<init>() @51 - Successfully opened file <files/quadrangles.txt>
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=0.0, y=2.0}, Point{x=2.0, y=2.0}, Point{x=2.0, y=0.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=10.0, y=5.0}, Point{x=20.0, y=5.0}, Point{x=10.0, y=0.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=5.0, y=4.0}, Point{x=15.0, y=4.0}, Point{x=20.0, y=0.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=0.0}, Point{x=1.0, y=3.0}, Point{x=4.0, y=4.0}, Point{x=3.0, y=1.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @104 - Figure was built (Quadrangle): [Point{x=0.0, y=4.0}, Point{x=3.0, y=4.0}, Point{x=5.0, y=9.0}, Point{x=6.0, y=1.0}]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=3.0, y=4.0}, Point{x=0.0, y=3.0}, Point{x=3.0, y=0.0}]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=0.0}, Point{x=2.0, y=1.0}, Point{x=3.0, y=0.0}]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Lines are crossing! Quadrangle cannot be built on 4 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=0.0}, Point{x=2.0, y=0.0}, Point{x=3.0, y=0.0}]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Not enough coordinates to build a figure! Point cannot be build from coordinates: [0.0, 0.0, 1.0, 3.0, 4.0, 4.0, 3.0, 1.0, 9.0]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Wrong coordinate! Point cannot be build from coordinates: [0.0, 0.0, 1.0, z, 2.0, 0.0, 3.0, 0.0]
+22:08:52 [ERROR] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @109 - Wrong number of coordinates! Quadrangle cannot be built on 3 coordinates: [Point{x=0.0, y=0.0}, Point{x=1.0, y=1.0}, Point{x=2.0, y=3.0}]
+22:08:52 [TRACE] com.epam.jwd.figures.utils.reader.FigureReader.scanFigures() @113 - Number of figures in file: 12. Successfully built 6 figures.
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.QuadrangleActions.defineTheType() @68 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: ARBITRARY
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.FigureActions.isConvex() @87 - Quadrangle{points=[Point{x=0.0, y=4.0}, Point{x=3.0, y=4.0}, Point{x=5.0, y=9.0}, Point{x=6.0, y=1.0}]}: false
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.QuadrangleActions.defineTheType() @50 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=3.0}, Point{x=4.0, y=4.0}, Point{x=3.0, y=1.0}]}: DIAMOND
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.FigureActions.isConvex() @87 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: true
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.QuadrangleActions.defineTheType() @59 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=10.0, y=5.0}, Point{x=20.0, y=5.0}, Point{x=10.0, y=0.0}]}: PARALLELOGRAM
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.FigureActions.perimeter() @40 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: 11.013517220148689
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.QuadrangleActions.defineTheType() @47 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=0.0, y=2.0}, Point{x=2.0, y=2.0}, Point{x=2.0, y=0.0}]}: SQUARE
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.FigureActions.square() @59 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=1.0, y=2.0}, Point{x=3.0, y=3.0}, Point{x=3.5, y=0.0}]}: 6.75
+22:08:52 [INFO ] com.epam.jwd.figures.utils.action.QuadrangleActions.defineTheType() @65 - Quadrangle{points=[Point{x=0.0, y=0.0}, Point{x=5.0, y=4.0}, Point{x=15.0, y=4.0}, Point{x=20.0, y=0.0}]}: TRAPEZOID
