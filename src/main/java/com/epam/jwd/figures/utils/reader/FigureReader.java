@@ -6,7 +6,6 @@ import com.epam.jwd.figures.model.FigureTypes;
 import com.epam.jwd.figures.model.point.Point;
 import com.epam.jwd.figures.model.point.PointFabric;
 import com.epam.jwd.figures.model.rectangle.QuadrangleFabric;
-import com.epam.jwd.figures.utils.action.FigureActions;
 import com.epam.jwd.figures.utils.exceptions.FigureException;
 import com.epam.jwd.figures.utils.exceptions.PointException;
 import com.epam.jwd.figures.utils.validation.PointValidator;
@@ -28,6 +27,7 @@ import java.util.Scanner;
  */
 public class FigureReader {
     private static final Logger LOGGER = LogManager.getLogger(FigureReader.class);
+    private static final String RESULT_MSG = "Number of figures in file: %d. Successfully built %d figures.";
 
     private final Validator validator = new PointValidator();
     private Scanner fileScanner;
@@ -104,6 +104,7 @@ public class FigureReader {
                 }
             }
         }
+        LOGGER.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
         return figureList;
     }
 

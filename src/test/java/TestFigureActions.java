@@ -3,16 +3,14 @@ import com.epam.jwd.figures.model.rectangle.Quadrangle;
 import com.epam.jwd.figures.model.rectangle.TypesOfQuadrangle;
 import com.epam.jwd.figures.utils.action.QuadrangleActions;
 import com.epam.jwd.figures.utils.reader.FigureReader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
 public class TestFigureActions {
-    private static final Logger LOGGER = LogManager.getLogger(TestFigureActions.class);
     private static final String FILEPATH = "files/quadrangles.txt";
 
     private static final LinkedList<Double> PERIMETER_LIST =
@@ -29,53 +27,73 @@ public class TestFigureActions {
                     Arrays.asList(TypesOfQuadrangle.ARBITRARY, TypesOfQuadrangle.SQUARE,
                                   TypesOfQuadrangle.PARALLELOGRAM, TypesOfQuadrangle.TRAPEZOID,
                                   TypesOfQuadrangle.DIAMOND, TypesOfQuadrangle.ARBITRARY));
-    private static final String RESULT_MSG = "Number of figures in file: %d. Successfully built %d figures.";
+    private static final FigureReader FIGURE_READER = new FigureReader(FILEPATH, FigureTypes.QUADRANGLE);
+    private static final int NUMBER_OF_BUILT_FIGURES = 6;
 
     private QuadrangleActions actions = null;
     private LinkedList<Quadrangle> quadrangles = null;
 
+    @BeforeTest
+    public void scanFigures() {
+        quadrangles = (LinkedList<Quadrangle>) FIGURE_READER.scanFigures();
+    }
+
     @Test
     public void buildingFigureTest() {
-        FigureReader figureReader = new FigureReader(FILEPATH, FigureTypes.QUADRANGLE);
-        quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures();
-        Assert.assertEquals(quadrangles.size(), figureReader.getNumberOfBuiltFigures());
-        LOGGER.trace(String.format(RESULT_MSG, figureReader.getNumberOfFiguresInFile(),
-                                   figureReader.getNumberOfBuiltFigures()));
+        Assert.assertEquals(quadrangles.size(), NUMBER_OF_BUILT_FIGURES);
     }
 
     @Test
     public void perimeterTest() {
-        for (int i = 0; i < quadrangles.size(); i++) {
-            actions = new QuadrangleActions(quadrangles.get(i));
-            LOGGER.info(quadrangles.get(i) + ": " + actions.perimeter());
-            Assert.assertEquals(PERIMETER_LIST.get(i), actions.perimeter(), 0.01);
-        }
+        actions = new QuadrangleActions(quadrangles.get(0));
+        Assert.assertEquals(PERIMETER_LIST.get(0), actions.perimeter(), 0.01);
     }
 
     @Test
     public void squareTest() {
-        for (int i = 0; i < quadrangles.size(); i++) {
-            actions = new QuadrangleActions(quadrangles.get(i));
-            LOGGER.info(quadrangles.get(i) + ": " + actions.square());
-            Assert.assertEquals(SQUARE_LIST.get(i), actions.square(), 0.01);
-        }
+        actions = new QuadrangleActions(quadrangles.get(0));
+        Assert.assertEquals(SQUARE_LIST.get(0), actions.square(), 0.01);
     }
 
     @Test
     public void convexTest() {
-        for (int i = 0; i < quadrangles.size(); i++) {
-            actions = new QuadrangleActions(quadrangles.get(i));
-            LOGGER.info(quadrangles.get(i) + ": " + actions.isConvex());
-            Assert.assertEquals(CONVEX_LIST.get(i), actions.isConvex());
-        }
+        actions = new QuadrangleActions(quadrangles.get(5));
+        Assert.assertEquals(CONVEX_LIST.get(5), actions.isConvex());
     }
 
     @Test
-    public void typeOfQuadrangleTest() {
-        for (int i = 0; i < quadrangles.size(); i++) {
-            actions = new QuadrangleActions(quadrangles.get(i));
-            LOGGER.info(quadrangles.get(i) + ": " + actions.defineTheType());
-            Assert.assertEquals(TYPES_LIST.get(i), actions.defineTheType());
-        }
+    public void notConvexTest() {
+        actions = new QuadrangleActions(quadrangles.get(0));
+        Assert.assertEquals(CONVEX_LIST.get(0), actions.isConvex());
+    }
+
+    @Test
+    public void arbitraryFigureTest() {
+        actions = new QuadrangleActions(quadrangles.get(0));
+        Assert.assertEquals(TYPES_LIST.get(0), actions.defineTheType());
+    }
+
+    @Test
+    public void squareFigureTest() {
+        actions = new QuadrangleActions(quadrangles.get(1));
+        Assert.assertEquals(TYPES_LIST.get(1), actions.defineTheType());
+    }
+
+    @Test
+    public void trapezoidFigureTest() {
+        actions = new QuadrangleActions(quadrangles.get(3));
+        Assert.assertEquals(TYPES_LIST.get(3), actions.defineTheType());
+    }
+
+    @Test
+    public void diamondFigureTest() {
+        actions = new QuadrangleActions(quadrangles.get(4));
+        Assert.assertEquals(TYPES_LIST.get(4), actions.defineTheType());
+    }
+
+    @Test
+    public void parallelogramFigureTest() {
+        actions = new QuadrangleActions(quadrangles.get(2));
+        Assert.assertEquals(TYPES_LIST.get(2), actions.defineTheType());
     }
 }

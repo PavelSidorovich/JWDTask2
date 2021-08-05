@@ -2,6 +2,8 @@ package com.epam.jwd.figures.utils.action;
 
 import com.epam.jwd.figures.model.Figure;
 import com.epam.jwd.figures.model.point.Point;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 
@@ -12,9 +14,15 @@ import java.util.LinkedList;
  * @since 1.0
  */
 public class FigureActions {
-    private final Figure figure;
+    private static final Logger LOGGER = LogManager.getLogger(FigureActions.class);
+
+    private Figure figure;
 
     public FigureActions(Figure figure) {
+        this.figure = figure;
+    }
+
+    public void setFigure(Figure figure) {
         this.figure = figure;
     }
 
@@ -33,6 +41,7 @@ public class FigureActions {
                                                       figure.getPoints().get(0));
             }
         }
+        LOGGER.info(figure + ": " + perimeter);
         return perimeter;
     }
 
@@ -52,6 +61,7 @@ public class FigureActions {
                           - figure.getPoints().get(i).getY() * figure.getPoints().get(0).getX();
             }
         }
+        LOGGER.info(figure + ": " + Math.abs(square / 2));
         return Math.abs(square / 2);
     }
 
@@ -79,6 +89,7 @@ public class FigureActions {
                 break;
             }
         }
+        LOGGER.info(figure + ": " + convex);
         return convex;
     }
 
