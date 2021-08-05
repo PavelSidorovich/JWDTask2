@@ -1,5 +1,7 @@
 ## JWD Task #2
 
+Результаты работы тестов могут быть просмотрены тут: [app-info.log](https://github.com/PavelSidorovich/JWDTask2/blob/main/logs/app-info.log)
+
 - Фигура 1:
 
 ![](https://github.com/PavelSidorovich/JWDTask2/blob/main/files/screenshots/1.jpg)
