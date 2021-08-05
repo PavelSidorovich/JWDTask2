@@ -50,6 +50,7 @@ public class FigureReader {
 
     /**
      * Builds figures from coordinates specified in a file
+     *
      * @return list of built figures
      */
     public LinkedList<? extends Figure> scanFigures() {
@@ -101,6 +102,8 @@ public class FigureReader {
                     figureList.add(figure);
                 } catch (PointException | FigureException e) {
                     LOGGER.error(e);
+                } finally {
+                    fileScanner.close();
                 }
             }
         }
