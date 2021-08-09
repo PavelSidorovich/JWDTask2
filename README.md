@@ -1,5 +1,7 @@
 ## JWD Task #2
 
+В репозитории есть проблема, которая еще не решена. В старых коммитах остался файл Task2.iml. Пытаюсь решить данную проблему.
+
 - Фигура 1:
 
 ![](https://github.com/PavelSidorovich/JWDTask2/blob/main/readme/1.jpg)
