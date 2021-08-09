@@ -1,7 +1,6 @@
-package com.epam.jwd.figures.model;
+package com.epam.jwd.model.quadrangle;
 
-import com.epam.jwd.figures.model.point.Point;
-import com.epam.jwd.figures.utils.action.MathVector;
+import com.epam.jwd.utils.action.MathVector;
 
 import java.util.LinkedList;
 

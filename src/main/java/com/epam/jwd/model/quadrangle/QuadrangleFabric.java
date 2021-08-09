@@ -1,10 +1,7 @@
-package com.epam.jwd.figures.model.rectangle;
+package com.epam.jwd.model.quadrangle;
 
-import com.epam.jwd.figures.model.FigureFabric;
-import com.epam.jwd.figures.model.FigureTypes;
-import com.epam.jwd.figures.model.point.Point;
-import com.epam.jwd.figures.utils.exceptions.FigureException;
-import com.epam.jwd.figures.utils.validation.QuadrangleValidator;
+import com.epam.jwd.utils.exceptions.FigureException;
+import com.epam.jwd.utils.validation.QuadrangleValidator;
 
 import java.util.LinkedList;
 

@@ -1,20 +1,18 @@
-package com.epam.jwd.figures.utils.reader;
+package com.epam.jwd.utils.reader;
 
-import com.epam.jwd.figures.model.Figure;
-import com.epam.jwd.figures.model.FigureFabric;
-import com.epam.jwd.figures.model.FigureTypes;
-import com.epam.jwd.figures.model.point.Point;
-import com.epam.jwd.figures.model.point.PointFabric;
-import com.epam.jwd.figures.model.rectangle.QuadrangleFabric;
-import com.epam.jwd.figures.utils.exceptions.FigureException;
-import com.epam.jwd.figures.utils.exceptions.PointException;
-import com.epam.jwd.figures.utils.validation.PointValidator;
-import com.epam.jwd.figures.utils.validation.Validator;
+import com.epam.jwd.model.quadrangle.Figure;
+import com.epam.jwd.model.quadrangle.FigureFabric;
+import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.Point;
+import com.epam.jwd.model.quadrangle.PointFabric;
+import com.epam.jwd.model.quadrangle.QuadrangleFabric;
+import com.epam.jwd.utils.exceptions.FigureException;
+import com.epam.jwd.utils.exceptions.PointException;
+import com.epam.jwd.utils.validation.PointValidator;
+import com.epam.jwd.utils.validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -31,27 +29,20 @@ public class FigureReader {
     private static final String NOT_ENOUGH_COORDINATES_MSG = "Not enough coordinates to build a figure! ";
     private static final String WRONG_COORDINATE_MSG = "Wrong coordinate! ";
     private static final String FIGURE_WAS_BUILT_MSG = "Figure was built (%s): %s";
-    private static final String TRY_TO_OPEN_FILE_MSG = "Trying to open file <%s>";
-    private static final String FILE_OPENED_MSG = "Successfully opened file <%s>";
-    private static final String ERROR_WHILE_OPENING_FILE_MSG = "Error occurred while opening file <%s>";
+    private static final String SUCCESSFUL_INITIALIZATION_MSG = "%s was successfully initialized!";
 
     private final Validator validator = new PointValidator();
-    private Scanner fileScanner;
-    private int numberOfCoordinates;
-    private FigureTypes figureType;
+    private final Scanner fileScanner;
+    private final int numberOfCoordinates;
+    private final FigureTypes figureType;
     private int numberOfFiguresInFile = 0;
     private int numberOfBuiltFigures = 0;
 
-    public FigureReader(String filepath, FigureTypes figureType) {
-        try {
-            LOG.trace(String.format(TRY_TO_OPEN_FILE_MSG, filepath));
-            fileScanner = new Scanner(new File(filepath));
-            this.figureType = figureType;
-            this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
-            LOG.info(String.format(FILE_OPENED_MSG, filepath));
-        } catch (FileNotFoundException e) {
-            LOG.error(String.format(ERROR_WHILE_OPENING_FILE_MSG, filepath), e);
-        }
+    public FigureReader(Scanner fileScanner, FigureTypes figureType) {
+        this.fileScanner = fileScanner;
+        this.figureType = figureType;
+        this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
+        LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
     }
 
     /**
