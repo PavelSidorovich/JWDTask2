@@ -1,7 +1,7 @@
-package com.epam.jwd.figures.utils.exceptions;
+package com.epam.jwd.utils.exceptions;
 
-import com.epam.jwd.figures.model.Figure;
-import com.epam.jwd.figures.model.point.Point;
+import com.epam.jwd.model.quadrangle.Figure;
+import com.epam.jwd.model.quadrangle.Point;
 
 import java.util.List;
 

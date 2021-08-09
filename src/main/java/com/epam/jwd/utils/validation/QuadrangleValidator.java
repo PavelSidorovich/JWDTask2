@@ -1,8 +1,8 @@
-package com.epam.jwd.figures.utils.validation;
+package com.epam.jwd.utils.validation;
 
-import com.epam.jwd.figures.model.FigureTypes;
-import com.epam.jwd.figures.model.point.Point;
-import com.epam.jwd.figures.utils.action.MathVector;
+import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.Point;
+import com.epam.jwd.utils.action.MathVector;
 
 import java.util.LinkedList;
 

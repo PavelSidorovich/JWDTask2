@@ -1,4 +1,4 @@
-package com.epam.jwd.figures.utils.validation;
+package com.epam.jwd.utils.validation;
 
 import java.util.regex.Pattern;
 

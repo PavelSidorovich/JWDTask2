@@ -1,7 +1,4 @@
-package com.epam.jwd.figures.model.point;
-
-import com.epam.jwd.figures.model.FigureFabric;
-import com.epam.jwd.figures.model.FigureTypes;
+package com.epam.jwd.model.quadrangle;
 
 import java.util.LinkedList;
 

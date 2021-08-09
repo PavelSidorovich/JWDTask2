@@ -1,4 +1,4 @@
-package com.epam.jwd.figures.model.rectangle;
+package com.epam.jwd.model.quadrangle;
 
 public enum TypesOfQuadrangle {
     ARBITRARY,
