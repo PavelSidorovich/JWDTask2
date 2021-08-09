@@ -51,7 +51,7 @@ public class FigureActionsTest {
     @Test(dataProvider = "TypeProvider")
     public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, TypesOfQuadrangle quadrangleType) {
         actions = new QuadrangleActions(figure);
-        Assert.assertEquals(quadrangleType, actions.defineTheType());
+        Assert.assertEquals(actions.defineTheType(), quadrangleType);
     }
 
     @DataProvider(name = "TypeProvider")
