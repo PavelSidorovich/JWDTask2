@@ -50,7 +50,7 @@ public class FigureReader {
             this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
             LOG.info(String.format(FILE_OPENED_MSG, filepath));
         } catch (FileNotFoundException e) {
-            LOG.error(String.format(ERROR_WHILE_OPENING_FILE_MSG, filepath));
+            LOG.error(String.format(ERROR_WHILE_OPENING_FILE_MSG, filepath), e);
         }
     }
 
@@ -106,7 +106,7 @@ public class FigureReader {
                                             figure.getPoints()));
                     figureList.add(figure);
                 } catch (PointException | FigureException e) {
-                    LOG.error(e.getMessage());
+                    LOG.error(e);
                 }
             }
         }
