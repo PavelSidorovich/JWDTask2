@@ -33,24 +33,28 @@ public class FigureActionsTest {
     @Test(dataProvider = "PerimeterProvider")
     public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
         actions = new QuadrangleActions(figure);
+
         Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
     }
 
     @Test(dataProvider = "SquareProvider")
     public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
         actions = new QuadrangleActions(figure);
+
         Assert.assertEquals(actions.square(), square, 0.01);
     }
 
     @Test(dataProvider = "ConvexProvider")
     public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
         actions = new QuadrangleActions(figure);
+
         Assert.assertEquals(actions.isConvex(), isConvex);
     }
 
     @Test(dataProvider = "TypeProvider")
     public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, TypesOfQuadrangle quadrangleType) {
         actions = new QuadrangleActions(figure);
+
         Assert.assertEquals(actions.defineTheType(), quadrangleType);
     }
 

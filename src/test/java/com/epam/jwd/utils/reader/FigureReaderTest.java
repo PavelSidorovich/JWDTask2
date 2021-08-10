@@ -41,6 +41,7 @@ public class FigureReaderTest {
     @Test
     public void scanFigures_shouldReturnList_whenArgumentsAreValid() {
         LinkedList<Figure> figures = (LinkedList<Figure>) FIGURE_READER.scanFigures(fileScanner);
+
         assertNotNull(figures);
         assertSame(figures.size(), 6);
     }
@@ -48,18 +49,21 @@ public class FigureReaderTest {
     @Test(dataProvider = "ConstructorArgumentsProvider")
     public void scanFigures_shouldReturnNull_whenArgumentsAreInvalid(Scanner scanner, FigureTypes figureType) {
         FigureReader figureReader = new FigureReader(figureType);
+
         assertNull(figureReader.scanFigures(scanner));
     }
 
     @Test
     public void testGetNumberOfFiguresInFile() {
         FIGURE_READER.scanFigures(fileScanner);
+
         assertSame(FIGURE_READER.getNumberOfFiguresInFile(), 12);
     }
 
     @Test
     public void testGetNumberOfBuiltFigures() {
         FIGURE_READER.scanFigures(fileScanner);
+
         assertSame(FIGURE_READER.getNumberOfBuiltFigures(), 6);
     }
 
