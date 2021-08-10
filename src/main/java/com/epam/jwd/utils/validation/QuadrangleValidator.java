@@ -25,15 +25,15 @@ public class QuadrangleValidator {
             return false;
         }
 
-        for (int i = 0; i < FigureTypes.QUADRANGLE.getNumberOfPoints() - 2; i++) {
+        for (int i = 0; i < FigureTypes.QUADRANGLE.getNumberOfPoints() - 1; i++) {
             MathVector mathVector1;
             MathVector mathVector2;
-            if (i != FigureTypes.QUADRANGLE.getNumberOfPoints() - 1) {
+            if (i != FigureTypes.QUADRANGLE.getNumberOfPoints() - 2) {
                 mathVector1 = new MathVector(points.get(i), points.get(i + 1));
                 mathVector2 = new MathVector(points.get(i + 1), points.get(i + 2));
             } else {
                 mathVector1 = new MathVector(points.get(FigureTypes.QUADRANGLE.getNumberOfPoints() - 1),
-                                             points.get(FigureTypes.QUADRANGLE.getNumberOfPoints()));
+                                             points.get(0));
                 mathVector2 = new MathVector(points.get(0), points.get(1));
             }
             if (Double.valueOf(1).equals(mathVector1.multiply(mathVector2))) {
