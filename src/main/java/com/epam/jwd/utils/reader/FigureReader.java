@@ -63,7 +63,7 @@ public class FigureReader {
             figureList = new LinkedList<>();
 
             while (fileScanner.hasNext()) {
-                String[] coordinates = fileScanner.nextLine().split(" ");
+                String[] coordinates = fileScanner.nextLine().strip().split(" ");
                 numberOfFiguresInFile++;
                 LinkedList<Point> points = new LinkedList<>();
 
