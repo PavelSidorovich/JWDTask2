@@ -30,31 +30,38 @@ public class FigureReader {
     private static final String WRONG_COORDINATE_MSG = "Wrong coordinate! ";
     private static final String FIGURE_WAS_BUILT_MSG = "Figure was built (%s): %s";
     private static final String SUCCESSFUL_INITIALIZATION_MSG = "%s was successfully initialized!";
+    private static final String NOT_SUCCESSFUL_INITIALIZATION_MSG = "%s was not successfully initialized!";
 
     private final Validator validator = new PointValidator();
-    private final Scanner fileScanner;
-    private final int numberOfCoordinates;
+    private int numberOfCoordinates;
     private final FigureTypes figureType;
     private int numberOfFiguresInFile = 0;
     private int numberOfBuiltFigures = 0;
 
-    public FigureReader(Scanner fileScanner, FigureTypes figureType) {
-        this.fileScanner = fileScanner;
+    public FigureReader(FigureTypes figureType) {
         this.figureType = figureType;
-        this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
-        LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+        if (figureType != null) {
+            this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();
+            LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+        } else {
+            LOG.warn(String.format(NOT_SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+        }
     }
 
     /**
-     * Builds figures from coordinates specified in a file
+     * Builds figures from coordinates specified in a file. Each use of this method requires setting a new scanner
      *
      * @return list of built figures
      */
-    public LinkedList<? extends Figure> scanFigures() {
-        LinkedList<Figure> figureList = new LinkedList<>();
+    public LinkedList<? extends Figure> scanFigures(Scanner fileScanner) {
+        LinkedList<Figure> figureList = null;
         FigureFabric figureFabric;
+        numberOfBuiltFigures = 0;
+        numberOfFiguresInFile = 0;
 
-        if (fileScanner != null && numberOfCoordinates > 0) {
+        if (fileScanner != null && numberOfCoordinates > 0 && figureType != null) {
+            figureList = new LinkedList<>();
+
             while (fileScanner.hasNext()) {
                 String[] coordinates = fileScanner.nextLine().split(" ");
                 numberOfFiguresInFile++;
