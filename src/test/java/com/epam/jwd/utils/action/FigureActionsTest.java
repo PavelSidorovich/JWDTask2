@@ -26,8 +26,8 @@ public class FigureActionsTest {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
-        FigureReader figureReader = new FigureReader(fileScanner, FigureTypes.QUADRANGLE);
-        quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures();
+        FigureReader figureReader = new FigureReader(FigureTypes.QUADRANGLE);
+        quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures(fileScanner);
     }
 
     @Test(dataProvider = "PerimeterProvider")
