@@ -1,7 +1,8 @@
-package com.epam.jwd.utils.action;
+package com.epam.jwd.quadrangle.action;
 
-import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.TypesOfQuadrangle;
+import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.QuadrangleType;
+import com.epam.jwd.quadrangle.model.MathVector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +24,7 @@ public class QuadrangleActions extends FigureActions {
         super(figure);
     }
 
-    public TypesOfQuadrangle defineTheType() {
+    public QuadrangleType defineTheType() {
         LinkedList<MathVector> vectors = getFigure().getVectors();
         LinkedList<MathVector> diagonals = new LinkedList<>();
 
@@ -44,11 +45,11 @@ public class QuadrangleActions extends FigureActions {
                                                      getFigure().getPoints().get(3)))) {
             if (vectors.get(0).perpendicular(vectors.get(1))
                 && vectors.get(2).perpendicular(vectors.get(3))) {
-                LOG.info(getFigure() + ": " + TypesOfQuadrangle.SQUARE);
-                return TypesOfQuadrangle.SQUARE;
+                LOG.info(getFigure() + ": " + QuadrangleType.SQUARE);
+                return QuadrangleType.SQUARE;
             } else if (diagonals.get(0).perpendicular(diagonals.get(1))) {
-                LOG.info(getFigure() + ": " + TypesOfQuadrangle.DIAMOND);
-                return TypesOfQuadrangle.DIAMOND;
+                LOG.info(getFigure() + ": " + QuadrangleType.DIAMOND);
+                return QuadrangleType.DIAMOND;
             }
         } else if (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
                            .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
@@ -56,16 +57,16 @@ public class QuadrangleActions extends FigureActions {
                    && distanceBetweenTwoPoints(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
                            .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
                                                             getFigure().getPoints().get(0)))) {
-            LOG.info(getFigure() + ": " + TypesOfQuadrangle.PARALLELOGRAM);
-            return TypesOfQuadrangle.PARALLELOGRAM;
+            LOG.info(getFigure() + ": " + QuadrangleType.PARALLELOGRAM);
+            return QuadrangleType.PARALLELOGRAM;
         } else if ((vectors.get(0).multiply(vectors.get(2)) == 0
                     && vectors.get(1).multiply(vectors.get(3)) != 0)
                    || (vectors.get(0).multiply(vectors.get(2)) != 0
                        && vectors.get(1).multiply(vectors.get(3)) == 0)) {
-            LOG.info(getFigure() + ": " + TypesOfQuadrangle.TRAPEZOID);
-            return TypesOfQuadrangle.TRAPEZOID;
+            LOG.info(getFigure() + ": " + QuadrangleType.TRAPEZOID);
+            return QuadrangleType.TRAPEZOID;
         }
-        LOG.info(getFigure() + ": " + TypesOfQuadrangle.ARBITRARY);
-        return TypesOfQuadrangle.ARBITRARY;
+        LOG.info(getFigure() + ": " + QuadrangleType.ARBITRARY);
+        return QuadrangleType.ARBITRARY;
     }
 }

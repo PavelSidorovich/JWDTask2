@@ -1,4 +1,4 @@
-package com.epam.jwd.utils.validation;
+package com.epam.jwd.quadrangle.validation;
 
 import java.util.regex.Pattern;
 

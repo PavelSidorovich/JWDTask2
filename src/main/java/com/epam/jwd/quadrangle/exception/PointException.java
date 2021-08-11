@@ -1,6 +1,6 @@
-package com.epam.jwd.utils.exceptions;
+package com.epam.jwd.quadrangle.exception;
 
-import com.epam.jwd.model.quadrangle.Point;
+import com.epam.jwd.quadrangle.model.Point;
 
 import java.util.List;
 

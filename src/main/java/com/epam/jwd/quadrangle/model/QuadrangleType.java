@@ -1,6 +1,6 @@
-package com.epam.jwd.model.quadrangle;
+package com.epam.jwd.quadrangle.model;
 
-public enum TypesOfQuadrangle {
+public enum QuadrangleType {
     ARBITRARY,
     SQUARE,
     TRAPEZOID,

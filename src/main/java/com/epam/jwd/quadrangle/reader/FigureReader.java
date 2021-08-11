@@ -1,15 +1,15 @@
-package com.epam.jwd.utils.reader;
+package com.epam.jwd.quadrangle.reader;
 
-import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.FigureFabric;
-import com.epam.jwd.model.quadrangle.FigureType;
-import com.epam.jwd.model.quadrangle.Point;
-import com.epam.jwd.model.quadrangle.PointFabric;
-import com.epam.jwd.model.quadrangle.QuadrangleFabric;
-import com.epam.jwd.utils.exceptions.FigureException;
-import com.epam.jwd.utils.exceptions.PointException;
-import com.epam.jwd.utils.validation.PointValidator;
-import com.epam.jwd.utils.validation.Validator;
+import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigureFabric;
+import com.epam.jwd.quadrangle.model.FigureType;
+import com.epam.jwd.quadrangle.model.Point;
+import com.epam.jwd.quadrangle.model.PointFabric;
+import com.epam.jwd.quadrangle.model.QuadrangleFabric;
+import com.epam.jwd.quadrangle.exception.FigureException;
+import com.epam.jwd.quadrangle.exception.PointException;
+import com.epam.jwd.quadrangle.validation.PointValidator;
+import com.epam.jwd.quadrangle.validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -63,7 +63,7 @@ public class FigureReader {
             figureList = new LinkedList<>();
 
             while (fileScanner.hasNext()) {
-                String[] coordinates = fileScanner.nextLine().strip().split(" ");
+                String[] coordinates = fileScanner.nextLine().split(" ");
                 numberOfFiguresInFile++;
                 LinkedList<Point> points = new LinkedList<>();
 

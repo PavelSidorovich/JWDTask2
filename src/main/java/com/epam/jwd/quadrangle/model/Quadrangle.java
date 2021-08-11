@@ -1,4 +1,4 @@
-package com.epam.jwd.model.quadrangle;
+package com.epam.jwd.quadrangle.model;
 
 import java.util.LinkedList;
 import java.util.Objects;

@@ -1,10 +1,11 @@
 package com.epam.jwd.utils.action;
 
-import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.FigureType;
-import com.epam.jwd.model.quadrangle.Quadrangle;
-import com.epam.jwd.model.quadrangle.TypesOfQuadrangle;
-import com.epam.jwd.utils.reader.FigureReader;
+import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigureType;
+import com.epam.jwd.quadrangle.model.Quadrangle;
+import com.epam.jwd.quadrangle.model.QuadrangleType;
+import com.epam.jwd.quadrangle.action.QuadrangleActions;
+import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -52,7 +53,7 @@ public class FigureActionsTest {
     }
 
     @Test(dataProvider = "TypeProvider")
-    public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, TypesOfQuadrangle quadrangleType) {
+    public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, QuadrangleType quadrangleType) {
         actions = new QuadrangleActions(figure);
 
         Assert.assertEquals(actions.defineTheType(), quadrangleType);
@@ -61,12 +62,12 @@ public class FigureActionsTest {
     @DataProvider(name = "TypeProvider")
     public Object[][] getTypesFromProvider() {
         return new Object[][] {
-                { quadrangles.get(0), TypesOfQuadrangle.ARBITRARY },
-                { quadrangles.get(1), TypesOfQuadrangle.SQUARE },
-                { quadrangles.get(2), TypesOfQuadrangle.PARALLELOGRAM },
-                { quadrangles.get(3), TypesOfQuadrangle.TRAPEZOID },
-                { quadrangles.get(4), TypesOfQuadrangle.DIAMOND },
-                { quadrangles.get(5), TypesOfQuadrangle.ARBITRARY },
+                { quadrangles.get(0), QuadrangleType.ARBITRARY },
+                { quadrangles.get(1), QuadrangleType.SQUARE },
+                { quadrangles.get(2), QuadrangleType.PARALLELOGRAM },
+                { quadrangles.get(3), QuadrangleType.TRAPEZOID },
+                { quadrangles.get(4), QuadrangleType.DIAMOND },
+                { quadrangles.get(5), QuadrangleType.ARBITRARY },
         };
     }
 

@@ -1,7 +1,7 @@
-package com.epam.jwd.model.quadrangle;
+package com.epam.jwd.quadrangle.model;
 
-import com.epam.jwd.utils.exceptions.FigureException;
-import com.epam.jwd.utils.validation.QuadrangleValidator;
+import com.epam.jwd.quadrangle.exception.FigureException;
+import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
 
 import java.util.LinkedList;
 

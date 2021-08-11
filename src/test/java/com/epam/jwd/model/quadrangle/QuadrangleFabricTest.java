@@ -1,7 +1,11 @@
 package com.epam.jwd.model.quadrangle;
 
 
-import com.epam.jwd.utils.exceptions.FigureException;
+import com.epam.jwd.quadrangle.exception.FigureException;
+import com.epam.jwd.quadrangle.model.Point;
+import com.epam.jwd.quadrangle.model.PointFabric;
+import com.epam.jwd.quadrangle.model.Quadrangle;
+import com.epam.jwd.quadrangle.model.QuadrangleFabric;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;

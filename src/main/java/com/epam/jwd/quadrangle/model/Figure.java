@@ -1,6 +1,4 @@
-package com.epam.jwd.model.quadrangle;
-
-import com.epam.jwd.utils.action.MathVector;
+package com.epam.jwd.quadrangle.model;
 
 import java.util.LinkedList;
 

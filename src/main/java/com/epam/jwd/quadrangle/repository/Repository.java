@@ -1,4 +1,4 @@
-package com.epam.jwd.repository;
+package com.epam.jwd.quadrangle.repository;
 
 import java.util.List;
 

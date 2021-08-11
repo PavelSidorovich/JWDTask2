@@ -1,7 +1,8 @@
-package com.epam.jwd.utils.action;
+package com.epam.jwd.quadrangle.action;
 
-import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.Point;
+import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.Point;
+import com.epam.jwd.quadrangle.model.MathVector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

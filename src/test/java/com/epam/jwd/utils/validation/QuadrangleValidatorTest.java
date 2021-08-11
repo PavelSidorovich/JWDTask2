@@ -1,7 +1,8 @@
 package com.epam.jwd.utils.validation;
 
-import com.epam.jwd.model.quadrangle.Point;
-import com.epam.jwd.model.quadrangle.PointFabric;
+import com.epam.jwd.quadrangle.model.Point;
+import com.epam.jwd.quadrangle.model.PointFabric;
+import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 

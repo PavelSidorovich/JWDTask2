@@ -1,4 +1,4 @@
-package com.epam.jwd.model.quadrangle;
+package com.epam.jwd.quadrangle.model;
 
 public enum FigureType {
     POINT (1),

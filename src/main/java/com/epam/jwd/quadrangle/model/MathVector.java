@@ -1,6 +1,4 @@
-package com.epam.jwd.utils.action;
-
-import com.epam.jwd.model.quadrangle.Point;
+package com.epam.jwd.quadrangle.model;
 
 /**
  * The {@code MathVector} class represents mathematical vector and some actions applied to him
