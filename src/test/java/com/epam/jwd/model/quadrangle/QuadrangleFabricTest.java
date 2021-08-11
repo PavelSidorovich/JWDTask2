@@ -2,27 +2,21 @@ package com.epam.jwd.model.quadrangle;
 
 
 import com.epam.jwd.utils.exceptions.FigureException;
-import com.epam.jwd.utils.validation.QuadrangleValidator;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.util.LinkedList;
 
-import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
 public class QuadrangleFabricTest {
 
-    @Mock
-    private QuadrangleValidator validator;
-
     @InjectMocks
-    private static final QuadrangleFabric QUADRANGLE_FABRIC = new QuadrangleFabric();;
+    private static final QuadrangleFabric QUADRANGLE_FABRIC = new QuadrangleFabric();
 
     private static final PointFabric POINT_FABRIC = new PointFabric();
     private static final LinkedList<Point> POINTS = new LinkedList<>();

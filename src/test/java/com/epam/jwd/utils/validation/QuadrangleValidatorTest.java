@@ -9,11 +9,10 @@ import java.util.LinkedList;
 
 import static org.testng.Assert.*;
 
-
 public class QuadrangleValidatorTest {
 
     private static final PointFabric POINT_FABRIC = new PointFabric();
-    private static LinkedList<Point> points = new LinkedList<>();
+    private static final LinkedList<Point> points = new LinkedList<>();
     private static QuadrangleValidator validator = null;
 
     @AfterMethod
@@ -30,7 +29,7 @@ public class QuadrangleValidatorTest {
         points.add(POINT_FABRIC.newInstance(8, 4));
         validator = new QuadrangleValidator(points);
 
-        assertTrue(!validator.canBeBuilt());
+        assertFalse(validator.canBeBuilt());
     }
 
     @Test
