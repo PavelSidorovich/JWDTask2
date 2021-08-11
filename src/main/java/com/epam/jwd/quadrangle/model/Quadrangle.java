@@ -1,6 +1,6 @@
 package com.epam.jwd.quadrangle.model;
 
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Quadrangle extends CommonFigureProperties {
 
-    public Quadrangle(LinkedList<Point> points) {
+    public Quadrangle(List<Point> points) {
         super(points, FigureType.QUADRANGLE);
     }
 

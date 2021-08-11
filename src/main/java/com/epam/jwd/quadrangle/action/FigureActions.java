@@ -6,7 +6,7 @@ import com.epam.jwd.quadrangle.model.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The {@code FigureActions} class contains methods which realise different actions applied to figures
@@ -67,8 +67,8 @@ public class FigureActions {
 
     public Boolean isConvex() {
         boolean convex = true;
-        LinkedList<MathVector> vectors = figure.getVectors();
-        boolean negative = vectors.get(0).multiply(vectors.get(1)) < 0;
+        List<MathVector> vectors = figure.getVectors();
+        boolean negative = vectors.get(0).scalarProduct(vectors.get(1)) < 0;
 
         if (figure instanceof Point) {
             return true;
@@ -76,9 +76,9 @@ public class FigureActions {
         for (int i = 0; i < vectors.size(); i++) {
             boolean tmp;
             if (i != vectors.size() - 1) {
-                tmp = (vectors.get(i).multiply(vectors.get(i + 1)) < 0) != negative;
+                tmp = (vectors.get(i).scalarProduct(vectors.get(i + 1)) < 0) != negative;
             } else {
-                tmp = (vectors.get(i).multiply(vectors.get(0)) < 0) != negative;
+                tmp = (vectors.get(i).scalarProduct(vectors.get(0)) < 0) != negative;
             }
             if (tmp) {
                 convex = false;

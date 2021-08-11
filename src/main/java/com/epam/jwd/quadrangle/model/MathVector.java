@@ -15,7 +15,7 @@ public class MathVector {
         y = point2.getY() - point1.getY();
     }
 
-    public Double multiply(MathVector secondVector) {
+    public Double scalarProduct(MathVector secondVector) {
         return this.x * secondVector.y - secondVector.x * this.y;
     }
 

@@ -1,7 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public interface FigureFactory {
-    Figure newInstance(LinkedList<Point> pointList);
+    Figure newInstance(List<Point> pointList);
 }

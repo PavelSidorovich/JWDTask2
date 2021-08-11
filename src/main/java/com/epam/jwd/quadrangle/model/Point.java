@@ -1,7 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -41,8 +41,8 @@ public class Point implements Figure {
     }
 
     @Override
-    public LinkedList<Point> getPoints() {
-        return new LinkedList<>(Collections.singletonList(new Point(this)));
+    public ArrayList<Point> getPoints() {
+        return new ArrayList<>(Collections.singletonList(new Point(this)));
     }
 
     @Override

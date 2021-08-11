@@ -6,7 +6,8 @@ import com.epam.jwd.quadrangle.model.QuadrangleType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The {@code QuadrangleActions} class contains some actions which can be applied only to quadrangles
@@ -25,8 +26,8 @@ public class QuadrangleActions extends FigureActions {
     }
 
     public QuadrangleType defineTheType() {
-        LinkedList<MathVector> vectors = getFigure().getVectors();
-        LinkedList<MathVector> diagonals = new LinkedList<>();
+        List<MathVector> vectors = getFigure().getVectors();
+        List<MathVector> diagonals = new ArrayList<>();
 
         //special list (contains vectors of diagonals) for the diamond
         for (int i = 0; i < NUMBER_OF_DIAGONALS; i++) {
@@ -59,10 +60,10 @@ public class QuadrangleActions extends FigureActions {
                                                             getFigure().getPoints().get(0)))) {
             LOG.info(getFigure() + ": " + QuadrangleType.PARALLELOGRAM);
             return QuadrangleType.PARALLELOGRAM;
-        } else if ((vectors.get(0).multiply(vectors.get(2)) == 0
-                    && vectors.get(1).multiply(vectors.get(3)) != 0)
-                   || (vectors.get(0).multiply(vectors.get(2)) != 0
-                       && vectors.get(1).multiply(vectors.get(3)) == 0)) {
+        } else if ((vectors.get(0).scalarProduct(vectors.get(2)) == 0
+                    && vectors.get(1).scalarProduct(vectors.get(3)) != 0)
+                   || (vectors.get(0).scalarProduct(vectors.get(2)) != 0
+                       && vectors.get(1).scalarProduct(vectors.get(3)) == 0)) {
             LOG.info(getFigure() + ": " + QuadrangleType.TRAPEZOID);
             return QuadrangleType.TRAPEZOID;
         }

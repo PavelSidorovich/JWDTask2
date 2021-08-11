@@ -1,21 +1,22 @@
 package com.epam.jwd.quadrangle.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class CommonFigureProperties implements Figure {
 
     private int id;
-    private final LinkedList<Point> points;
+    private final List<Point> points;
 
     private final FigureType figureType;
 
-    public CommonFigureProperties(LinkedList<Point> points, FigureType figureType) {
+    public CommonFigureProperties(List<Point> points, FigureType figureType) {
         id = 0;
         this.points = points;
         this.figureType = figureType;
     }
 
-    public CommonFigureProperties(int id, LinkedList<Point> points, FigureType figureType) {
+    public CommonFigureProperties(int id, List<Point> points, FigureType figureType) {
         this.id = id;
         this.points = points;
         this.figureType = figureType;
@@ -34,8 +35,8 @@ public abstract class CommonFigureProperties implements Figure {
     }
 
     @Override
-    public LinkedList<Point> getPoints() {
-        return new LinkedList<>(points);
+    public ArrayList<Point> getPoints() {
+        return new ArrayList<>(points);
     }
 
     @Override

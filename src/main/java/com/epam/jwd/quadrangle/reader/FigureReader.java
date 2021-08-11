@@ -13,8 +13,8 @@ import com.epam.jwd.quadrangle.validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -53,26 +53,26 @@ public class FigureReader {
      *
      * @return list of built figures
      */
-    public LinkedList<? extends Figure> scanFigures(Scanner fileScanner) {
-        LinkedList<Figure> figureList = null;
+    public ArrayList<? extends Figure> scanFigures(Scanner fileScanner) {
+        ArrayList<Figure> figureList = null;
         FigureFactory figureFactory;
         numberOfBuiltFigures = 0;
         numberOfFiguresInFile = 0;
 
         if (fileScanner != null && numberOfCoordinates > 0 && figureType != null) {
-            figureList = new LinkedList<>();
+            figureList = new ArrayList<>();
 
             while (fileScanner.hasNext()) {
                 String[] coordinates = fileScanner.nextLine().split(" ");
                 numberOfFiguresInFile++;
-                LinkedList<Point> points = new LinkedList<>();
+                ArrayList<Point> points = new ArrayList<>();
 
                 try {
                     figureFactory = new PointFactory();
 
                     if (coordinates.length % 2 != 0) {
                         throw new PointArgumentException(NOT_ENOUGH_COORDINATES_MSG,
-                                                         new LinkedList<>(Arrays.asList(coordinates)));
+                                                         new ArrayList<>(Arrays.asList(coordinates)));
                     }
                     for (int i = 0; i < coordinates.length; i += 2) {
                         if (validator.isValid(coordinates[i]) && validator.isValid(coordinates[i + 1])) {
@@ -82,7 +82,7 @@ public class FigureReader {
                             );
                         } else {
                             throw new PointArgumentException(WRONG_COORDINATE_MSG,
-                                                             new LinkedList<>(Arrays.asList(coordinates)));
+                                                             new ArrayList<>(Arrays.asList(coordinates)));
                         }
                     }
                     Figure figure;

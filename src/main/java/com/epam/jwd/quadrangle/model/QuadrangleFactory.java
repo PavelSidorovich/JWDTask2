@@ -3,7 +3,7 @@ package com.epam.jwd.quadrangle.model;
 import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The {@code QuadrangleFactory} class is a fabric designed to create {@link Point} objects
@@ -25,7 +25,7 @@ public class QuadrangleFactory implements FigureFactory {
      * @return created object of {@code Quadrangle} class
      */
     @Override
-    public Quadrangle newInstance(LinkedList<Point> pointList) {
+    public Quadrangle newInstance(List<Point> pointList) {
         String errorMsg = String.format(ARGUMENTS_ERROR_MSG, Quadrangle.class, pointList.size(), pointList);
 
         if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {

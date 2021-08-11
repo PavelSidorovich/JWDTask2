@@ -4,7 +4,7 @@ import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.MathVector;
 import com.epam.jwd.quadrangle.model.Point;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The {@code QuadrangleValidator} class is designed to check the ability to build a quadrangle on coordinates
@@ -14,9 +14,9 @@ import java.util.LinkedList;
  */
 public class QuadrangleValidator {
 
-    private final LinkedList<Point> points;
+    private final List<Point> points;
 
-    public QuadrangleValidator(LinkedList<Point> points) {
+    public QuadrangleValidator(List<Point> points) {
         this.points = points;
     }
 
@@ -36,7 +36,7 @@ public class QuadrangleValidator {
                                              points.get(0));
                 mathVector2 = new MathVector(points.get(0), points.get(1));
             }
-            if (Double.valueOf(0).equals(mathVector1.multiply(mathVector2))) {
+            if (Double.valueOf(0).equals(mathVector1.scalarProduct(mathVector2))) {
                 return false;
             }
         }

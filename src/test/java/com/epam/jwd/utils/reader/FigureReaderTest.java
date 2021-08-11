@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.testng.Assert.*;
@@ -41,7 +41,7 @@ public class FigureReaderTest {
 
     @Test
     public void scanFigures_shouldReturnList_whenArgumentsAreValid() {
-        LinkedList<Figure> figures = (LinkedList<Figure>) FIGURE_READER.scanFigures(fileScanner);
+        ArrayList<? extends Figure> figures = FIGURE_READER.scanFigures(fileScanner);
 
         assertNotNull(figures);
         assertSame(figures.size(), 6);

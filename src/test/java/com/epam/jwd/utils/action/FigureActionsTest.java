@@ -1,10 +1,9 @@
 package com.epam.jwd.utils.action;
 
+import com.epam.jwd.quadrangle.action.QuadrangleActions;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
-import com.epam.jwd.quadrangle.model.Quadrangle;
 import com.epam.jwd.quadrangle.model.QuadrangleType;
-import com.epam.jwd.quadrangle.action.QuadrangleActions;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -14,13 +13,13 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FigureActionsTest {
 
     private QuadrangleActions actions = null;
-    private LinkedList<Quadrangle> quadrangles = null;
+    private ArrayList<? extends Figure> quadrangles = null;
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
@@ -28,7 +27,7 @@ public class FigureActionsTest {
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
-        quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures(fileScanner);
+        quadrangles = figureReader.scanFigures(fileScanner);
     }
 
     @Test(dataProvider = "PerimeterProvider")

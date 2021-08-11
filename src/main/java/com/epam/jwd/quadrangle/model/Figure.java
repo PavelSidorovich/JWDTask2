@@ -1,6 +1,6 @@
 package com.epam.jwd.quadrangle.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * This interface was designed in case the hierarchy of the project increase.
@@ -8,10 +8,10 @@ import java.util.LinkedList;
 public interface Figure {
     int getNumberOfPoints();
 
-    LinkedList<Point> getPoints();
+    ArrayList<Point> getPoints();
 
-    default LinkedList<MathVector> getVectors() {
-        LinkedList<MathVector> vectors = new LinkedList<>();
+    default ArrayList<MathVector> getVectors() {
+        ArrayList<MathVector> vectors = new ArrayList<>();
 
         for (int i = 0; i < this.getNumberOfPoints(); i++) {
             if (i != this.getNumberOfPoints() - 1) {
