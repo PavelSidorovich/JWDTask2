@@ -14,15 +14,18 @@ import java.util.Objects;
 public class Point implements Figure {
     public static final FigureType FIGURE_TYPE = FigureType.POINT;
 
+    private int id;
     private final double x;
     private final double y;
 
     Point(double x, double y) {
+        this.id = 0;
         this.x = x;
         this.y = y;
     }
 
     public Point(Point point) {
+        this.id = 0;
         this.x = point.getX();
         this.y = point.getY();
     }
@@ -38,6 +41,11 @@ public class Point implements Figure {
     @Override
     public int getNumberOfPoints() {
         return FIGURE_TYPE.getNumberOfPoints();
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override

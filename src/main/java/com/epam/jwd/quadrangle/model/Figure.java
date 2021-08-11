@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public interface Figure {
     int getNumberOfPoints();
 
+    int getId();
+
     ArrayList<Point> getPoints();
 
     default ArrayList<MathVector> getVectors() {
