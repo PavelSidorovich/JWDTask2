@@ -36,7 +36,7 @@ public class QuadrangleValidator {
                                              points.get(0));
                 mathVector2 = new MathVector(points.get(0), points.get(1));
             }
-            if (Double.valueOf(1).equals(mathVector1.multiply(mathVector2))) {
+            if (Double.valueOf(0).equals(mathVector1.multiply(mathVector2))) {
                 return false;
             }
         }
