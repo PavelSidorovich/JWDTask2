@@ -48,7 +48,7 @@ public class QuadrangleValidatorTest {
         points.add(POINT_FABRIC.newInstance(1, 0));
         points.add(POINT_FABRIC.newInstance(2, 0));
         points.add(POINT_FABRIC.newInstance(3, 0));
-        points.add(POINT_FABRIC.newInstance(4, 0));
+        points.add(POINT_FABRIC.newInstance(4, 9));
         validator = new QuadrangleValidator(points);
 
         assertFalse(validator.canBeBuild());
