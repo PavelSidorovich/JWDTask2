@@ -17,8 +17,8 @@ import java.util.Scanner;
 import static org.testng.Assert.*;
 
 public class FigureReaderTest {
-
     private static final FigureReader FIGURE_READER = new FigureReader(FigureTypes.QUADRANGLE);
+
     private static Scanner fileScanner = null;
     private static File file = null;
 

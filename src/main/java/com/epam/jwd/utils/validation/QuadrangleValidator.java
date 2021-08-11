@@ -20,7 +20,7 @@ public class QuadrangleValidator {
         this.points = points;
     }
 
-    public boolean canBeBuild() {
+    public boolean canBeBuilt() {
         if (points.size() != FigureTypes.QUADRANGLE.getNumberOfPoints()) {
             return false;
         }

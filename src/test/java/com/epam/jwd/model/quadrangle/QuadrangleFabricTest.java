@@ -1,42 +1,56 @@
 package com.epam.jwd.model.quadrangle;
 
+
 import com.epam.jwd.utils.exceptions.FigureException;
+import com.epam.jwd.utils.validation.QuadrangleValidator;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.util.LinkedList;
 
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
+@ExtendWith(MockitoExtension.class)
 public class QuadrangleFabricTest {
 
-    private static final QuadrangleFabric QUADRANGLE_FABRIC = new QuadrangleFabric();
+    @Mock
+    private QuadrangleValidator validator;
+
+    @InjectMocks
+    private static final QuadrangleFabric QUADRANGLE_FABRIC = new QuadrangleFabric();;
+
     private static final PointFabric POINT_FABRIC = new PointFabric();
-    private static LinkedList<Point> points = new LinkedList<>();
+    private static final LinkedList<Point> POINTS = new LinkedList<>();
 
     @AfterMethod
     public void clearList() {
-        points.clear();
+        POINTS.clear();
     }
 
     @Test
     public void newInstance_shouldReturnQuadrangle_whenCoordinatesAreValid() {
-        points.add(POINT_FABRIC.newInstance(0, 4));
-        points.add(POINT_FABRIC.newInstance(3, 4));
-        points.add(POINT_FABRIC.newInstance(5, 9));
-        points.add(POINT_FABRIC.newInstance(6, 1));
+        POINTS.add(POINT_FABRIC.newInstance(0, 4));
+        POINTS.add(POINT_FABRIC.newInstance(3, 4));
+        POINTS.add(POINT_FABRIC.newInstance(5, 9));
+        POINTS.add(POINT_FABRIC.newInstance(6, 1));
+        Quadrangle quadrangle = QUADRANGLE_FABRIC.newInstance(POINTS);
 
-        assertNotNull(QUADRANGLE_FABRIC.newInstance(points));
+        assertNotNull(quadrangle);
     }
 
     @Test
     public void newInstance_throwFigureException_whenNumberOfCoordinatesIsInvalid() {
-        points.add(POINT_FABRIC.newInstance(0, 4));
-        points.add(POINT_FABRIC.newInstance(3, 4));
-        points.add(POINT_FABRIC.newInstance(5, 9));
+        POINTS.add(POINT_FABRIC.newInstance(0, 4));
+        POINTS.add(POINT_FABRIC.newInstance(3, 4));
+        POINTS.add(POINT_FABRIC.newInstance(5, 9));
 
         try {
-            QUADRANGLE_FABRIC.newInstance(points);
+            QUADRANGLE_FABRIC.newInstance(POINTS);
             fail("should throw FigureException");
         } catch (FigureException figureException) {
             assertNotNull(figureException);
@@ -46,13 +60,13 @@ public class QuadrangleFabricTest {
 
     @Test
     public void newInstance_throwFigureException_whenLinesAreCrossing() {
-        points.add(POINT_FABRIC.newInstance(0, 0));
-        points.add(POINT_FABRIC.newInstance(1, 0));
-        points.add(POINT_FABRIC.newInstance(2, 0));
-        points.add(POINT_FABRIC.newInstance(4, 9));
+        POINTS.add(POINT_FABRIC.newInstance(0, 0));
+        POINTS.add(POINT_FABRIC.newInstance(1, 0));
+        POINTS.add(POINT_FABRIC.newInstance(2, 0));
+        POINTS.add(POINT_FABRIC.newInstance(4, 9));
 
         try {
-            QUADRANGLE_FABRIC.newInstance(points);
+            QUADRANGLE_FABRIC.newInstance(POINTS);
             fail("should throw FigureException");
         } catch (FigureException figureException) {
             assertNotNull(figureException);

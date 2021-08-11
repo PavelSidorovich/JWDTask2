@@ -27,7 +27,7 @@ public class QuadrangleFabric implements FigureFabric {
     @Override
     public Quadrangle newInstance(LinkedList<Point> pointList) {
         if (pointList.size() == FigureTypes.QUADRANGLE.getNumberOfPoints()) {
-            if (new QuadrangleValidator(pointList).canBeBuild()) {
+            if (new QuadrangleValidator(pointList).canBeBuilt()) {
                 return new Quadrangle(pointList);
             } else {
                 throw new FigureException(LINES_ARE_CROSSING_MSG + ARGUMENTS_ERROR_MSG,
