@@ -1,7 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
 public enum FigureType {
-    POINT (1),
+    POINT(1),
     LINE(2),
     TRIANGLE(3),
     QUADRANGLE(4),

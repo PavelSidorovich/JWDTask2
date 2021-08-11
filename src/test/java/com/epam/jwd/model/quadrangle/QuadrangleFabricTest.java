@@ -1,11 +1,11 @@
 package com.epam.jwd.model.quadrangle;
 
 
-import com.epam.jwd.quadrangle.exception.FigureException;
+import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.model.Point;
-import com.epam.jwd.quadrangle.model.PointFabric;
+import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.model.Quadrangle;
-import com.epam.jwd.quadrangle.model.QuadrangleFabric;
+import com.epam.jwd.quadrangle.model.QuadrangleFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -20,9 +20,9 @@ import static org.testng.Assert.*;
 public class QuadrangleFabricTest {
 
     @InjectMocks
-    private static final QuadrangleFabric QUADRANGLE_FABRIC = new QuadrangleFabric();
+    private static final QuadrangleFactory QUADRANGLE_FABRIC = new QuadrangleFactory();
 
-    private static final PointFabric POINT_FABRIC = new PointFabric();
+    private static final PointFactory POINT_FABRIC = new PointFactory();
     private static final LinkedList<Point> POINTS = new LinkedList<>();
 
     @AfterMethod
@@ -49,10 +49,10 @@ public class QuadrangleFabricTest {
 
         try {
             QUADRANGLE_FABRIC.newInstance(POINTS);
-            fail("should throw FigureException");
-        } catch (FigureException figureException) {
-            assertNotNull(figureException);
-            assertTrue(figureException.getMessage().contains("Wrong number of coordinates!"));
+            fail("should throw FigureBuildException");
+        } catch (FigureBuildException figureBuildException) {
+            assertNotNull(figureBuildException);
+            assertTrue(figureBuildException.getMessage().contains("Wrong number of coordinates!"));
         }
     }
 
@@ -65,10 +65,10 @@ public class QuadrangleFabricTest {
 
         try {
             QUADRANGLE_FABRIC.newInstance(POINTS);
-            fail("should throw FigureException");
-        } catch (FigureException figureException) {
-            assertNotNull(figureException);
-            assertTrue(figureException.getMessage().contains("Lines are crossing!"));
+            fail("should throw FigureBuildException");
+        } catch (FigureBuildException figureBuildException) {
+            assertNotNull(figureBuildException);
+            assertTrue(figureBuildException.getMessage().contains("Lines are crossing!"));
         }
     }
 }

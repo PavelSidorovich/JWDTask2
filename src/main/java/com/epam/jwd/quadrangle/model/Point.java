@@ -8,8 +8,8 @@ import java.util.Objects;
  * The {@code Point} class is immutable. It implements the {@code Figure} interface
  *
  * @author Pavel Sidorovich
- * @since 1.0
  * @see Figure
+ * @since 1.0
  */
 public class Point implements Figure {
     public static final FigureType FIGURE_TYPE = FigureType.POINT;

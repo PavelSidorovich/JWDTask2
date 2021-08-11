@@ -1,13 +1,13 @@
 package com.epam.jwd.quadrangle.reader;
 
+import com.epam.jwd.quadrangle.exception.FigureBuildException;
+import com.epam.jwd.quadrangle.exception.PointArgumentException;
 import com.epam.jwd.quadrangle.model.Figure;
-import com.epam.jwd.quadrangle.model.FigureFabric;
+import com.epam.jwd.quadrangle.model.FigureFactory;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.Point;
-import com.epam.jwd.quadrangle.model.PointFabric;
-import com.epam.jwd.quadrangle.model.QuadrangleFabric;
-import com.epam.jwd.quadrangle.exception.FigureException;
-import com.epam.jwd.quadrangle.exception.PointException;
+import com.epam.jwd.quadrangle.model.PointFactory;
+import com.epam.jwd.quadrangle.model.QuadrangleFactory;
 import com.epam.jwd.quadrangle.validation.PointValidator;
 import com.epam.jwd.quadrangle.validation.Validator;
 import org.apache.logging.log4j.LogManager;
@@ -55,7 +55,7 @@ public class FigureReader {
      */
     public LinkedList<? extends Figure> scanFigures(Scanner fileScanner) {
         LinkedList<Figure> figureList = null;
-        FigureFabric figureFabric;
+        FigureFactory figureFactory;
         numberOfBuiltFigures = 0;
         numberOfFiguresInFile = 0;
 
@@ -68,42 +68,42 @@ public class FigureReader {
                 LinkedList<Point> points = new LinkedList<>();
 
                 try {
-                    figureFabric = new PointFabric();
+                    figureFactory = new PointFactory();
 
                     if (coordinates.length % 2 != 0) {
-                        throw new PointException(NOT_ENOUGH_COORDINATES_MSG,
-                                                 new LinkedList<>(Arrays.asList(coordinates)));
+                        throw new PointArgumentException(NOT_ENOUGH_COORDINATES_MSG,
+                                                         new LinkedList<>(Arrays.asList(coordinates)));
                     }
                     for (int i = 0; i < coordinates.length; i += 2) {
                         if (validator.isValid(coordinates[i]) && validator.isValid(coordinates[i + 1])) {
-                            points.add(((PointFabric) figureFabric).newInstance(
+                            points.add(((PointFactory) figureFactory).newInstance(
                                     Double.parseDouble(coordinates[i]),
                                     Double.parseDouble(coordinates[i + 1]))
                             );
                         } else {
-                            throw new PointException(WRONG_COORDINATE_MSG,
-                                                     new LinkedList<>(Arrays.asList(coordinates)));
+                            throw new PointArgumentException(WRONG_COORDINATE_MSG,
+                                                             new LinkedList<>(Arrays.asList(coordinates)));
                         }
                     }
                     Figure figure;
                     switch (figureType) {
                     case POINT:
-                        figureFabric = new PointFabric();
+                        figureFactory = new PointFactory();
                         break;
                     case LINE:
                     case TRIANGLE:
                         break;
                     case QUADRANGLE:
-                        figureFabric = new QuadrangleFabric();
+                        figureFactory = new QuadrangleFactory();
                         break;
                     }
-                    figure = figureFabric.newInstance(points);
+                    figure = figureFactory.newInstance(points);
                     numberOfBuiltFigures++;
                     LOG.trace(String.format(FIGURE_WAS_BUILT_MSG,
                                             figure.getClass().getSimpleName(),
                                             figure.getPoints()));
                     figureList.add(figure);
-                } catch (PointException | FigureException e) {
+                } catch (PointArgumentException | FigureBuildException e) {
                     LOG.error(e);
                 }
             }

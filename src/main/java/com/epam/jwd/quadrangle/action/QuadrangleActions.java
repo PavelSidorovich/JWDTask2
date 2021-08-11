@@ -1,8 +1,8 @@
 package com.epam.jwd.quadrangle.action;
 
 import com.epam.jwd.quadrangle.model.Figure;
-import com.epam.jwd.quadrangle.model.QuadrangleType;
 import com.epam.jwd.quadrangle.model.MathVector;
+import com.epam.jwd.quadrangle.model.QuadrangleType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,8 +12,8 @@ import java.util.LinkedList;
  * The {@code QuadrangleActions} class contains some actions which can be applied only to quadrangles
  *
  * @author Pavel Sidorovich
- * @since 1.0
  * @see FigureActions
+ * @since 1.0
  */
 public class QuadrangleActions extends FigureActions {
 

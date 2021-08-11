@@ -7,8 +7,8 @@ import java.util.Objects;
  * The {@code Quadrangle} class is immutable. It extends the {@code CommonFigureProperties} abstract class
  *
  * @author Pavel Sidorovich
- * @since 1.0
  * @see CommonFigureProperties
+ * @since 1.0
  */
 public class Quadrangle extends CommonFigureProperties {
 
