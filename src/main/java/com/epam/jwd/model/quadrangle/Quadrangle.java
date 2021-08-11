@@ -4,35 +4,22 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 /**
- * The {@code Quadrangle} class is immutable. It implements the {@code Figure} interface
+ * The {@code Quadrangle} class is immutable. It extends the {@code CommonFigureProperties} abstract class
  *
  * @author Pavel Sidorovich
  * @since 1.0
- * @see Figure
+ * @see CommonFigureProperties
  */
-public class Quadrangle implements Figure {
-    private static final FigureTypes FIGURE_TYPE = FigureTypes.QUADRANGLE;
-
-    private final LinkedList<Point> points;
+public class Quadrangle extends CommonFigureProperties {
 
     public Quadrangle(LinkedList<Point> points) {
-            this.points = points;
-    }
-
-    @Override
-    public int getNumberOfPoints() {
-        return FIGURE_TYPE.getNumberOfPoints();
-    }
-
-    @Override
-    public LinkedList<Point> getPoints() {
-        return new LinkedList<>(points);
+        super(points, FigureType.QUADRANGLE);
     }
 
     @Override
     public String toString() {
         return "Quadrangle{" +
-               "points=" + points +
+               "points=" + getPoints() +
                '}';
     }
 
@@ -45,11 +32,11 @@ public class Quadrangle implements Figure {
             return false;
         }
         Quadrangle that = (Quadrangle) o;
-        return Objects.equals(points, that.points);
+        return Objects.equals(getPoints(), that.getPoints());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(getPoints());
     }
 }
