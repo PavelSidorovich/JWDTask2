@@ -26,7 +26,7 @@ public class QuadrangleFabric implements FigureFabric {
      */
     @Override
     public Quadrangle newInstance(LinkedList<Point> pointList) {
-        if (pointList.size() == FigureTypes.QUADRANGLE.getNumberOfPoints()) {
+        if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {
             if (new QuadrangleValidator(pointList).canBeBuilt()) {
                 return new Quadrangle(pointList);
             } else {

@@ -12,7 +12,7 @@ import java.util.Objects;
  * @see Figure
  */
 public class Point implements Figure {
-    public static final FigureTypes FIGURE_TYPE = FigureTypes.POINT;
+    public static final FigureType FIGURE_TYPE = FigureType.POINT;
 
     private final double x;
     private final double y;

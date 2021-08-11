@@ -2,7 +2,7 @@ package com.epam.jwd.utils.reader;
 
 import com.epam.jwd.model.quadrangle.Figure;
 import com.epam.jwd.model.quadrangle.FigureFabric;
-import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.FigureType;
 import com.epam.jwd.model.quadrangle.Point;
 import com.epam.jwd.model.quadrangle.PointFabric;
 import com.epam.jwd.model.quadrangle.QuadrangleFabric;
@@ -34,11 +34,11 @@ public class FigureReader {
 
     private final Validator validator = new PointValidator();
     private int numberOfCoordinates;
-    private final FigureTypes figureType;
+    private final FigureType figureType;
     private int numberOfFiguresInFile = 0;
     private int numberOfBuiltFigures = 0;
 
-    public FigureReader(FigureTypes figureType) {
+    public FigureReader(FigureType figureType) {
         this.figureType = figureType;
         if (figureType != null) {
             this.numberOfCoordinates = 2 * figureType.getNumberOfPoints();

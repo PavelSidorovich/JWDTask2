@@ -1,6 +1,6 @@
 package com.epam.jwd.model.quadrangle;
 
-public enum FigureTypes {
+public enum FigureType {
     POINT (1),
     LINE(2),
     TRIANGLE(3),
@@ -13,7 +13,7 @@ public enum FigureTypes {
         return NUMBER_OF_POINTS;
     }
 
-    FigureTypes(int number_of_points) {
+    FigureType(int number_of_points) {
         NUMBER_OF_POINTS = number_of_points;
     }
 }

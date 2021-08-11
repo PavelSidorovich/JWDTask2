@@ -23,7 +23,7 @@ public class PointFabric implements FigureFabric {
      */
     @Override
     public Point newInstance(LinkedList<Point> pointList) {
-        if (pointList.size() == FigureTypes.POINT.getNumberOfPoints()) {
+        if (pointList.size() == FigureType.POINT.getNumberOfPoints()) {
             return new Point(pointList.get(0));
         }
         return null;

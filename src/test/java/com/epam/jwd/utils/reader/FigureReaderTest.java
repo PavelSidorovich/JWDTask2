@@ -1,7 +1,7 @@
 package com.epam.jwd.utils.reader;
 
 import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.FigureType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 import static org.testng.Assert.*;
 
 public class FigureReaderTest {
-    private static final FigureReader FIGURE_READER = new FigureReader(FigureTypes.QUADRANGLE);
+    private static final FigureReader FIGURE_READER = new FigureReader(FigureType.QUADRANGLE);
 
     private static Scanner fileScanner = null;
     private static File file = null;
@@ -47,7 +47,7 @@ public class FigureReaderTest {
     }
 
     @Test(dataProvider = "ConstructorArgumentsProvider")
-    public void scanFigures_shouldReturnNull_whenArgumentsAreInvalid(Scanner scanner, FigureTypes figureType) {
+    public void scanFigures_shouldReturnNull_whenArgumentsAreInvalid(Scanner scanner, FigureType figureType) {
         FigureReader figureReader = new FigureReader(figureType);
 
         assertNull(figureReader.scanFigures(scanner));
@@ -71,7 +71,7 @@ public class FigureReaderTest {
     public Object[][] getConstructorArgumentsFromProvider() {
         return new Object[][] {
                 { null, null },
-                { null, FigureTypes.QUADRANGLE },
+                { null, FigureType.QUADRANGLE },
                 { fileScanner, null },
         };
     }

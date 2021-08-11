@@ -1,7 +1,7 @@
 package com.epam.jwd.utils.action;
 
 import com.epam.jwd.model.quadrangle.Figure;
-import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.FigureType;
 import com.epam.jwd.model.quadrangle.Quadrangle;
 import com.epam.jwd.model.quadrangle.TypesOfQuadrangle;
 import com.epam.jwd.utils.reader.FigureReader;
@@ -26,7 +26,7 @@ public class FigureActionsTest {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
-        FigureReader figureReader = new FigureReader(FigureTypes.QUADRANGLE);
+        FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         quadrangles = (LinkedList<Quadrangle>) figureReader.scanFigures(fileScanner);
     }
 

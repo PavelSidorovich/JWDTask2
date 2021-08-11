@@ -1,6 +1,6 @@
 package com.epam.jwd.utils.validation;
 
-import com.epam.jwd.model.quadrangle.FigureTypes;
+import com.epam.jwd.model.quadrangle.FigureType;
 import com.epam.jwd.model.quadrangle.Point;
 import com.epam.jwd.utils.action.MathVector;
 
@@ -21,18 +21,18 @@ public class QuadrangleValidator {
     }
 
     public boolean canBeBuilt() {
-        if (points.size() != FigureTypes.QUADRANGLE.getNumberOfPoints()) {
+        if (points.size() != FigureType.QUADRANGLE.getNumberOfPoints()) {
             return false;
         }
 
-        for (int i = 0; i < FigureTypes.QUADRANGLE.getNumberOfPoints() - 1; i++) {
+        for (int i = 0; i < FigureType.QUADRANGLE.getNumberOfPoints() - 1; i++) {
             MathVector mathVector1;
             MathVector mathVector2;
-            if (i != FigureTypes.QUADRANGLE.getNumberOfPoints() - 2) {
+            if (i != FigureType.QUADRANGLE.getNumberOfPoints() - 2) {
                 mathVector1 = new MathVector(points.get(i), points.get(i + 1));
                 mathVector2 = new MathVector(points.get(i + 1), points.get(i + 2));
             } else {
-                mathVector1 = new MathVector(points.get(FigureTypes.QUADRANGLE.getNumberOfPoints() - 1),
+                mathVector1 = new MathVector(points.get(FigureType.QUADRANGLE.getNumberOfPoints() - 1),
                                              points.get(0));
                 mathVector2 = new MathVector(points.get(0), points.get(1));
             }
