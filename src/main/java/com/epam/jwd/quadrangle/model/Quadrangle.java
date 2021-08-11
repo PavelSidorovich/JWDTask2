@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Quadrangle extends CommonFigureProperties {
 
     public Quadrangle(List<Point> points) {
-        super(points, FigureType.QUADRANGLE);
+        super(points);
     }
 
     @Override

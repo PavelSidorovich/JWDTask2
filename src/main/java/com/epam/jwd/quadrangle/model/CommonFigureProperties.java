@@ -7,18 +7,14 @@ public abstract class CommonFigureProperties implements Figure {
     private int id;
     private final List<Point> points;
 
-    private final FigureType figureType;
-
-    public CommonFigureProperties(List<Point> points, FigureType figureType) {
+    public CommonFigureProperties(List<Point> points) {
         id = 0;
         this.points = points;
-        this.figureType = figureType;
     }
 
-    public CommonFigureProperties(int id, List<Point> points, FigureType figureType) {
+    public CommonFigureProperties(int id, List<Point> points) {
         this.id = id;
         this.points = points;
-        this.figureType = figureType;
     }
 
     @Override
@@ -30,17 +26,8 @@ public abstract class CommonFigureProperties implements Figure {
         this.id = id;
     }
 
-    public FigureType getFigureType() {
-        return figureType;
-    }
-
     @Override
     public ArrayList<Point> getPoints() {
         return new ArrayList<>(points);
-    }
-
-    @Override
-    public int getNumberOfPoints() {
-        return figureType.getNumberOfPoints();
     }
 }

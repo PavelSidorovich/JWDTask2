@@ -6,11 +6,13 @@ import java.util.ArrayList;
  * This interface was designed in case the hierarchy of the project increase.
  */
 public interface Figure {
-    int getNumberOfPoints();
-
     int getId();
 
     ArrayList<Point> getPoints();
+
+    default int getNumberOfPoints() {
+        return getPoints().size();
+    }
 
     default ArrayList<MathVector> getVectors() {
         ArrayList<MathVector> vectors = new ArrayList<>();
