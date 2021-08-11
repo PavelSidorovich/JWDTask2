@@ -7,13 +7,13 @@ public enum FigureType {
     QUADRANGLE(4),
     ;
 
-    private final int NUMBER_OF_POINTS;
+    private final int numberOfPoints;
 
     public int getNumberOfPoints() {
-        return NUMBER_OF_POINTS;
+        return numberOfPoints;
     }
 
-    FigureType(int number_of_points) {
-        NUMBER_OF_POINTS = number_of_points;
+    FigureType(int numberOfPoints) {
+        this.numberOfPoints = numberOfPoints;
     }
 }

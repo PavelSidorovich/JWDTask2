@@ -53,6 +53,7 @@ public class FigureReader {
      *
      * @return list of built figures
      */
+    // TODO: 8/11/2021 make smaller
     public ArrayList<? extends Figure> scanFigures(Scanner fileScanner) {
         ArrayList<Figure> figureList = null;
         FigureFactory figureFactory;

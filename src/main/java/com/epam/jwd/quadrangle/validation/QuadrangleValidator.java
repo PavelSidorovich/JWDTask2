@@ -12,6 +12,7 @@ import java.util.List;
  * @author Pavel Sidorovich
  * @since 1.0
  */
+// TODO: 8/11/2021 make it implement Validator
 public class QuadrangleValidator {
 
     private final List<Point> points;
@@ -51,6 +52,7 @@ public class QuadrangleValidator {
                - (b.getY() - a.getY()) * (c.getX() - a.getX());
     }
 
+    // TODO: 8/11/2021 edit name
     private boolean intersect_1(Double a, Double b, Double c, Double d) {
         if (a > b) {
             double temp = a;
@@ -65,10 +67,10 @@ public class QuadrangleValidator {
         return !(Math.max(a, c) <= Math.min(b, d));
     }
 
-    private boolean intersect(Point point1, Point point2, Point point3, Point point4) {
-        return intersect_1(point1.getX(), point2.getX(), point3.getX(), point4.getX())
-               || intersect_1(point1.getY(), point2.getY(), point3.getY(), point4.getY())
-               || !(area(point1, point2, point3) * area(point1, point2, point4) <= 0)
-               || !(area(point3, point4, point1) * area(point3, point4, point2) <= 0);
+    private boolean intersect(Point a, Point b, Point c, Point d) {
+        return intersect_1(a.getX(), b.getX(), c.getX(), d.getX())
+               || intersect_1(a.getY(), b.getY(), c.getY(), d.getY())
+               || !(area(a, b, c) * area(a, b, d) <= 0)
+               || !(area(c, d, a) * area(c, d, b) <= 0);
     }
 }

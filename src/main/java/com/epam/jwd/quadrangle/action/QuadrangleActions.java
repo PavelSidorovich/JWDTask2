@@ -25,6 +25,7 @@ public class QuadrangleActions extends FigureActions {
         super(figure);
     }
 
+    // TODO: 8/11/2021 make smaller
     public QuadrangleType defineTheType() {
         List<MathVector> vectors = getFigure().getVectors();
         List<MathVector> diagonals = new ArrayList<>();

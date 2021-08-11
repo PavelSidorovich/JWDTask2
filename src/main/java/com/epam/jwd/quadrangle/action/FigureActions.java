@@ -29,15 +29,12 @@ public class FigureActions {
         if (figure instanceof Point) {
             return 0;
         }
-        for (int i = 0; i < figure.getNumberOfPoints(); i++) {
-            if (i != figure.getNumberOfPoints() - 1) {
-                perimeter += distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                      figure.getPoints().get(i + 1));
-            } else {
-                perimeter += distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                      figure.getPoints().get(0));
-            }
+        for (int i = 0; i < figure.getNumberOfPoints() - 1; i++) {
+            perimeter += distanceBetweenTwoPoints(figure.getPoints().get(i),
+                                                  figure.getPoints().get(i + 1));
         }
+        perimeter += distanceBetweenTwoPoints(figure.getPoints().get(figure.getNumberOfPoints() - 1),
+                                              figure.getPoints().get(0));
         LOG.info(figure + ": " + perimeter);
         return perimeter;
     }
@@ -49,14 +46,11 @@ public class FigureActions {
             return 0;
         }
         for (int i = 0; i < figure.getNumberOfPoints(); i++) {
-            if (i != figure.getNumberOfPoints() - 1) {
-                square += figure.getPoints().get(i).getX() * figure.getPoints().get(i + 1).getY()
-                          - figure.getPoints().get(i).getY() * figure.getPoints().get(i + 1).getX();
-            } else {
-                square += figure.getPoints().get(i).getX() * figure.getPoints().get(0).getY()
-                          - figure.getPoints().get(i).getY() * figure.getPoints().get(0).getX();
-            }
+            square += figure.getPoints().get(i).getX() * figure.getPoints().get(i + 1).getY()
+                      - figure.getPoints().get(i).getY() * figure.getPoints().get(i + 1).getX();
         }
+        square += figure.getPoints().get(figure.getNumberOfPoints() - 1).getX() * figure.getPoints().get(0).getY()
+                  - figure.getPoints().get(figure.getNumberOfPoints() - 1).getY() * figure.getPoints().get(0).getX();
         LOG.info(figure + ": " + Math.abs(square / 2));
         return Math.abs(square / 2);
     }
