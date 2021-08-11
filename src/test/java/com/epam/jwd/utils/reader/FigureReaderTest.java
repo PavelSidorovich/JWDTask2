@@ -12,16 +12,16 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
 public class FigureReaderTest {
-    private static final FigureReader FIGURE_READER = new FigureReader(FigureType.QUADRANGLE);
+    private FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
 
-    private static Scanner fileScanner = null;
-    private static File file = null;
+    private Scanner fileScanner = null;
+    private File file = null;
 
     @BeforeClass
     public void setUp() {
@@ -41,7 +41,7 @@ public class FigureReaderTest {
 
     @Test
     public void scanFigures_shouldReturnList_whenArgumentsAreValid() {
-        ArrayList<? extends Figure> figures = FIGURE_READER.scanFigures(fileScanner);
+        List<? extends Figure> figures = figureReader.scanFigures(fileScanner);
 
         assertNotNull(figures);
         assertSame(figures.size(), 6);
@@ -56,16 +56,16 @@ public class FigureReaderTest {
 
     @Test
     public void testGetNumberOfFiguresInFile() {
-        FIGURE_READER.scanFigures(fileScanner);
+        figureReader.scanFigures(fileScanner);
 
-        assertSame(FIGURE_READER.getNumberOfFiguresInFile(), 12);
+        assertSame(figureReader.getNumberOfFiguresInFile(), 12);
     }
 
     @Test
     public void testGetNumberOfBuiltFigures() {
-        FIGURE_READER.scanFigures(fileScanner);
+        figureReader.scanFigures(fileScanner);
 
-        assertSame(FIGURE_READER.getNumberOfBuiltFigures(), 6);
+        assertSame(figureReader.getNumberOfBuiltFigures(), 6);
     }
 
     @DataProvider(name = "ConstructorArgumentsProvider")

@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Point implements Figure {
     public static final FigureType FIGURE_TYPE = FigureType.POINT;
 
-    private int id;
+    private final int id;
     private final double x;
     private final double y;
 

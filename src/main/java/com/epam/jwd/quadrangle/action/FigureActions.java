@@ -45,7 +45,7 @@ public class FigureActions {
         if (figure instanceof Point) {
             return 0;
         }
-        for (int i = 0; i < figure.getNumberOfPoints(); i++) {
+        for (int i = 0; i < figure.getNumberOfPoints() - 1; i++) {
             square += figure.getPoints().get(i).getX() * figure.getPoints().get(i + 1).getY()
                       - figure.getPoints().get(i).getY() * figure.getPoints().get(i + 1).getX();
         }

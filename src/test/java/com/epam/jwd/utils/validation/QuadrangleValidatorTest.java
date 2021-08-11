@@ -6,15 +6,16 @@ import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.*;
 
 public class QuadrangleValidatorTest {
 
-    private static final PointFactory POINT_FABRIC = new PointFactory();
-    private static final LinkedList<Point> points = new LinkedList<>();
-    private static QuadrangleValidator validator = null;
+    private PointFactory pointFactory = new PointFactory();
+    private List<Point> points = new ArrayList<>();
+    private QuadrangleValidator validator = null;
 
     @AfterMethod
     public void clearList() {
@@ -23,11 +24,11 @@ public class QuadrangleValidatorTest {
 
     @Test
     public void canBeBuild_shouldReturnFalse_whenNumberOfPointsIsInvalid() {
-        points.add(POINT_FABRIC.newInstance(0, 4));
-        points.add(POINT_FABRIC.newInstance(3, 4));
-        points.add(POINT_FABRIC.newInstance(5, 9));
-        points.add(POINT_FABRIC.newInstance(6, 1));
-        points.add(POINT_FABRIC.newInstance(8, 4));
+        points.add(pointFactory.newInstance(0, 4));
+        points.add(pointFactory.newInstance(3, 4));
+        points.add(pointFactory.newInstance(5, 9));
+        points.add(pointFactory.newInstance(6, 1));
+        points.add(pointFactory.newInstance(8, 4));
         validator = new QuadrangleValidator(points);
 
         assertFalse(validator.canBeBuilt());
@@ -35,10 +36,10 @@ public class QuadrangleValidatorTest {
 
     @Test
     public void canBeBuild_shouldReturnTrue_whenPointsAreValid() {
-        points.add(POINT_FABRIC.newInstance(0, 4));
-        points.add(POINT_FABRIC.newInstance(3, 4));
-        points.add(POINT_FABRIC.newInstance(5, 9));
-        points.add(POINT_FABRIC.newInstance(6, 1));
+        points.add(pointFactory.newInstance(0, 4));
+        points.add(pointFactory.newInstance(3, 4));
+        points.add(pointFactory.newInstance(5, 9));
+        points.add(pointFactory.newInstance(6, 1));
         validator = new QuadrangleValidator(points);
 
         assertTrue(validator.canBeBuilt());
@@ -46,10 +47,10 @@ public class QuadrangleValidatorTest {
 
     @Test
     public void canBeBuild_shouldReturnFalse_whenPointsOnSameLine() {
-        points.add(POINT_FABRIC.newInstance(1, 0));
-        points.add(POINT_FABRIC.newInstance(2, 0));
-        points.add(POINT_FABRIC.newInstance(3, 0));
-        points.add(POINT_FABRIC.newInstance(4, 9));
+        points.add(pointFactory.newInstance(1, 0));
+        points.add(pointFactory.newInstance(2, 0));
+        points.add(pointFactory.newInstance(3, 0));
+        points.add(pointFactory.newInstance(4, 9));
         validator = new QuadrangleValidator(points);
 
         assertFalse(validator.canBeBuilt());

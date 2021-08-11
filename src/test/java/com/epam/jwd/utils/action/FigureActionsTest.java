@@ -13,13 +13,13 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FigureActionsTest {
 
     private QuadrangleActions actions = null;
-    private ArrayList<? extends Figure> quadrangles = null;
+    private List<? extends Figure> quadrangles = null;
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {

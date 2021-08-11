@@ -9,11 +9,11 @@ public enum FigureType {
 
     private final int numberOfPoints;
 
-    public int getNumberOfPoints() {
-        return numberOfPoints;
-    }
-
     FigureType(int numberOfPoints) {
         this.numberOfPoints = numberOfPoints;
+    }
+
+    public int getNumberOfPoints() {
+        return numberOfPoints;
     }
 }
