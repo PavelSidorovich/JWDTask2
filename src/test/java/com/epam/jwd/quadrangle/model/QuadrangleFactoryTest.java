@@ -1,14 +1,6 @@
 package com.epam.jwd.quadrangle.model;
 
-
 import com.epam.jwd.quadrangle.exception.FigureBuildException;
-import com.epam.jwd.quadrangle.model.Point;
-import com.epam.jwd.quadrangle.model.PointFactory;
-import com.epam.jwd.quadrangle.model.Quadrangle;
-import com.epam.jwd.quadrangle.model.QuadrangleFactory;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -16,14 +8,11 @@ import java.util.LinkedList;
 
 import static org.testng.Assert.*;
 
-@ExtendWith(MockitoExtension.class)
-public class QuadrangleFabricTest {
+public class QuadrangleFactoryTest {
 
-    @InjectMocks
-    private static final QuadrangleFactory QUADRANGLE_FABRIC = new QuadrangleFactory();
-
-    private static final PointFactory POINT_FABRIC = new PointFactory();
-    private static final LinkedList<Point> POINTS = new LinkedList<>();
+    private final QuadrangleFactory QUADRANGLE_FABRIC = new QuadrangleFactory();
+    private final PointFactory POINT_FABRIC = new PointFactory();
+    private final LinkedList<Point> POINTS = new LinkedList<>();
 
     @AfterMethod
     public void clearList() {
