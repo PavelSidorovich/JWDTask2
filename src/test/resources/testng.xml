@@ -16,7 +16,7 @@
 
   <test name="test3">
     <classes>
-      <class name="com.epam.jwd.quadrangle.model.QuadrangleFabricTest"/>
+      <class name="com.epam.jwd.quadrangle.model.QuadrangleFactoryTest"/>
     </classes>
   </test>
 

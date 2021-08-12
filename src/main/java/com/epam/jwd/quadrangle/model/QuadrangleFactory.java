@@ -16,7 +16,7 @@ public class QuadrangleFactory implements FigureFactory {
 
     private static final String LINES_ARE_CROSSING_MSG = "Lines are crossing! ";
     private static final String WRONG_NUMBER_OF_COORDINATES_MSG = "Wrong number of coordinates! ";
-    private static final String ARGUMENTS_ERROR_MSG = "%s cannot be built on %s coordinates: %s";
+    private static final String ARGUMENTS_ERROR_MSG = "%s cannot be built from coordinates: %s";
 
     /**
      * Creates new instance of {@code Quadrangle} class
@@ -26,7 +26,7 @@ public class QuadrangleFactory implements FigureFactory {
      */
     @Override
     public Quadrangle newInstance(List<Point> pointList) {
-        String errorMsg = String.format(ARGUMENTS_ERROR_MSG, Quadrangle.class, pointList.size(), pointList);
+        String errorMsg = String.format(ARGUMENTS_ERROR_MSG, FigureType.QUADRANGLE.name(), pointList);
 
         if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {
             if (new QuadrangleBuildValidator().creatable(pointList)) {

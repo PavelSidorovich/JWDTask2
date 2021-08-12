@@ -8,7 +8,6 @@ import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.Point;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.model.QuadrangleFactory;
-import com.epam.jwd.quadrangle.validation.PointValidator;
 import com.epam.jwd.quadrangle.validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,13 +27,12 @@ public class FigureReader {
     private static final Logger LOG = LogManager.getLogger(FigureReader.class);
 
     private static final String RESULT_MSG = "Number of figures in file: %d. Successfully built %d figures.";
-    private static final String NOT_ENOUGH_COORDINATES_MSG = "Not enough coordinates to build a figure! ";
-    private static final String WRONG_COORDINATE_MSG = "Wrong coordinate! ";
     private static final String FIGURE_WAS_BUILT_MSG = "Figure was built (%s): %s";
+    private static final String FIGURE_CAN_NOT_BE_BUILT_MSG = "%s can't be built from coordinates: %s";
     private static final String SUCCESSFUL_INITIALIZATION_MSG = "%s was successfully initialized!";
     private static final String NOT_SUCCESSFUL_INITIALIZATION_MSG = "%s was not successfully initialized!";
 
-    private final Validator validator = new PointValidator();
+    private Validator validator = null;
     private final FigureType figureType;
     private int numberOfFiguresInFile = 0;
     private int numberOfBuiltFigures = 0;
@@ -42,10 +40,19 @@ public class FigureReader {
     public FigureReader(FigureType figureType) {
         this.figureType = figureType;
         if (figureType != null) {
+            validator = figureType.getValidator();
             LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         } else {
             LOG.warn(String.format(NOT_SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         }
+    }
+
+    public int getNumberOfBuiltFigures() {
+        return numberOfBuiltFigures;
+    }
+
+    public int getNumberOfFiguresInFile() {
+        return numberOfFiguresInFile;
     }
 
     /**
@@ -55,7 +62,7 @@ public class FigureReader {
      */
     public ArrayList<? extends Figure> scanFigures(Scanner fileScanner) {
         ArrayList<Figure> figureList = null;
-        PointFactory pointFactory;
+        PointFactory pointFactory = new PointFactory();
         numberOfBuiltFigures = 0;
         numberOfFiguresInFile = 0;
 
@@ -64,13 +71,18 @@ public class FigureReader {
             figureList = new ArrayList<>();
 
             while (fileScanner.hasNext()) {
-                String[] coordinates = fileScanner.nextLine().split(" ");
-                numberOfFiguresInFile++;
+                String line = fileScanner.nextLine();
+                String[] coordinates = line.split("\\s+");
                 List<Point> points = new ArrayList<>();
 
+                numberOfFiguresInFile++;
                 try {
-                    pointFactory = new PointFactory();
-                    checkNumberOfCoordinates(coordinates);
+                    if (!validator.isValid(line)) {
+                        String errorMsg = String.format(FIGURE_CAN_NOT_BE_BUILT_MSG, figureType.name(),
+                                                        new ArrayList<>(Arrays.asList(coordinates)));
+                        throw new PointArgumentException(errorMsg);
+                    }
+
                     makeListOfCoordinates(pointFactory, coordinates, points);
                     Figure figure = buildFigures(pointFactory, points);
                     figureList.add(figure);
@@ -81,14 +93,6 @@ public class FigureReader {
             LOG.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
         }
         return figureList;
-    }
-
-    public int getNumberOfBuiltFigures() {
-        return numberOfBuiltFigures;
-    }
-
-    public int getNumberOfFiguresInFile() {
-        return numberOfFiguresInFile;
     }
 
     private Figure buildFigures(FigureFactory figureFactory, List<Point> points) {
@@ -113,23 +117,12 @@ public class FigureReader {
     }
 
     private void makeListOfCoordinates(PointFactory figureFactory, String[] coordinates, List<Point> points) {
-        for (int i = 0; i < coordinates.length; i += 2) {
-            if (validator.isValid(coordinates[i]) && validator.isValid(coordinates[i + 1])) {
-                points.add(figureFactory.newInstance(
-                        Double.parseDouble(coordinates[i]),
-                        Double.parseDouble(coordinates[i + 1]))
-                );
-            } else {
-                throw new PointArgumentException(WRONG_COORDINATE_MSG,
-                                                 new ArrayList<>(Arrays.asList(coordinates)));
-            }
-        }
-    }
 
-    private void checkNumberOfCoordinates(String[] coordinates) {
-        if (coordinates.length % 2 != 0) {
-            throw new PointArgumentException(NOT_ENOUGH_COORDINATES_MSG,
-                                             new ArrayList<>(Arrays.asList(coordinates)));
+        for (int i = 0; i < coordinates.length; i += 2) {
+            points.add(figureFactory.newInstance(
+                    Double.parseDouble(coordinates[i]),
+                    Double.parseDouble(coordinates[i + 1]))
+            );
         }
     }
 }
