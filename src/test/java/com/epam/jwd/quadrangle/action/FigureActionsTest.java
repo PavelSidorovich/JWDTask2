@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
-// TODO: 8/12/2021 delete quadrangle test
 public class FigureActionsTest {
 
     private FigureActions actions = null;
