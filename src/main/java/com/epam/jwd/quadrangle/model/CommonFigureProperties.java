@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CommonFigureProperties implements Figure {
-    private int id;
+    private final int id;
     private final List<Point> points;
 
     public CommonFigureProperties(List<Point> points) {
@@ -20,10 +20,6 @@ public abstract class CommonFigureProperties implements Figure {
     @Override
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

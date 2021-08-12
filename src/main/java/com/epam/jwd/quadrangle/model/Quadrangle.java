@@ -16,6 +16,15 @@ public class Quadrangle extends CommonFigureProperties {
         super(points);
     }
 
+    public Quadrangle(int id, List<Point> points) {
+        super(id, points);
+    }
+
+    @Override
+    public Figure withId(int id) {
+        return new Quadrangle(id, getPoints());
+    }
+
     @Override
     public String toString() {
         return "Quadrangle{" +

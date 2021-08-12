@@ -30,6 +30,12 @@ public class Point implements Figure {
         this.y = point.getY();
     }
 
+    public Point(int id, Point point) {
+        this.id = id;
+        this.x = point.getX();
+        this.y = point.getY();
+    }
+
     public double getX() {
         return x;
     }
@@ -46,6 +52,11 @@ public class Point implements Figure {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public Figure withId(int id) {
+        return new Point(id, this);
     }
 
     @Override
