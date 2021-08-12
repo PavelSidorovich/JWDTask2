@@ -14,9 +14,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
-public class FigureActionsTest {
+public class FigureActions2DTest {
 
-    private FigureActions actions = null;
+    private FigureActions2D actions = null;
     private List<? extends Figure> quadrangles = null;
 
     @BeforeClass
@@ -30,21 +30,21 @@ public class FigureActionsTest {
 
     @Test(dataProvider = "PerimeterProvider")
     public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
-        actions = new FigureActions(figure);
+        actions = new FigureActions2D(figure);
 
         Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
     }
 
     @Test(dataProvider = "SquareProvider")
     public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
-        actions = new FigureActions(figure);
+        actions = new FigureActions2D(figure);
 
         Assert.assertEquals(actions.square(), square, 0.01);
     }
 
     @Test(dataProvider = "ConvexProvider")
     public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
-        actions = new FigureActions(figure);
+        actions = new FigureActions2D(figure);
 
         Assert.assertEquals(actions.isConvex(), isConvex);
     }

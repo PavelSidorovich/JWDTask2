@@ -4,7 +4,7 @@
 <suite name="JWDTask#1">
   <test name="test1">
     <classes>
-      <class name="com.epam.jwd.quadrangle.action.FigureActionsTest"/>
+      <class name="com.epam.jwd.quadrangle.action.FigureActions2DTest"/>
     </classes>
   </test>
 

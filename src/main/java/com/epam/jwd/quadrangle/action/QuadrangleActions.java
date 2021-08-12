@@ -13,10 +13,10 @@ import java.util.List;
  * The {@code QuadrangleActions} class contains some actions which can be applied only to quadrangles
  *
  * @author Pavel Sidorovich
- * @see FigureActions
+ * @see FigureActions2D
  * @since 1.0
  */
-public class QuadrangleActions extends FigureActions {
+public class QuadrangleActions extends FigureActions2D {
 
     private static final int NUMBER_OF_DIAGONALS = 2;
     private static final Logger LOG = LogManager.getLogger(QuadrangleActions.class);
