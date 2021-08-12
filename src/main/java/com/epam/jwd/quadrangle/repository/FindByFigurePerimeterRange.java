@@ -6,8 +6,8 @@ import com.epam.jwd.quadrangle.model.Figure;
 
 public class FindByFigurePerimeterRange implements Specification<Figure> {
 
-    private double fromPerimeterValue;
-    private double toPerimeterValue;
+    private final double fromPerimeterValue;
+    private final double toPerimeterValue;
 
     public FindByFigurePerimeterRange(double fromPerimeterValue, double toPerimeterValue) {
         this.fromPerimeterValue = fromPerimeterValue;

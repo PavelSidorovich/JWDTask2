@@ -6,8 +6,8 @@ import com.epam.jwd.quadrangle.model.Figure;
 
 public class FindByFigureSquareRange implements Specification<Figure> {
 
-    private double fromSquareValue;
-    private double toSquareValue;
+    private final double fromSquareValue;
+    private final double toSquareValue;
 
     public FindByFigureSquareRange(double fromSquareValue, double toSquareValue) {
         this.fromSquareValue = fromSquareValue;
