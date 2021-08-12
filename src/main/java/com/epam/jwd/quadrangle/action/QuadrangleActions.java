@@ -25,9 +25,30 @@ public class QuadrangleActions extends FigureActions {
         super(figure);
     }
 
-    // TODO: 8/11/2021 make smaller
     public QuadrangleType defineTheType() {
         List<MathVector> vectors = getFigure().getVectors();
+        List<MathVector> diagonals = getMathVectorsOfDiagonals();
+
+        if (sidesOfTheFigureAreParallel()) {
+            if (sidesOfTheFigureArePerpendicular(vectors)) {
+                LOG.info(getFigure() + ": " + QuadrangleType.SQUARE);
+                return QuadrangleType.SQUARE;
+            } else if (diagonals.get(0).perpendicular(diagonals.get(1))) {
+                LOG.info(getFigure() + ": " + QuadrangleType.DIAMOND);
+                return QuadrangleType.DIAMOND;
+            }
+        } else if (oppositeSidesOfFigureAreEqual()) {
+            LOG.info(getFigure() + ": " + QuadrangleType.PARALLELOGRAM);
+            return QuadrangleType.PARALLELOGRAM;
+        } else if (twoSidesOfFigureAreParallelTwoOthersNot(vectors)) {
+            LOG.info(getFigure() + ": " + QuadrangleType.TRAPEZOID);
+            return QuadrangleType.TRAPEZOID;
+        }
+        LOG.info(getFigure() + ": " + QuadrangleType.ARBITRARY);
+        return QuadrangleType.ARBITRARY;
+    }
+
+    private List<MathVector> getMathVectorsOfDiagonals() {
         List<MathVector> diagonals = new ArrayList<>();
 
         //special list (contains vectors of diagonals) for the diamond
@@ -35,40 +56,39 @@ public class QuadrangleActions extends FigureActions {
             diagonals.add(new MathVector(getFigure().getPoints().get(i),
                                          getFigure().getPoints().get(i + 2)));
         }
+        return diagonals;
+    }
 
-        if (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(1),
-                                                     getFigure().getPoints().get(2)))
-            && distanceBetweenTwoPoints(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
-                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
-                                                     getFigure().getPoints().get(0)))
-            && distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                    .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
-                                                     getFigure().getPoints().get(3)))) {
-            if (vectors.get(0).perpendicular(vectors.get(1))
-                && vectors.get(2).perpendicular(vectors.get(3))) {
-                LOG.info(getFigure() + ": " + QuadrangleType.SQUARE);
-                return QuadrangleType.SQUARE;
-            } else if (diagonals.get(0).perpendicular(diagonals.get(1))) {
-                LOG.info(getFigure() + ": " + QuadrangleType.DIAMOND);
-                return QuadrangleType.DIAMOND;
-            }
-        } else if (distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                           .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
-                                                            getFigure().getPoints().get(3)))
-                   && distanceBetweenTwoPoints(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
-                           .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
-                                                            getFigure().getPoints().get(0)))) {
-            LOG.info(getFigure() + ": " + QuadrangleType.PARALLELOGRAM);
-            return QuadrangleType.PARALLELOGRAM;
-        } else if ((vectors.get(0).scalarProduct(vectors.get(2)) == 0
-                    && vectors.get(1).scalarProduct(vectors.get(3)) != 0)
-                   || (vectors.get(0).scalarProduct(vectors.get(2)) != 0
-                       && vectors.get(1).scalarProduct(vectors.get(3)) == 0)) {
-            LOG.info(getFigure() + ": " + QuadrangleType.TRAPEZOID);
-            return QuadrangleType.TRAPEZOID;
-        }
-        LOG.info(getFigure() + ": " + QuadrangleType.ARBITRARY);
-        return QuadrangleType.ARBITRARY;
+    private boolean twoSidesOfFigureAreParallelTwoOthersNot(List<MathVector> vectors) {
+        return (vectors.get(0).scalarProduct(vectors.get(2)) == 0
+                && vectors.get(1).scalarProduct(vectors.get(3)) != 0)
+               || (vectors.get(0).scalarProduct(vectors.get(2)) != 0
+                   && vectors.get(1).scalarProduct(vectors.get(3)) == 0);
+    }
+
+    private boolean oppositeSidesOfFigureAreEqual() {
+        return distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
+                                                        getFigure().getPoints().get(3)))
+               && distanceBetweenTwoPoints(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
+                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
+                                                        getFigure().getPoints().get(0)));
+    }
+
+    private boolean sidesOfTheFigureArePerpendicular(List<MathVector> vectors) {
+        return vectors.get(0).perpendicular(vectors.get(1))
+               && vectors.get(2).perpendicular(vectors.get(3));
+    }
+
+    private boolean sidesOfTheFigureAreParallel() {
+        return distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(1),
+                                                        getFigure().getPoints().get(2)))
+               && distanceBetweenTwoPoints(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
+                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
+                                                        getFigure().getPoints().get(0)))
+               && distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
+                                                        getFigure().getPoints().get(3)));
     }
 }

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @since 1.0
  */
 public class PointValidator implements Validator {
-    private static final String DOUBLE_REG_EX = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
+    private static final String DOUBLE_REG_EX = "[-+]?[0-9]*\\.?[0-9]+";
 
     @Override
     public Pattern getPattern() {
