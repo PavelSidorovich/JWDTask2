@@ -1,7 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
 import com.epam.jwd.quadrangle.exception.FigureBuildException;
-import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
+import com.epam.jwd.quadrangle.validation.QuadrangleBuildValidator;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class QuadrangleFactory implements FigureFactory {
         String errorMsg = String.format(ARGUMENTS_ERROR_MSG, Quadrangle.class, pointList.size(), pointList);
 
         if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {
-            if (new QuadrangleValidator(pointList).canBeBuilt()) {
+            if (new QuadrangleBuildValidator().creatable(pointList)) {
                 return new Quadrangle(pointList);
             } else {
                 throw new FigureBuildException(LINES_ARE_CROSSING_MSG + errorMsg);
