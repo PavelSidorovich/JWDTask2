@@ -1,8 +1,7 @@
-package com.epam.jwd.utils.validation;
+package com.epam.jwd.quadrangle.validation;
 
 import com.epam.jwd.quadrangle.model.Point;
 import com.epam.jwd.quadrangle.model.PointFactory;
-import com.epam.jwd.quadrangle.validation.QuadrangleValidator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -11,11 +10,11 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class QuadrangleValidatorTest {
+public class QuadrangleBuildValidatorTest {
 
-    private PointFactory pointFactory = new PointFactory();
-    private List<Point> points = new ArrayList<>();
-    private QuadrangleValidator validator = null;
+    private final PointFactory pointFactory = new PointFactory();
+    private final List<Point> points = new ArrayList<>();
+    private final QuadrangleBuildValidator validator = new QuadrangleBuildValidator();;
 
     @AfterMethod
     public void clearList() {
@@ -29,9 +28,8 @@ public class QuadrangleValidatorTest {
         points.add(pointFactory.newInstance(5, 9));
         points.add(pointFactory.newInstance(6, 1));
         points.add(pointFactory.newInstance(8, 4));
-        validator = new QuadrangleValidator(points);
 
-        assertFalse(validator.canBeBuilt());
+        assertFalse(validator.creatable(points));
     }
 
     @Test
@@ -40,9 +38,8 @@ public class QuadrangleValidatorTest {
         points.add(pointFactory.newInstance(3, 4));
         points.add(pointFactory.newInstance(5, 9));
         points.add(pointFactory.newInstance(6, 1));
-        validator = new QuadrangleValidator(points);
 
-        assertTrue(validator.canBeBuilt());
+        assertTrue(validator.creatable(points));
     }
 
     @Test
@@ -51,8 +48,7 @@ public class QuadrangleValidatorTest {
         points.add(pointFactory.newInstance(2, 0));
         points.add(pointFactory.newInstance(3, 0));
         points.add(pointFactory.newInstance(4, 9));
-        validator = new QuadrangleValidator(points);
 
-        assertFalse(validator.canBeBuilt());
+        assertFalse(validator.creatable(points));
     }
 }

@@ -1,9 +1,7 @@
-package com.epam.jwd.utils.action;
+package com.epam.jwd.quadrangle.action;
 
-import com.epam.jwd.quadrangle.action.QuadrangleActions;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
-import com.epam.jwd.quadrangle.model.QuadrangleType;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -16,9 +14,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
+// TODO: 8/12/2021 delete quadrangle test
 public class FigureActionsTest {
 
-    private QuadrangleActions actions = null;
+    private FigureActions actions = null;
     private List<? extends Figure> quadrangles = null;
 
     @BeforeClass
@@ -32,42 +31,23 @@ public class FigureActionsTest {
 
     @Test(dataProvider = "PerimeterProvider")
     public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
-        actions = new QuadrangleActions(figure);
+        actions = new FigureActions(figure);
 
         Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
     }
 
     @Test(dataProvider = "SquareProvider")
     public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
-        actions = new QuadrangleActions(figure);
+        actions = new FigureActions(figure);
 
         Assert.assertEquals(actions.square(), square, 0.01);
     }
 
     @Test(dataProvider = "ConvexProvider")
     public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
-        actions = new QuadrangleActions(figure);
+        actions = new FigureActions(figure);
 
         Assert.assertEquals(actions.isConvex(), isConvex);
-    }
-
-    @Test(dataProvider = "TypeProvider")
-    public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, QuadrangleType quadrangleType) {
-        actions = new QuadrangleActions(figure);
-
-        Assert.assertEquals(actions.defineTheType(), quadrangleType);
-    }
-
-    @DataProvider(name = "TypeProvider")
-    public Object[][] getTypesFromProvider() {
-        return new Object[][] {
-                { quadrangles.get(0), QuadrangleType.ARBITRARY },
-                { quadrangles.get(1), QuadrangleType.SQUARE },
-                { quadrangles.get(2), QuadrangleType.PARALLELOGRAM },
-                { quadrangles.get(3), QuadrangleType.TRAPEZOID },
-                { quadrangles.get(4), QuadrangleType.DIAMOND },
-                { quadrangles.get(5), QuadrangleType.ARBITRARY },
-        };
     }
 
     @DataProvider(name = "ConvexProvider")

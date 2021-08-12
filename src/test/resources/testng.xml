@@ -4,25 +4,31 @@
 <suite name="JWDTask#1">
   <test name="test1">
     <classes>
-      <class name="com.epam.jwd.utils.action.FigureActionsTest"/>
+      <class name="com.epam.jwd.quadrangle.action.FigureActionsTest"/>
     </classes>
   </test>
 
   <test name="test2">
     <classes>
-      <class name="com.epam.jwd.model.quadrangle.QuadrangleFabricTest"/>
+      <class name="com.epam.jwd.quadrangle.action.QuadrangleActionsTest"/>
     </classes>
   </test>
 
   <test name="test3">
     <classes>
-      <class name="com.epam.jwd.utils.reader.FigureReaderTest"/>
+      <class name="com.epam.jwd.quadrangle.model.QuadrangleFabricTest"/>
     </classes>
   </test>
 
   <test name="test4">
     <classes>
-      <class name="com.epam.jwd.utils.validation.QuadrangleValidatorTest"/>
+      <class name="com.epam.jwd.quadrangle.reader.FigureReaderTest"/>
+    </classes>
+  </test>
+
+  <test name="test5">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.validation.QuadrangleBuildValidatorTest"/>
     </classes>
   </test>
 </suite>

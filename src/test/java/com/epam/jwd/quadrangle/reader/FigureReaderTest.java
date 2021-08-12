@@ -1,8 +1,7 @@
-package com.epam.jwd.utils.reader;
+package com.epam.jwd.quadrangle.reader;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
-import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
