@@ -14,12 +14,7 @@ import java.util.regex.Pattern;
  * @since 1.0
  */
 public class QuadrangleBuildValidator implements Validator {
-    private static final String COORDINATES_LINE_REG_EX = "([-+]?[0-9]*\\.?[0-9]+\\s){8}";
-
-    @Override
-    public Pattern getPattern() {
-        return Pattern.compile(COORDINATES_LINE_REG_EX);
-    }
+    private static final String COORDINATES_LINE_REG_EX = "([-+]?[0-9]*\\.?[0-9]+\\s+){7}[-+]?[0-9]*\\.?[0-9]+\\s*";
 
     public boolean creatable(List<Point> points) {
         if (points.size() != FigureType.QUADRANGLE.getNumberOfPoints()) {
@@ -45,6 +40,11 @@ public class QuadrangleBuildValidator implements Validator {
         //checking crossing of the lines
         return twoLinesSegmentsIntersect(points.get(0), points.get(1), points.get(2), points.get(3))
                && twoLinesSegmentsIntersect(points.get(0), points.get(3), points.get(1), points.get(2));
+    }
+
+    @Override
+    public Pattern getPattern() {
+        return Pattern.compile(COORDINATES_LINE_REG_EX);
     }
 
     private Double getOrientedAreaOfATriangle(Point a, Point b, Point c) {
