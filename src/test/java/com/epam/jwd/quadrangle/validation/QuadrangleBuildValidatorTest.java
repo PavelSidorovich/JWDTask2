@@ -72,5 +72,4 @@ public class QuadrangleBuildValidatorTest {
                 { "0.0 0.0   10.0 5.0 z 5.0   10.0 0.0   ", false },
         };
     }
-
 }
