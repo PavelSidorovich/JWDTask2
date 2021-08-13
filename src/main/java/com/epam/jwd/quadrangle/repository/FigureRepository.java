@@ -1,11 +1,17 @@
 package com.epam.jwd.quadrangle.repository;
 
 import com.epam.jwd.quadrangle.model.Figure;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FigureRepository implements Repository<Figure> {
+
+    private static final Logger LOG = LogManager.getLogger(FigureRepository.class);
+
+    private static final String FIGURES_FOUND_BY_SPECIFICATION = "found %d figures according to the specification: %s";
 
     private final List<Figure> storage;
     private int currentId;
@@ -57,7 +63,6 @@ public class FigureRepository implements Repository<Figure> {
     @Override
     public boolean update(int index, Figure newFigure) {
         try {
-            Figure figure = storage.get(index);
             storage.add(index, newFigure);
             return true;
         } catch (IndexOutOfBoundsException e) {
@@ -93,6 +98,8 @@ public class FigureRepository implements Repository<Figure> {
                 foundFigures.add(figure);
             }
         }
+        String message = String.format(FIGURES_FOUND_BY_SPECIFICATION, foundFigures.size(), specification);
+        LOG.trace(message);
         return foundFigures;
     }
 }
