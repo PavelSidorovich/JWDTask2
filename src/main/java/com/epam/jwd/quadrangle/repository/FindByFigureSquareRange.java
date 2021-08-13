@@ -15,6 +15,14 @@ public class FindByFigureSquareRange implements Specification<Figure> {
     }
 
     @Override
+    public String toString() {
+        return "FindByFigureSquareRange{" +
+               "fromSquareValue=" + fromSquareValue +
+               ", toSquareValue=" + toSquareValue +
+               '}';
+    }
+
+    @Override
     public boolean exists(Figure figure) {
         FigureActions figureActions = new FigureActions2D(figure);
         double square = figureActions.square();

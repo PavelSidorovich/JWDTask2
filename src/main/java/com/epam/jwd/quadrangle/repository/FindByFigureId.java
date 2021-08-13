@@ -10,6 +10,13 @@ public class FindByFigureId implements Specification<Figure> {
     }
 
     @Override
+    public String toString() {
+        return "FindByFigureId{" +
+               "id=" + id +
+               '}';
+    }
+
+    @Override
     public boolean exists(Figure figure) {
         return id == figure.getId();
     }
