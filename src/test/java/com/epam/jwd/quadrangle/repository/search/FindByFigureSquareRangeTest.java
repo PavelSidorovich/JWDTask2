@@ -2,8 +2,8 @@ package com.epam.jwd.quadrangle.repository;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
-import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
+import com.epam.jwd.quadrangle.repository.search.FindByFigureSquareRange;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
-public class FindByFigureDistanceFromOriginTest {
+public class FindByFigureSquareRangeTest {
 
-    private FindByFigureDistanceFromOrigin specification = null;
+    private final FindByFigureSquareRange specification = new FindByFigureSquareRange(8, 50);
     private FigureRepository figureRepository = null;
 
     @BeforeClass
@@ -32,10 +32,9 @@ public class FindByFigureDistanceFromOriginTest {
 
     @Test
     public void exists_shouldReturnList_always() {
-        specification = new FindByFigureDistanceFromOrigin(new PointFactory().newInstance(1, 1));
         List<Figure> figureList = figureRepository.findBySpecification(specification);
 
         assertNotNull(figureList);
-        assertSame(figureList.size(), 5);
+        assertSame(figureList.size(), 3);
     }
 }

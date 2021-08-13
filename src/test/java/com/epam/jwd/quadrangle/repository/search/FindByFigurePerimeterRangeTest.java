@@ -3,6 +3,7 @@ package com.epam.jwd.quadrangle.repository;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.reader.FigureReader;
+import com.epam.jwd.quadrangle.repository.search.FindByFigurePerimeterRange;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

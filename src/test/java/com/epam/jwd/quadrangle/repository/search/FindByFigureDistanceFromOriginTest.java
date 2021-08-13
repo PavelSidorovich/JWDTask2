@@ -4,8 +4,8 @@ import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
+import com.epam.jwd.quadrangle.repository.search.FindByFigureDistanceFromOrigin;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -16,9 +16,9 @@ import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
-public class FindByFigureTypeTest {
+public class FindByFigureDistanceFromOriginTest {
 
-    private final FindByFigureType specification = new FindByFigureType(FigureType.POINT);
+    private FindByFigureDistanceFromOrigin specification = null;
     private FigureRepository figureRepository = null;
 
     @BeforeClass
@@ -28,19 +28,15 @@ public class FindByFigureTypeTest {
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         List<Figure> quadrangles = figureReader.scanFigures(fileScanner);
-        PointFactory pointFactory = new PointFactory();
         figureRepository = new FigureRepository(quadrangles);
-
-        figureRepository.create(pointFactory.newInstance(0, 0));
-        figureRepository.create(pointFactory.newInstance(1, 2));
-        figureRepository.create(pointFactory.newInstance(2, 30));
     }
 
     @Test
     public void exists_shouldReturnList_always() {
+        specification = new FindByFigureDistanceFromOrigin(new PointFactory().newInstance(1, 1));
         List<Figure> figureList = figureRepository.findBySpecification(specification);
 
         assertNotNull(figureList);
-        assertSame(figureList.size(), 3);
+        assertSame(figureList.size(), 5);
     }
 }
