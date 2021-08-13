@@ -12,7 +12,7 @@ public interface Figure {
 
     ArrayList<Point> getPoints();
 
-    default int getNumberOfPoints() {
+    default Integer getNumberOfPoints() {
         return getPoints().size();
     }
 

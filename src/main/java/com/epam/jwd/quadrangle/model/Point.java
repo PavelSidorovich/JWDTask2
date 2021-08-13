@@ -45,7 +45,7 @@ public class Point implements Figure {
     }
 
     @Override
-    public int getNumberOfPoints() {
+    public Integer getNumberOfPoints() {
         return FIGURE_TYPE.getNumberOfPoints();
     }
 
