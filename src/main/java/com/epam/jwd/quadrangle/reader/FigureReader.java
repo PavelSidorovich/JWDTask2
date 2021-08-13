@@ -60,7 +60,7 @@ public class FigureReader {
      *
      * @return list of built figures
      */
-    public ArrayList<? extends Figure> scanFigures(Scanner fileScanner) {
+    public ArrayList<Figure> scanFigures(Scanner fileScanner) {
         ArrayList<Figure> figureList = null;
         PointFactory pointFactory = new PointFactory();
         numberOfBuiltFigures = 0;

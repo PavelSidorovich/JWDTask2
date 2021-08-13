@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class FigureActions2DTest {
 
     private FigureActions2D actions = null;
-    private List<? extends Figure> quadrangles = null;
+    private List<Figure> quadrangles = null;
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
