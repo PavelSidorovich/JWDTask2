@@ -1,11 +1,11 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 
-public class FindByFigureType implements Specification<Figure> {
+public class FindByFigureType implements SearchSpecification<Figure> {
 
-    private FigureType figureType;
+    private final FigureType figureType;
 
     public FindByFigureType(FigureType figureType) {
         this.figureType = figureType;

@@ -1,10 +1,13 @@
 package com.epam.jwd.quadrangle.repository;
 
 import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.repository.search.SearchSpecification;
+import com.epam.jwd.quadrangle.repository.sort.SortFigures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FigureRepository implements Repository<Figure> {
@@ -91,7 +94,7 @@ public class FigureRepository implements Repository<Figure> {
     }
 
     @Override
-    public List<Figure> findBySpecification(Specification specification) {
+    public List<Figure> findBySpecification(SearchSpecification specification) {
         List<Figure> foundFigures = new ArrayList<>();
         for (Figure figure : storage) {
             if (specification.exists(figure)) {
@@ -101,5 +104,13 @@ public class FigureRepository implements Repository<Figure> {
         String message = String.format(FIGURES_FOUND_BY_SPECIFICATION, foundFigures.size(), specification);
         LOG.trace(message);
         return foundFigures;
+    }
+
+    @Override
+    public List<Figure> sortByComparator(Comparator<Figure> comparator) {
+        SortFigures sortFigures = new SortFigures();
+        List<Figure> sortedList = new ArrayList<>(storage);
+        sortFigures.sort(sortedList, comparator);
+        return sortedList;
     }
 }

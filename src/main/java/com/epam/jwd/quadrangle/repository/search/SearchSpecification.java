@@ -1,5 +1,5 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
-public interface Specification<T> {
+public interface SearchSpecification<T> {
     boolean exists(T object);
 }

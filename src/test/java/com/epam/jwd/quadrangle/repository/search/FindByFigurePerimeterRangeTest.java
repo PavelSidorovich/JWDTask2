@@ -1,8 +1,9 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.reader.FigureReader;
+import com.epam.jwd.quadrangle.repository.FigureRepository;
 import com.epam.jwd.quadrangle.repository.search.FindByFigurePerimeterRange;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,7 +32,7 @@ public class FindByFigurePerimeterRangeTest {
     }
 
     @Test
-    public void exists_shouldReturnList_always() {
+    public void exists_shouldReturnTrue_ifFitsTheCondition() {
         List<Figure> figureList = figureRepository.findBySpecification(specification);
 
         assertNotNull(figureList);

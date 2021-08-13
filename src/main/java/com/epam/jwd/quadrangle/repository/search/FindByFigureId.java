@@ -1,8 +1,8 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
 
-public class FindByFigureId implements Specification<Figure> {
+public class FindByFigureId implements SearchSpecification<Figure> {
     private final int id;
 
     public FindByFigureId(int id) {

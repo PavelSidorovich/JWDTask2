@@ -1,10 +1,10 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.action.FigureActions;
 import com.epam.jwd.quadrangle.action.FigureActions2D;
 import com.epam.jwd.quadrangle.model.Figure;
 
-public class FindByFigurePerimeterRange implements Specification<Figure> {
+public class FindByFigurePerimeterRange implements SearchSpecification<Figure> {
 
     private final double fromPerimeterValue;
     private final double toPerimeterValue;

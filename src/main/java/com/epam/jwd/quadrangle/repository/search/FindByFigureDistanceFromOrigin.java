@@ -1,11 +1,11 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.Point;
 
 public class FindByFigureDistanceFromOrigin
         extends Point
-        implements Specification<Figure> {
+        implements SearchSpecification<Figure> {
 
     /**
      * @param point limits the area (where to find figures) from origin
@@ -15,7 +15,6 @@ public class FindByFigureDistanceFromOrigin
     }
 
     /**
-     *
      * @param figure figure to be checked
      * @return true if figure or its part is in the area which is limited by point
      */

@@ -1,7 +1,8 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.PointFactory;
+import com.epam.jwd.quadrangle.repository.FigureRepository;
 import com.epam.jwd.quadrangle.repository.search.FindByFigureId;
 import com.epam.jwd.quadrangle.repository.search.SearchSpecification;
 import org.testng.annotations.BeforeClass;
@@ -26,7 +27,7 @@ public class FindByFigureIdTest {
     }
 
     @Test(dataProvider = "SpecificationProvider")
-    public void exists_shouldReturnList_always(SearchSpecification<Figure> specification, int result) {
+    public void exists_shouldReturnTrue_ifFitsTheCondition(SearchSpecification<Figure> specification, int result) {
         List<Figure> figureList = figureRepository.findBySpecification(specification);
 
         assertNotNull(figureList);

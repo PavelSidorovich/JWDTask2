@@ -1,5 +1,8 @@
 package com.epam.jwd.quadrangle.repository;
 
+import com.epam.jwd.quadrangle.repository.search.SearchSpecification;
+
+import java.util.Comparator;
 import java.util.List;
 
 public interface Repository<T> {
@@ -20,6 +23,8 @@ public interface Repository<T> {
 
     List<T> getAll();
 
-    List<T> findBySpecification(Specification specification);
+    List<T> findBySpecification(SearchSpecification specification);
+
+    List<T> sortByComparator(Comparator<T> comparator);
 
 }
