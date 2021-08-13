@@ -17,8 +17,16 @@ public class FindByFigurePerimeterRange implements Specification<Figure> {
     @Override
     public boolean exists(Figure figure) {
         FigureActions figureActions = new FigureActions2D(figure);
-        double perimeter = figureActions.square();
+        double perimeter = figureActions.perimeter();
         return perimeter >= fromPerimeterValue
                && perimeter <= toPerimeterValue;
+    }
+
+    @Override
+    public String toString() {
+        return "FindByFigurePerimeterRange{" +
+               "fromPerimeterValue=" + fromPerimeterValue +
+               ", toPerimeterValue=" + toPerimeterValue +
+               '}';
     }
 }
