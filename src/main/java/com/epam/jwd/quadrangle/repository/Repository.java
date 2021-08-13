@@ -4,15 +4,17 @@ import java.util.List;
 
 public interface Repository<T> {
 
-    void create(T object);
+    boolean create(T object);
 
-    T read(int id);
+    T read(int index);
+
+    int read(T object);
 
     boolean update(T oldObject, T newObject);
 
-    boolean update(int oldId, T newObject);
+    boolean update(int index, T newObject);
 
-    boolean delete(int id);
+    boolean delete(int index);
 
     boolean delete(T object);
 

@@ -8,6 +8,7 @@ import java.util.List;
 public class FigureRepository implements Repository<Figure> {
 
     private final List<Figure> storage;
+    private int currentId;
 
     public FigureRepository() {
         storage = new ArrayList<>();
@@ -18,18 +19,29 @@ public class FigureRepository implements Repository<Figure> {
     }
 
     @Override
-    public void create(Figure figure) {
-        storage.add(figure);
+    public boolean create(Figure figure) {
+        if (figure != null) {
+            figure = figure.withId(++currentId);
+            storage.add(figure);
+        }
+        return figure != null;
     }
 
     @Override
-    public Figure read(int id) {
-        for (Figure figure : storage) {
-            if (figure.getId() == id) {
-                return figure;
-            }
+    public Figure read(int index) {
+        try {
+            return storage.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
         }
-        return null;
+    }
+
+    @Override
+    public int read(Figure figure) {
+        if (storage.contains(figure)) {
+            return storage.indexOf(figure);
+        }
+        return -1;
     }
 
     @Override
@@ -43,25 +55,24 @@ public class FigureRepository implements Repository<Figure> {
     }
 
     @Override
-    public boolean update(int oldId, Figure newFigure) {
-        for (Figure figure : storage) {
-            if (figure.getId() == oldId) {
-                int oldIndex = storage.indexOf(figure);
-                storage.add(oldIndex, newFigure);
-                return true;
-            }
+    public boolean update(int index, Figure newFigure) {
+        try {
+            Figure figure = storage.get(index);
+            storage.add(index, newFigure);
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
         }
-        return false;
     }
 
     @Override
-    public boolean delete(int id) {
-        for (Figure figure : storage) {
-            if (figure.getId() == id) {
-                return storage.remove(figure);
-            }
+    public boolean delete(int index) {
+        try {
+            Figure figure = storage.get(index);
+            return storage.remove(figure);
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 
     @Override
