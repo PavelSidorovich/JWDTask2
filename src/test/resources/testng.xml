@@ -38,4 +38,46 @@
     </classes>
   </test>
 
+  <test name="test7">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresByPerimeterTest"/>
+    </classes>
+  </test>
+
+  <test name="test8">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresBySquareTest"/>
+    </classes>
+  </test>
+
+  <test name="test9">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureDistanceFromOriginTest"/>
+    </classes>
+  </test>
+
+  <test name="test10">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureIdTest"/>
+    </classes>
+  </test>
+
+  <test name="test11">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigurePerimeterRangeTest"/>
+    </classes>
+  </test>
+
+  <test name="test12">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureSquareRangeTest"/>
+    </classes>
+  </test>
+
+  <test name="test13">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureTypeTest"/>
+    </classes>
+  </test>
+
 </suite>

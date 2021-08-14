@@ -18,9 +18,9 @@ import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
-public class SortFiguresBySquareTest {
+public class SortFiguresByPerimeterTest {
 
-    private final SortFiguresBySquare comparator = new SortFiguresBySquare();
+    private final SortFiguresByPerimeter comparator = new SortFiguresByPerimeter();
     private FigureRepository figureRepository = null;
 
     @BeforeMethod
@@ -38,28 +38,30 @@ public class SortFiguresBySquareTest {
     }
 
     @Test
-    public void compare_shouldReturnPositiveNumber_ifSquareOfTheFirstFigureIsLessThanSecondOne() {
+    public void compare_shouldReturnPositiveNumber_ifPerimeterOfTheFirstFigureIsLessThanSecondOne() {
         List<Figure> sorted = figureRepository.sortByComparator(comparator);
+
         FigureActions actions1 = new FigureActions2D(sorted.get(0));
         FigureActions actions2 = new FigureActions2D(sorted.get(1));
         FigureActions actions3 = new FigureActions2D(sorted.get(2));
         FigureActions actions4 = new FigureActions2D(sorted.get(3));
 
-        assertTrue(actions1.square() <= actions2.square());
-        assertTrue(actions2.square() <= actions3.square());
-        assertTrue(actions3.square() <= actions4.square());
+        assertTrue(actions1.perimeter() <= actions2.perimeter());
+        assertTrue(actions2.perimeter() <= actions3.perimeter());
+        assertTrue(actions3.perimeter() <= actions4.perimeter());
     }
 
     @Test
-    public void reversed_shouldReturnNegativeNumber_ifSquareOfTheFirstFigureIsLessThanSecondOne() {
+    public void reversed_shouldReturnNegativeNumber_ifPerimeterOfTheFirstFigureIsLessThanSecondOne() {
         List<Figure> sorted = figureRepository.sortByComparator(comparator.reversed());
+
         FigureActions actions1 = new FigureActions2D(sorted.get(0));
         FigureActions actions2 = new FigureActions2D(sorted.get(1));
         FigureActions actions3 = new FigureActions2D(sorted.get(2));
         FigureActions actions4 = new FigureActions2D(sorted.get(3));
 
-        assertTrue(actions1.square() >= actions2.square());
-        assertTrue(actions2.square() >= actions3.square());
-        assertTrue(actions3.square() >= actions4.square());
+        assertTrue(actions1.perimeter() >= actions2.perimeter());
+        assertTrue(actions2.perimeter() >= actions3.perimeter());
+        assertTrue(actions3.perimeter() >= actions4.perimeter());
     }
 }

@@ -18,9 +18,9 @@ import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
-public class SortFiguresBySquareTest {
+public class SortFiguresByIdTest {
 
-    private final SortFiguresBySquare comparator = new SortFiguresBySquare();
+    private final SortFiguresByPerimeter comparator = new SortFiguresByPerimeter();
     private FigureRepository figureRepository = null;
 
     @BeforeMethod
@@ -38,28 +38,21 @@ public class SortFiguresBySquareTest {
     }
 
     @Test
-    public void compare_shouldReturnPositiveNumber_ifSquareOfTheFirstFigureIsLessThanSecondOne() {
+    public void compare_shouldReturnPositiveNumber_ifIdOfTheFirstFigureIsLessThanSecondOne() {
         List<Figure> sorted = figureRepository.sortByComparator(comparator);
-        FigureActions actions1 = new FigureActions2D(sorted.get(0));
-        FigureActions actions2 = new FigureActions2D(sorted.get(1));
-        FigureActions actions3 = new FigureActions2D(sorted.get(2));
-        FigureActions actions4 = new FigureActions2D(sorted.get(3));
 
-        assertTrue(actions1.square() <= actions2.square());
-        assertTrue(actions2.square() <= actions3.square());
-        assertTrue(actions3.square() <= actions4.square());
+        assertTrue(sorted.get(0).getId() < sorted.get(1).getId());
+        assertTrue(sorted.get(1).getId() < sorted.get(2).getId());
+        assertTrue(sorted.get(2).getId() < sorted.get(3).getId());
     }
 
     @Test
-    public void reversed_shouldReturnNegativeNumber_ifSquareOfTheFirstFigureIsLessThanSecondOne() {
+    public void reversed_shouldReturnNegativeNumber_ifIdOfTheFirstFigureIsLessThanSecondOne() {
         List<Figure> sorted = figureRepository.sortByComparator(comparator.reversed());
-        FigureActions actions1 = new FigureActions2D(sorted.get(0));
-        FigureActions actions2 = new FigureActions2D(sorted.get(1));
-        FigureActions actions3 = new FigureActions2D(sorted.get(2));
-        FigureActions actions4 = new FigureActions2D(sorted.get(3));
 
-        assertTrue(actions1.square() >= actions2.square());
-        assertTrue(actions2.square() >= actions3.square());
-        assertTrue(actions3.square() >= actions4.square());
+        assertTrue(sorted.get(0).getId() > sorted.get(1).getId());
+        assertTrue(sorted.get(1).getId() > sorted.get(2).getId());
+        assertTrue(sorted.get(2).getId() > sorted.get(3).getId());
     }
+
 }
