@@ -7,7 +7,7 @@ import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -23,7 +23,7 @@ public class SortFiguresByPerimeterTest {
     private final SortFiguresByPerimeter comparator = new SortFiguresByPerimeter();
     private FigureRepository figureRepository = null;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
         File file = new File(url.getPath());

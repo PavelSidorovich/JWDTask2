@@ -1,13 +1,11 @@
 package com.epam.jwd.quadrangle.repository.sort;
 
-import com.epam.jwd.quadrangle.action.FigureActions;
-import com.epam.jwd.quadrangle.action.FigureActions2D;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -23,7 +21,7 @@ public class SortFiguresByIdTest {
     private final SortFiguresByPerimeter comparator = new SortFiguresByPerimeter();
     private FigureRepository figureRepository = null;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
         File file = new File(url.getPath());
@@ -54,5 +52,4 @@ public class SortFiguresByIdTest {
         assertTrue(sorted.get(1).getId() > sorted.get(2).getId());
         assertTrue(sorted.get(2).getId() > sorted.get(3).getId());
     }
-
 }

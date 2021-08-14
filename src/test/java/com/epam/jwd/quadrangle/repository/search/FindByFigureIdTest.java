@@ -3,8 +3,6 @@ package com.epam.jwd.quadrangle.repository.search;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
-import com.epam.jwd.quadrangle.repository.search.FindByFigureId;
-import com.epam.jwd.quadrangle.repository.search.SearchSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

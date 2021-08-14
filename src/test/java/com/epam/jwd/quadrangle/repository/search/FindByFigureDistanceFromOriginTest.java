@@ -5,7 +5,6 @@ import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
-import com.epam.jwd.quadrangle.repository.search.FindByFigureDistanceFromOrigin;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
