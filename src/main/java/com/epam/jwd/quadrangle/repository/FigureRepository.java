@@ -19,7 +19,8 @@ public class FigureRepository implements Repository<Figure> {
     private final List<Figure> storage = new ArrayList<>();
     private int currentId;
 
-    public FigureRepository() {}
+    public FigureRepository() {
+    }
 
     public FigureRepository(List<Figure> figureList) {
         for (Figure figure : figureList) {
