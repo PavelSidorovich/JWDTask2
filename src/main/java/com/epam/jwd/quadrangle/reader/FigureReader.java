@@ -31,6 +31,7 @@ public class FigureReader {
     private static final String FIGURE_CAN_NOT_BE_BUILT_MSG = "%s can't be built from coordinates: %s";
     private static final String SUCCESSFUL_INITIALIZATION_MSG = "%s was successfully initialized!";
     private static final String NOT_SUCCESSFUL_INITIALIZATION_MSG = "%s was not successfully initialized!";
+    private static final String WHITE_SPACES_REG_EX = "\\s+";
 
     private Validator validator = null;
     private final FigureType figureType;
@@ -72,7 +73,7 @@ public class FigureReader {
 
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
-                String[] coordinates = line.split("\\s+");
+                String[] coordinates = line.split(WHITE_SPACES_REG_EX);
                 List<Point> points = new ArrayList<>();
 
                 numberOfFiguresInFile++;
@@ -117,7 +118,6 @@ public class FigureReader {
     }
 
     private void makeListOfCoordinates(PointFactory figureFactory, String[] coordinates, List<Point> points) {
-
         for (int i = 0; i < coordinates.length; i += 2) {
             points.add(figureFactory.newInstance(
                     Double.parseDouble(coordinates[i]),
