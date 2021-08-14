@@ -18,7 +18,7 @@ import static org.testng.Assert.*;
 
 public class SortFiguresByIdTest {
 
-    private final SortFiguresByPerimeter comparator = new SortFiguresByPerimeter();
+    private final SortFiguresById comparator = new SortFiguresById();
     private FigureRepository figureRepository = null;
 
     @BeforeClass
