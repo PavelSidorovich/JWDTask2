@@ -16,15 +16,15 @@ public class FigureRepository implements Repository<Figure> {
 
     private static final String FIGURES_FOUND_BY_SPECIFICATION = "found %d figures according to the specification: %s";
 
-    private final List<Figure> storage;
+    private final List<Figure> storage = new ArrayList<>();
     private int currentId;
 
-    public FigureRepository() {
-        storage = new ArrayList<>();
-    }
+    public FigureRepository() {}
 
     public FigureRepository(List<Figure> figureList) {
-        this.storage = new ArrayList<>(figureList);
+        for (Figure figure : figureList) {
+            create(figure);
+        }
     }
 
     @Override
