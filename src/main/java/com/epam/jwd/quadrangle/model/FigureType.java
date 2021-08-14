@@ -5,10 +5,10 @@ import com.epam.jwd.quadrangle.validation.QuadrangleBuildValidator;
 import com.epam.jwd.quadrangle.validation.Validator;
 
 public enum FigureType {
-    POINT(1, new PointBuildValidator()),
+    POINT(1, PointBuildValidator.getInstance()),
     LINE(2, null),
     TRIANGLE(3, null),
-    QUADRANGLE(4, new QuadrangleBuildValidator()),
+    QUADRANGLE(4, QuadrangleBuildValidator.getInstance()),
     ;
 
     private final int numberOfPoints;

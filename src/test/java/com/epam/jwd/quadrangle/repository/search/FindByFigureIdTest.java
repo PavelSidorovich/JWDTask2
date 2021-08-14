@@ -14,14 +14,14 @@ import static org.testng.Assert.*;
 public class FindByFigureIdTest {
 
     private final FigureRepository figureRepository = new FigureRepository();
-    private final PointFactory pointFactory = new PointFactory();
+    private final PointFactory pointFactory = PointFactory.getInstance();
 
     @BeforeClass
     public void setUp() {
-        figureRepository.create(pointFactory.newInstance(1, 1));
-        figureRepository.create(pointFactory.newInstance(2, 2));
-        figureRepository.create(pointFactory.newInstance(3, 3));
-        figureRepository.create(pointFactory.newInstance(4, 4));
+        figureRepository.create(pointFactory.of(1, 1));
+        figureRepository.create(pointFactory.of(2, 2));
+        figureRepository.create(pointFactory.of(3, 3));
+        figureRepository.create(pointFactory.of(4, 4));
     }
 
     @Test(dataProvider = "SpecificationProvider")

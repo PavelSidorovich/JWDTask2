@@ -63,7 +63,7 @@ public class FigureReader {
      */
     public ArrayList<Figure> scanFigures(Scanner fileScanner) {
         ArrayList<Figure> figureList = null;
-        PointFactory pointFactory = new PointFactory();
+        PointFactory pointFactory = PointFactory.getInstance();
         numberOfBuiltFigures = 0;
         numberOfFiguresInFile = 0;
 
@@ -100,16 +100,16 @@ public class FigureReader {
         Figure figure;
         switch (figureType) {
         case POINT:
-            figureFactory = new PointFactory();
+            figureFactory = PointFactory.getInstance();
             break;
         case LINE:
         case TRIANGLE:
             break;
         case QUADRANGLE:
-            figureFactory = new QuadrangleFactory();
+            figureFactory = QuadrangleFactory.getInstance();
             break;
         }
-        figure = figureFactory.newInstance(points);
+        figure = figureFactory.of(points);
         numberOfBuiltFigures++;
         LOG.trace(String.format(FIGURE_WAS_BUILT_MSG,
                                 figure.getClass().getSimpleName(),
@@ -119,7 +119,7 @@ public class FigureReader {
 
     private void makeListOfCoordinates(PointFactory figureFactory, String[] coordinates, List<Point> points) {
         for (int i = 0; i < coordinates.length; i += 2) {
-            points.add(figureFactory.newInstance(
+            points.add(figureFactory.of(
                     Double.parseDouble(coordinates[i]),
                     Double.parseDouble(coordinates[i + 1]))
             );

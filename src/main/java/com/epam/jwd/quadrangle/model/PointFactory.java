@@ -11,7 +11,19 @@ import java.util.List;
  */
 public class PointFactory implements FigureFactory {
 
-    public Point newInstance(double x, double y) {
+    private static PointFactory factory;
+
+    private PointFactory() {
+    }
+
+    public static PointFactory getInstance() {
+        if (factory == null) {
+            factory = new PointFactory();
+        }
+        return factory;
+    }
+
+    public Point of(double x, double y) {
         return new Point(x, y);
     }
 
@@ -22,7 +34,7 @@ public class PointFactory implements FigureFactory {
      * @return created object of {@code Point} class and {@code null} if the number of coordinates is invalid
      */
     @Override
-    public Point newInstance(List<Point> pointList) {
+    public Point of(List<Point> pointList) {
         if (pointList.size() == FigureType.POINT.getNumberOfPoints()) {
             return new Point(pointList.get(0));
         }

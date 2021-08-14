@@ -16,6 +16,18 @@ import java.util.regex.Pattern;
 public class QuadrangleBuildValidator implements Validator {
     private static final String COORDINATES_LINE_REG_EX = "([-+]?[0-9]*\\.?[0-9]+\\s+){7}[-+]?[0-9]*\\.?[0-9]+\\s*";
 
+    private QuadrangleBuildValidator() {
+    }
+
+    private static QuadrangleBuildValidator validator;
+
+    public static QuadrangleBuildValidator getInstance() {
+        if (validator == null) {
+            validator = new QuadrangleBuildValidator();
+        }
+        return validator;
+    }
+
     public boolean creatable(List<Point> points) {
         if (points.size() != FigureType.QUADRANGLE.getNumberOfPoints()) {
             return false;

@@ -28,11 +28,11 @@ public class SortFiguresByXPointTest {
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         List<Figure> quadrangles = figureReader.scanFigures(fileScanner);
-        PointFactory pointFactory = new PointFactory();
+        PointFactory pointFactory = PointFactory.getInstance();
         figureRepository = new FigureRepository(quadrangles);
-        figureRepository.create(pointFactory.newInstance(0, 0));
-        figureRepository.create(pointFactory.newInstance(1, 2));
-        figureRepository.create(pointFactory.newInstance(2, 30));
+        figureRepository.create(pointFactory.of(0, 0));
+        figureRepository.create(pointFactory.of(1, 2));
+        figureRepository.create(pointFactory.of(2, 30));
     }
 
     @Test

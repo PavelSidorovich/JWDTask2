@@ -11,6 +11,18 @@ import java.util.regex.Pattern;
 public class PointBuildValidator implements Validator {
     private static final String DOUBLE_REG_EX = "[-+]?[0-9]*\\.?[0-9]+";
 
+    private PointBuildValidator() {
+    }
+
+    private static PointBuildValidator validator;
+
+    public static PointBuildValidator getInstance() {
+        if (validator == null) {
+            validator = new PointBuildValidator();
+        }
+        return validator;
+    }
+
     @Override
     public Pattern getPattern() {
         return Pattern.compile(DOUBLE_REG_EX);

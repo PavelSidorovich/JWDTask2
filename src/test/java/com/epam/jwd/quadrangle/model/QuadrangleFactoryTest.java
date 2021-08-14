@@ -10,8 +10,8 @@ import static org.testng.Assert.*;
 
 public class QuadrangleFactoryTest {
 
-    private final QuadrangleFactory QUADRANGLE_FABRIC = new QuadrangleFactory();
-    private final PointFactory POINT_FABRIC = new PointFactory();
+    private final QuadrangleFactory QUADRANGLE_FABRIC = QuadrangleFactory.getInstance();
+    private final PointFactory POINT_FABRIC = PointFactory.getInstance();
     private final LinkedList<Point> POINTS = new LinkedList<>();
 
     @AfterMethod
@@ -21,23 +21,23 @@ public class QuadrangleFactoryTest {
 
     @Test
     public void newInstance_shouldReturnQuadrangle_whenCoordinatesAreValid() {
-        POINTS.add(POINT_FABRIC.newInstance(0, 4));
-        POINTS.add(POINT_FABRIC.newInstance(3, 4));
-        POINTS.add(POINT_FABRIC.newInstance(5, 9));
-        POINTS.add(POINT_FABRIC.newInstance(6, 1));
-        Quadrangle quadrangle = QUADRANGLE_FABRIC.newInstance(POINTS);
+        POINTS.add(POINT_FABRIC.of(0, 4));
+        POINTS.add(POINT_FABRIC.of(3, 4));
+        POINTS.add(POINT_FABRIC.of(5, 9));
+        POINTS.add(POINT_FABRIC.of(6, 1));
+        Quadrangle quadrangle = QUADRANGLE_FABRIC.of(POINTS);
 
         assertNotNull(quadrangle);
     }
 
     @Test
     public void newInstance_throwFigureException_whenNumberOfCoordinatesIsInvalid() {
-        POINTS.add(POINT_FABRIC.newInstance(0, 4));
-        POINTS.add(POINT_FABRIC.newInstance(3, 4));
-        POINTS.add(POINT_FABRIC.newInstance(5, 9));
+        POINTS.add(POINT_FABRIC.of(0, 4));
+        POINTS.add(POINT_FABRIC.of(3, 4));
+        POINTS.add(POINT_FABRIC.of(5, 9));
 
         try {
-            QUADRANGLE_FABRIC.newInstance(POINTS);
+            QUADRANGLE_FABRIC.of(POINTS);
             fail("should throw FigureBuildException");
         } catch (FigureBuildException figureBuildException) {
             assertNotNull(figureBuildException);
@@ -47,13 +47,13 @@ public class QuadrangleFactoryTest {
 
     @Test
     public void newInstance_throwFigureException_whenLinesAreCrossing() {
-        POINTS.add(POINT_FABRIC.newInstance(0, 0));
-        POINTS.add(POINT_FABRIC.newInstance(1, 0));
-        POINTS.add(POINT_FABRIC.newInstance(2, 0));
-        POINTS.add(POINT_FABRIC.newInstance(4, 9));
+        POINTS.add(POINT_FABRIC.of(0, 0));
+        POINTS.add(POINT_FABRIC.of(1, 0));
+        POINTS.add(POINT_FABRIC.of(2, 0));
+        POINTS.add(POINT_FABRIC.of(4, 9));
 
         try {
-            QUADRANGLE_FABRIC.newInstance(POINTS);
+            QUADRANGLE_FABRIC.of(POINTS);
             fail("should throw FigureBuildException");
         } catch (FigureBuildException figureBuildException) {
             assertNotNull(figureBuildException);

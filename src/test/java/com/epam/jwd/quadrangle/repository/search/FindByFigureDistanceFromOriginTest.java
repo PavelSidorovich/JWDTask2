@@ -33,7 +33,7 @@ public class FindByFigureDistanceFromOriginTest {
 
     @Test
     public void exists_shouldReturnTrue_ifFitsTheCondition() {
-        specification = new FindByFigureDistanceFromOrigin(new PointFactory().newInstance(1, 1));
+        specification = new FindByFigureDistanceFromOrigin(PointFactory.getInstance().of(1, 1));
         List<Figure> figureList = figureRepository.findBySpecification(specification);
 
         assertNotNull(figureList);
