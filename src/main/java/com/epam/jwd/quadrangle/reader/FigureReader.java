@@ -42,7 +42,7 @@ public class FigureReader {
         this.figureType = figureType;
         if (figureType != null) {
             validator = figureType.getValidator();
-            LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+            LOG.info(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         } else {
             LOG.warn(String.format(NOT_SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         }
@@ -82,7 +82,7 @@ public class FigureReader {
                     LOG.error(e);
                 }
             }
-            LOG.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
+            LOG.info(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
         }
         return figureList;
     }
@@ -131,9 +131,9 @@ public class FigureReader {
         }
         figure = figureFactory.of(points);
         numberOfBuiltFigures++;
-        LOG.trace(String.format(FIGURE_WAS_BUILT_MSG,
-                                figure.getClass().getSimpleName(),
-                                figure.getPoints()));
+        LOG.info(String.format(FIGURE_WAS_BUILT_MSG,
+                               figure.getClass().getSimpleName(),
+                               figure.getPoints()));
         return figure;
     }
 

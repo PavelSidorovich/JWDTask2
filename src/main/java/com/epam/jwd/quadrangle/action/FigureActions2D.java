@@ -29,12 +29,14 @@ public class FigureActions2D implements FigureActions {
 
     public Boolean isConvex() {
         boolean convex = true;
-        List<MathVector> vectors = figure.getVectors();
-        boolean negative = vectors.get(0).scalarProduct(vectors.get(1)) < 0;
 
         if (figure instanceof Point) {
             return true;
         }
+
+        List<MathVector> vectors = figure.getVectors();
+        boolean negative = vectors.get(0).scalarProduct(vectors.get(1)) < 0;
+
         for (int i = 0; i < vectors.size(); i++) {
             boolean tmp;
             if (i != vectors.size() - 1) {
@@ -47,7 +49,7 @@ public class FigureActions2D implements FigureActions {
                 break;
             }
         }
-        LOG.info(figure + ": " + convex);
+        LOG.trace(figure + ": " + convex);
         return convex;
     }
 
@@ -64,7 +66,7 @@ public class FigureActions2D implements FigureActions {
         }
         square += figure.getPoints().get(figure.getNumberOfPoints() - 1).getX() * figure.getPoints().get(0).getY()
                   - figure.getPoints().get(figure.getNumberOfPoints() - 1).getY() * figure.getPoints().get(0).getX();
-        LOG.info(figure + ": " + Math.abs(square / 2));
+        LOG.trace(figure + ": " + Math.abs(square / 2));
         return Math.abs(square / 2);
     }
 
@@ -81,7 +83,7 @@ public class FigureActions2D implements FigureActions {
         }
         perimeter += distanceBetweenTwoPoints(figure.getPoints().get(figure.getNumberOfPoints() - 1),
                                               figure.getPoints().get(0));
-        LOG.info(figure + ": " + perimeter);
+        LOG.trace(figure + ": " + perimeter);
         return perimeter;
     }
 

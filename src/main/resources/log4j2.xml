@@ -7,9 +7,6 @@
   <Appenders>
     <RollingFile name="loggerFile" fileName="${basePath}/app-info.log"
                  filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
-      <!--            <PatternLayout>-->
-      <!--              <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>-->
-      <!--            </PatternLayout>-->
       <PatternLayout disableAnsi="false"
                      pattern="%d{HH:mm:ss} [%-5level] %logger{36}.%M() @%L - %msg%n"/>
       <Policies>
@@ -24,12 +21,9 @@
   </Appenders>
 
   <Loggers>
-    <!--    <Logger name="com.epam.jwd" level="info" additivity="true">-->
-    <!--      <appender-ref ref="loggerFile" level="trace"/>-->
-    <!--    </Logger>-->
-    <Root level="TRACE">
-      <AppenderRef ref="Console"/>
-      <appender-ref ref="loggerFile"/>
+    <Root level="ALL">
+      <AppenderRef ref="Console" level="INFO"/>
+      <appender-ref ref="loggerFile" level="INFO"/>
     </Root>
   </Loggers>
 </Configuration>
