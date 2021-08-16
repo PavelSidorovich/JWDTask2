@@ -17,6 +17,7 @@ public class FigureRepository implements Repository<Figure> {
     private static final String FIGURES_FOUND_BY_SPECIFICATION = "found %d figures according to the specification: %s";
 
     private final List<Figure> storage = new ArrayList<>();
+    private final FigurePublisher publisher = new FigurePublisher(storage);
     private int currentId;
 
     public FigureRepository() {
@@ -26,6 +27,11 @@ public class FigureRepository implements Repository<Figure> {
         for (Figure figure : figureList) {
             create(figure);
         }
+        publisher.setContextList(storage);
+    }
+
+    public FigurePublisher getPublisher() {
+        return publisher;
     }
 
     @Override
@@ -33,6 +39,7 @@ public class FigureRepository implements Repository<Figure> {
         if (figure != null) {
             figure = figure.withId(++currentId);
             storage.add(figure);
+            publisher.setContextList(storage);
         }
         return figure != null;
     }
@@ -59,6 +66,7 @@ public class FigureRepository implements Repository<Figure> {
         if (storage.contains(oldFigure)) {
             int oldIndex = storage.indexOf(oldFigure);
             storage.add(oldIndex, newFigure);
+            publisher.setContextList(storage);
             return true;
         }
         return false;
@@ -67,7 +75,9 @@ public class FigureRepository implements Repository<Figure> {
     @Override
     public boolean update(int index, Figure newFigure) {
         try {
+            storage.remove(index);
             storage.add(index, newFigure);
+            publisher.setContextList(storage);
             return true;
         } catch (IndexOutOfBoundsException e) {
             return false;
@@ -78,7 +88,9 @@ public class FigureRepository implements Repository<Figure> {
     public boolean delete(int index) {
         try {
             Figure figure = storage.get(index);
-            return storage.remove(figure);
+            boolean isDeleted = storage.remove(figure);
+            publisher.setContextList(storage);
+            return isDeleted;
         } catch (Exception e) {
             return false;
         }
@@ -86,7 +98,9 @@ public class FigureRepository implements Repository<Figure> {
 
     @Override
     public boolean delete(Figure figure) {
-        return storage.remove(figure);
+        boolean isDeleted = storage.remove(figure);
+        publisher.setContextList(storage);
+        return isDeleted;
     }
 
     @Override
