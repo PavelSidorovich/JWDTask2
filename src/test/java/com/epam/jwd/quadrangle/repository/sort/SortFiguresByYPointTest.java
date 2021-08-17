@@ -18,7 +18,7 @@ import static org.testng.Assert.*;
 
 public class SortFiguresByYPointTest {
 
-    private final SortFiguresByXPoint comparator = new SortFiguresByXPoint();
+    private final SortFiguresByYPoint comparator = new SortFiguresByYPoint();
     private FigureRepository figureRepository = null;
 
     @BeforeClass
