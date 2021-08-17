@@ -1,13 +1,13 @@
 package com.epam.jwd.quadrangle.app;
 
 import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigureSubscriber;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.Point;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.model.QuadrangleFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
-import com.epam.jwd.quadrangle.repository.FigureSubscriber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +38,7 @@ public class ApplicationExecutor {
             repository.create(POINT_FACTORY.of(2, 30));
 
             FigureSubscriber subscriber1 = new FigureSubscriber();
-            repository.getPublisher().subscribe(subscriber1);
+            repository.getPublisher(0).subscribe(subscriber1);
 
             repository.create(POINT_FACTORY.of(100, 800));
 
@@ -48,7 +48,7 @@ public class ApplicationExecutor {
             points.add(POINT_FACTORY.of(30, 5));
             points.add(POINT_FACTORY.of(10, 0));
 
-            repository.update(2, QUADRANGLE_FACTORY.of(points));
+            repository.update(0, QUADRANGLE_FACTORY.of(points));
 
             repository.delete(4);
         } catch (FileNotFoundException e) {
