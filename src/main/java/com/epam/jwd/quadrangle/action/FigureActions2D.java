@@ -23,7 +23,7 @@ public class FigureActions2D implements FigureActions {
         this.figure = figure;
     }
 
-    public Double distanceBetweenTwoPoints(Point point1, Point point2) {
+    public Double distance(Point point1, Point point2) {
         return Math.sqrt(Math.pow((point2.getX() - point1.getX()), 2) + Math.pow((point2.getY() - point1.getY()), 2));
     }
 
@@ -78,11 +78,11 @@ public class FigureActions2D implements FigureActions {
             return 0;
         }
         for (int i = 0; i < figure.getNumberOfPoints() - 1; i++) {
-            perimeter += distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                  figure.getPoints().get(i + 1));
+            perimeter += distance(figure.getPoints().get(i),
+                                  figure.getPoints().get(i + 1));
         }
-        perimeter += distanceBetweenTwoPoints(figure.getPoints().get(figure.getNumberOfPoints() - 1),
-                                              figure.getPoints().get(0));
+        perimeter += distance(figure.getPoints().get(figure.getNumberOfPoints() - 1),
+                              figure.getPoints().get(0));
         LOG.trace(figure + ": " + perimeter);
         return perimeter;
     }
