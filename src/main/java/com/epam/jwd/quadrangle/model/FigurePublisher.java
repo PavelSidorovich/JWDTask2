@@ -1,7 +1,5 @@
-package com.epam.jwd.quadrangle.repository;
+package com.epam.jwd.quadrangle.model;
 
-import com.epam.jwd.quadrangle.model.Figure;
-import com.epam.jwd.quadrangle.model.FigureContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
