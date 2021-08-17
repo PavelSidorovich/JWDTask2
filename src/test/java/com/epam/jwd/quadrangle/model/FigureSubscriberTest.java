@@ -1,6 +1,5 @@
 package com.epam.jwd.quadrangle.model;
 
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,9 +23,6 @@ public class FigureSubscriberTest {
     @Mock
     private FigureContext figureContext;
 
-    @Mock
-    private Logger logger;
-
     @InjectMocks
     private FigureSubscriber subscriber;
 
@@ -43,7 +39,7 @@ public class FigureSubscriberTest {
     }
 
     @Test
-    public void onSubscribe() {
+    public void onSubscribe_shouldInvokeAnotherMethod_always() {
         assertNotNull(subscription);
 
         subscriber = new FigureSubscriber();
@@ -53,7 +49,7 @@ public class FigureSubscriberTest {
     }
 
     @Test
-    public void onNext() {
+    public void onNext_shouldSetContext_always() {
         subscriber = new FigureSubscriber();
 
         assertTrue(subscriber.toString().contains("null"));
@@ -64,13 +60,13 @@ public class FigureSubscriberTest {
     }
 
     @Test
-    public void onError() {
+    public void onError_shouldLogError_always() {
         subscriber = new FigureSubscriber();
         subscriber.onError(new NullPointerException());
     }
 
     @Test
-    public void onComplete() {
+    public void onComplete_shouldLogSuccessfulEndingOfSubscription_always() {
         subscriber = new FigureSubscriber();
         subscriber.onComplete();
     }
