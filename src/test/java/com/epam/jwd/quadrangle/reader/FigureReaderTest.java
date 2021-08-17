@@ -46,6 +46,15 @@ public class FigureReaderTest {
         assertSame(figures.size(), 6);
     }
 
+    @DataProvider(name = "ConstructorArgumentsProvider")
+    public Object[][] getConstructorArgumentsFromProvider() {
+        return new Object[][] {
+                { null, null },
+                { null, FigureType.QUADRANGLE },
+                { fileScanner, null },
+        };
+    }
+
     @Test(dataProvider = "ConstructorArgumentsProvider")
     public void scanFigures_shouldReturnNull_whenArgumentsAreInvalid(Scanner scanner, FigureType figureType) {
         FigureReader figureReader = new FigureReader(figureType);
@@ -65,14 +74,5 @@ public class FigureReaderTest {
         figureReader.scanFigures(fileScanner);
 
         assertSame(figureReader.getNumberOfBuiltFigures(), 6);
-    }
-
-    @DataProvider(name = "ConstructorArgumentsProvider")
-    public Object[][] getConstructorArgumentsFromProvider() {
-        return new Object[][] {
-                { null, null },
-                { null, FigureType.QUADRANGLE },
-                { fileScanner, null },
-        };
     }
 }

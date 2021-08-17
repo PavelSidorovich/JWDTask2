@@ -2,6 +2,7 @@ package com.epam.jwd.quadrangle.action;
 
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
+import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -13,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
+
+import static org.testng.Assert.*;
 
 public class FigureActions2DTest {
 
@@ -28,6 +31,18 @@ public class FigureActions2DTest {
         quadrangles = figureReader.scanFigures(fileScanner);
     }
 
+    @DataProvider(name = "PerimeterProvider")
+    public Object[][] getPerimetersFromProvider() {
+        return new Object[][] {
+                { quadrangles.get(0), 11.01 },
+                { quadrangles.get(1), 8.0 },
+                { quadrangles.get(2), 42.36 },
+                { quadrangles.get(3), 42.80 },
+                { quadrangles.get(4), 12.64 },
+                { quadrangles.get(5), 23.15 },
+        };
+    }
+
     @Test(dataProvider = "PerimeterProvider")
     public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
         actions = new FigureActions2D(figure);
@@ -35,18 +50,23 @@ public class FigureActions2DTest {
         Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
     }
 
+    @DataProvider(name = "SquareProvider")
+    public Object[][] getSquaresFromProvider() {
+        return new Object[][] {
+                { quadrangles.get(0), 6.75 },
+                { quadrangles.get(1), 4.0 },
+                { quadrangles.get(2), 50.0 },
+                { quadrangles.get(3), 60.0 },
+                { quadrangles.get(4), 8.0 },
+                { quadrangles.get(5), 15.0 },
+        };
+    }
+
     @Test(dataProvider = "SquareProvider")
     public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
         actions = new FigureActions2D(figure);
 
         Assert.assertEquals(actions.square(), square, 0.01);
-    }
-
-    @Test(dataProvider = "ConvexProvider")
-    public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
-        actions = new FigureActions2D(figure);
-
-        Assert.assertEquals(actions.isConvex(), isConvex);
     }
 
     @DataProvider(name = "ConvexProvider")
@@ -61,27 +81,26 @@ public class FigureActions2DTest {
         };
     }
 
-    @DataProvider(name = "PerimeterProvider")
-    public Object[][] getPerimetersFromProvider() {
-        return new Object[][] {
-                { quadrangles.get(0), 11.01 },
-                { quadrangles.get(1), 8.0 },
-                { quadrangles.get(2), 42.36 },
-                { quadrangles.get(3), 42.80 },
-                { quadrangles.get(4), 12.64 },
-                { quadrangles.get(5), 23.15 },
-        };
+    @Test(dataProvider = "ConvexProvider")
+    public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
+        actions = new FigureActions2D(figure);
+
+        Assert.assertEquals(actions.isConvex(), isConvex);
     }
 
-    @DataProvider(name = "SquareProvider")
-    public Object[][] getSquaresFromProvider() {
-        return new Object[][] {
-                { quadrangles.get(0), 6.75 },
-                { quadrangles.get(1), 4.0 },
-                { quadrangles.get(2), 50.0 },
-                { quadrangles.get(3), 60.0 },
-                { quadrangles.get(4), 8.0 },
-                { quadrangles.get(5), 15.0 },
-        };
+    @Test
+    public void distance_shouldReturnDistance_whenPointsAreValid() {
+        PointFactory pointFactory = PointFactory.getInstance();
+        actions = new FigureActions2D(null);
+        Double distance = actions.distance(pointFactory.of(0, 0),
+                                           pointFactory.of(3, 0));
+
+        assertTrue(distance.equals(3.0));
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void distance_shouldThrowException_whenPointsAreInvalid() {
+        actions = new FigureActions2D(null);
+        double distance = actions.distance(null, null);
     }
 }

@@ -23,6 +23,17 @@ public class QuadrangleBuildValidatorTest {
         points.clear();
     }
 
+    @DataProvider(name = "StringProvider")
+    public Object[][] getPerimetersFromProvider() {
+        return new Object[][] {
+                { "0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0", true },
+                { "  0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0", false },
+                { "0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0   ", true },
+                { "0.0 0.0   10.0 5.0 20.0 5.0   10.0 0.0   ", true },
+                { "0.0 0.0   10.0 5.0 z 5.0   10.0 0.0   ", false },
+        };
+    }
+
     @Test(dataProvider = "StringProvider")
     public void getPattern_shouldReturnValidPattern_always(String string, boolean isValid) {
         Pattern pattern = validator.getPattern();
@@ -60,16 +71,5 @@ public class QuadrangleBuildValidatorTest {
         points.add(pointFactory.of(4, 9));
 
         assertFalse(validator.creatable(points));
-    }
-
-    @DataProvider(name = "StringProvider")
-    public Object[][] getPerimetersFromProvider() {
-        return new Object[][] {
-                { "0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0", true },
-                { "  0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0", false },
-                { "0.0 0.0 10.0 5.0 20.0 5.0 10.0 0.0   ", true },
-                { "0.0 0.0   10.0 5.0 20.0 5.0   10.0 0.0   ", true },
-                { "0.0 0.0   10.0 5.0 z 5.0   10.0 0.0   ", false },
-        };
     }
 }

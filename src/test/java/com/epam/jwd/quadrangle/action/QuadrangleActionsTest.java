@@ -28,13 +28,6 @@ public class QuadrangleActionsTest {
         quadrangles = figureReader.scanFigures(fileScanner);
     }
 
-    @Test(dataProvider = "TypeProvider")
-    public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, QuadrangleType quadrangleType) {
-        QuadrangleActions actions = new QuadrangleActions(figure);
-
-        Assert.assertEquals(actions.defineTheType(), quadrangleType);
-    }
-
     @DataProvider(name = "TypeProvider")
     public Object[][] getTypesFromProvider() {
         return new Object[][] {
@@ -45,5 +38,12 @@ public class QuadrangleActionsTest {
                 { quadrangles.get(4), QuadrangleType.DIAMOND },
                 { quadrangles.get(5), QuadrangleType.ARBITRARY },
         };
+    }
+
+    @Test(dataProvider = "TypeProvider")
+    public void defineTheType_shouldReturnTheTypeOfQuadrangle_always(Figure figure, QuadrangleType quadrangleType) {
+        QuadrangleActions actions = new QuadrangleActions(figure);
+
+        Assert.assertEquals(actions.defineTheType(), quadrangleType);
     }
 }
