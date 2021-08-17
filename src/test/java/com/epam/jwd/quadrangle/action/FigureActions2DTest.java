@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.action;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
@@ -25,6 +26,7 @@ public class FigureActions2DTest {
     @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
+        assert url != null;
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
@@ -91,16 +93,16 @@ public class FigureActions2DTest {
     @Test
     public void distance_shouldReturnDistance_whenPointsAreValid() {
         PointFactory pointFactory = PointFactory.getInstance();
-        actions = new FigureActions2D(null);
+        actions = new FigureActions2D(pointFactory.of(1, 3));
         Double distance = actions.distance(pointFactory.of(0, 0),
                                            pointFactory.of(3, 0));
 
-        assertTrue(distance.equals(3.0));
+        assertEquals(distance, 3.0, 0.0);
     }
 
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test(expectedExceptions = ArgumentNullException.class)
     public void distance_shouldThrowException_whenPointsAreInvalid() {
         actions = new FigureActions2D(null);
-        double distance = actions.distance(null, null);
+        actions.distance(null, null);
     }
 }

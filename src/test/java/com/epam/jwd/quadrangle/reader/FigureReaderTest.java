@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.reader;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
 import org.testng.annotations.AfterClass;
@@ -25,6 +26,7 @@ public class FigureReaderTest {
     @BeforeClass
     public void setUp() {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
+        assert url != null;
         file = new File(url.getPath());
     }
 
@@ -40,7 +42,7 @@ public class FigureReaderTest {
 
     @Test
     public void scanFigures_shouldReturnList_whenArgumentsAreValid() {
-        List<? extends Figure> figures = figureReader.scanFigures(fileScanner);
+        List<Figure> figures = figureReader.scanFigures(fileScanner);
 
         assertNotNull(figures);
         assertSame(figures.size(), 6);
@@ -55,11 +57,10 @@ public class FigureReaderTest {
         };
     }
 
-    @Test(dataProvider = "ConstructorArgumentsProvider")
-    public void scanFigures_shouldReturnNull_whenArgumentsAreInvalid(Scanner scanner, FigureType figureType) {
+    @Test(dataProvider = "ConstructorArgumentsProvider", expectedExceptions = ArgumentNullException.class)
+    public void scanFigures_shouldThrowException_whenArgumentsAreInvalid(Scanner scanner, FigureType figureType) {
         FigureReader figureReader = new FigureReader(figureType);
-
-        assertNull(figureReader.scanFigures(scanner));
+        figureReader.scanFigures(scanner);
     }
 
     @Test

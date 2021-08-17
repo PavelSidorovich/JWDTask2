@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.repository;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import org.testng.annotations.Test;
@@ -16,7 +17,7 @@ public class FigureRepositoryTest {
         assertNotNull(repository.create(pointFactory.of(0, 0)));
     }
 
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test(expectedExceptions = ArgumentNullException.class)
     public void create_shouldThrowException_whenNullAddedToRepository() {
         repository.create(null);
     }
@@ -67,10 +68,13 @@ public class FigureRepositoryTest {
         Figure figure2 = pointFactory.of(40, 40);
         repository.create(figure1);
         repository.create(figure2);
+
         assertFalse(repository.delete(null));
         assertFalse(repository.delete(-1));
         assertTrue(repository.delete(figure1));
+
         int index = repository.read(figure2);
+
         assertTrue(repository.delete(index));
     }
 

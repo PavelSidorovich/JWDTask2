@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.action;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.MathVector;
 import com.epam.jwd.quadrangle.model.Point;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 /**
- * The {@code FigureActions2D} class contains methods which realise different actions applied to figures
+ * The {@code FigureActions2D} class contains methods which realises different actions applied to figures
  *
  * @author Pavel Sidorovich
  * @since 1.0
@@ -20,6 +21,9 @@ public class FigureActions2D implements FigureActions {
     private final Figure figure;
 
     public FigureActions2D(Figure figure) {
+        if (figure == null) {
+            throw new ArgumentNullException();
+        }
         this.figure = figure;
     }
 

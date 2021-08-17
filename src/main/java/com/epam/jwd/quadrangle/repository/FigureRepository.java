@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.repository;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureContext;
 import com.epam.jwd.quadrangle.model.FigurePublisher;
@@ -39,7 +40,7 @@ public class FigureRepository implements Repository<Figure, FigureContext> {
             storage.add(publisher);
             return publisher;
         } else {
-            throw new NullPointerException();
+            throw new ArgumentNullException();
         }
     }
 

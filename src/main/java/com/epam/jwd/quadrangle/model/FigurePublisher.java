@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.model;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,11 +17,17 @@ public class FigurePublisher implements Publisher<FigureContext> {
     private final List<FigureSubscription> subscriptions = new ArrayList<>();
 
     public FigurePublisher(Figure figure) {
+        if (figure == null) {
+            throw new ArgumentNullException();
+        }
         figureContext = new FigureContext(figure);
         LOG.info(figureContext);
     }
 
     public void setFigure(Figure figure) {
+        if (figure == null) {
+            throw new NullPointerException();
+        }
         figureContext = new FigureContext(figure);
         publish();
     }

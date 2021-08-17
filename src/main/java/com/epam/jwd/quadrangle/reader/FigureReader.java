@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.reader;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.exception.PointArgumentException;
 import com.epam.jwd.quadrangle.model.Figure;
@@ -45,6 +46,7 @@ public class FigureReader {
             LOG.info(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         } else {
             LOG.warn(String.format(NOT_SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+            throw new ArgumentNullException();
         }
     }
 
@@ -83,6 +85,8 @@ public class FigureReader {
                 }
             }
             LOG.info(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
+        } else {
+            throw new ArgumentNullException();
         }
         return figureList;
     }
