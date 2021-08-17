@@ -17,11 +17,12 @@ import java.util.Scanner;
 
 public class QuadrangleActionsTest {
 
-    private List<? extends Figure> quadrangles = null;
+    private List<Figure> quadrangles = null;
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
+        assert url != null;
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
