@@ -98,4 +98,22 @@
     </classes>
   </test>
 
+  <test name="test17">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.PointFactoryTest"/>
+    </classes>
+  </test>
+
+  <test name="test18">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.FigurePublisherTest"/>
+    </classes>
+  </test>
+
+  <test name="test19">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.FigureSubscriberTest"/>
+    </classes>
+  </test>
+
 </suite>
