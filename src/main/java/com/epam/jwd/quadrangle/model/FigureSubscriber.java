@@ -4,17 +4,16 @@ import com.epam.jwd.quadrangle.model.FigureContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-public class FigureSubscriber implements Subscriber<List<FigureContext>> {
+public class FigureSubscriber implements Subscriber<FigureContext> {
     private static final Logger LOG = LogManager.getLogger(FigureSubscriber.class);
 
-    private static final String SUBSCRIPTION_COMPLETED_MSG = "Subscription completed!";
+    private static final String SUBSCRIPTION_COMPLETED_MSG = "Publisher or subscriber canceled the subscription!";
 
     private Subscription subscription;
-    private List<FigureContext> contexts;
+    private FigureContext context;
 
     @Override
     public void onSubscribe(Subscription subscription) {
@@ -23,8 +22,8 @@ public class FigureSubscriber implements Subscriber<List<FigureContext>> {
     }
 
     @Override
-    public void onNext(List<FigureContext> contexts) {
-        this.contexts = contexts;
+    public void onNext(FigureContext contexts) {
+        this.context = contexts;
         LOG.info(contexts);
     }
 
@@ -41,7 +40,7 @@ public class FigureSubscriber implements Subscriber<List<FigureContext>> {
     @Override
     public String toString() {
         return "FigureSubscriber{" +
-               "contexts=" + contexts +
+               "contexts=" + context +
                '}';
     }
 }

@@ -11,35 +11,28 @@ import java.util.concurrent.Flow.Publisher;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-public class FigurePublisher implements Publisher<List<FigureContext>> {
+public class FigurePublisher implements Publisher<FigureContext> {
     private static final Logger LOG = LogManager.getLogger(FigurePublisher.class);
 
-    private final List<FigureContext> contextList;
+    private FigureContext figureContext;
     private final List<FigureSubscription> subscriptions = new ArrayList<>();
 
-    public FigurePublisher(List<Figure> figures) {
-        contextList = new ArrayList<>();
-        for (Figure figure : figures) {
-            contextList.add(new FigureContext(figure));
-        }
-        LOG.info(contextList);
+    public FigurePublisher(Figure figure) {
+        figureContext = new FigureContext(figure);
+        LOG.info(figureContext);
     }
 
-    public void setContextList(List<Figure> figures) {
-        contextList.clear();
-        for (Figure figure : figures) {
-            contextList.add(new FigureContext(figure));
-        }
+    public void setFigure(Figure figure) {
+        figureContext = new FigureContext(figure);
         publish();
     }
 
-    @Override
-    public void subscribe(Subscriber<? super List<FigureContext>> subscriber) {
-        FigureSubscription subscription = new FigureSubscription((Subscriber<List<FigureContext>>) subscriber);
+    public FigureContext getFigureContext() {
+        return figureContext;
+    }
 
-        subscriptions.add(subscription);
-
-        subscriber.onSubscribe(subscription);
+    public void cancel() {
+        subscriptions.forEach(FigureSubscription::cancel);
     }
 
     private void publish() {
@@ -48,11 +41,20 @@ public class FigurePublisher implements Publisher<List<FigureContext>> {
         }
     }
 
+    @Override
+    public void subscribe(Subscriber<? super FigureContext> subscriber) {
+        FigureSubscription subscription = new FigureSubscription((Subscriber<FigureContext>) subscriber);
+
+        subscriptions.add(subscription);
+
+        subscriber.onSubscribe(subscription);
+    }
+
     private class FigureSubscription implements Subscription {
-        private final Subscriber<List<FigureContext>> subscriber;
+        private final Subscriber<FigureContext> subscriber;
         private boolean isCanceled;
 
-        public FigureSubscription(Subscriber<List<FigureContext>> subscriber) {
+        public FigureSubscription(Subscriber<FigureContext> subscriber) {
             this.subscriber = subscriber;
         }
 
@@ -62,7 +64,7 @@ public class FigurePublisher implements Publisher<List<FigureContext>> {
                 if (n < 0) {
                     subscriber.onError(new IllegalArgumentException());
                 } else {
-                    subscriber.onNext(contextList);
+                    subscriber.onNext(figureContext);
                 }
             }
         }
@@ -71,6 +73,7 @@ public class FigurePublisher implements Publisher<List<FigureContext>> {
         public void cancel() {
             isCanceled = true;
             subscriptions.remove(this);
+            subscriber.onComplete();
         }
     }
 }
