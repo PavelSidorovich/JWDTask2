@@ -6,13 +6,22 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-public class FigureContextSubscriber implements Subscriber<FigureContext> {
-    private static final Logger LOG = LogManager.getLogger(FigureContextSubscriber.class);
+public class FigureSubscriber implements Subscriber<Figure> {
+    private static final Logger LOG = LogManager.getLogger(FigureSubscriber.class);
 
     private static final String SUBSCRIPTION_COMPLETED_MSG = "Publisher or subscriber canceled the subscription!";
 
     private Subscription subscription;
-    private FigureContext context;
+    private FigureContext figureContext;
+
+    public FigureContext getFigureContext() {
+        try {
+            return (FigureContext) figureContext.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public void onSubscribe(Subscription subscription) {
@@ -21,9 +30,9 @@ public class FigureContextSubscriber implements Subscriber<FigureContext> {
     }
 
     @Override
-    public void onNext(FigureContext contexts) {
-        this.context = contexts;
-        LOG.info(contexts);
+    public void onNext(Figure figure) {
+        figureContext = new FigureContext(figure);
+        LOG.info(figure);
     }
 
     @Override
@@ -38,8 +47,8 @@ public class FigureContextSubscriber implements Subscriber<FigureContext> {
 
     @Override
     public String toString() {
-        return "FigureContextSubscriber{" +
-               "contexts=" + context +
+        return "FigureSubscriber{" +
+               "figureContext=" + figureContext +
                '}';
     }
 }

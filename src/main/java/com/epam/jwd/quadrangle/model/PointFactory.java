@@ -54,7 +54,7 @@ public class PointFactory implements FigureFactory {
     }
 
     public FigurePublisher publisherOf(double x, double y) {
-            return new FigurePublisher(new Point(x, y));
+        return new FigurePublisher(new Point(x, y));
     }
 }
 

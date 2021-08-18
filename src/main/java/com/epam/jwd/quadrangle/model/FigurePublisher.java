@@ -10,30 +10,30 @@ import java.util.concurrent.Flow.Publisher;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-public class FigurePublisher implements Publisher<FigureContext> {
+public class FigurePublisher implements Publisher<Figure> {
     private static final Logger LOG = LogManager.getLogger(FigurePublisher.class);
 
-    private FigureContext figureContext;
+    private Figure figure;
     private final List<FigureSubscription> subscriptions = new ArrayList<>();
 
     public FigurePublisher(Figure figure) {
         if (figure == null) {
             throw new ArgumentNullException();
         }
-        figureContext = new FigureContext(figure);
-        LOG.info(figureContext);
+        this.figure = figure;
+        LOG.info(figure);
     }
 
     public void setFigure(Figure figure) {
         if (figure == null) {
-            throw new NullPointerException();
+            throw new ArgumentNullException();
         }
-        figureContext = new FigureContext(figure);
+        this.figure = figure;
         publish();
     }
 
-    public FigureContext getFigureContext() {
-        return figureContext;
+    public Figure getFigure() {
+        return figure;
     }
 
     public void cancel() {
@@ -47,8 +47,8 @@ public class FigurePublisher implements Publisher<FigureContext> {
     }
 
     @Override
-    public void subscribe(Subscriber<? super FigureContext> subscriber) {
-        FigureSubscription subscription = new FigureSubscription((Subscriber<FigureContext>) subscriber);
+    public void subscribe(Subscriber<? super Figure> subscriber) {
+        FigureSubscription subscription = new FigureSubscription((Subscriber<Figure>) subscriber);
 
         subscriptions.add(subscription);
 
@@ -56,10 +56,10 @@ public class FigurePublisher implements Publisher<FigureContext> {
     }
 
     private class FigureSubscription implements Subscription {
-        private final Subscriber<FigureContext> subscriber;
+        private final Subscriber<Figure> subscriber;
         private boolean isCanceled;
 
-        public FigureSubscription(Subscriber<FigureContext> subscriber) {
+        public FigureSubscription(Subscriber<Figure> subscriber) {
             this.subscriber = subscriber;
         }
 
@@ -69,7 +69,7 @@ public class FigurePublisher implements Publisher<FigureContext> {
                 if (n < 0) {
                     subscriber.onError(new IllegalArgumentException());
                 } else {
-                    subscriber.onNext(figureContext);
+                    subscriber.onNext(figure);
                 }
             }
         }

@@ -8,15 +8,13 @@ import java.util.concurrent.Flow.Publisher;
 
 public interface Repository<T, R> {
 
-    Publisher<R> create(T object);
+    void create(R object);
 
     T read(int index);
 
     int read(T object);
 
-    Publisher<R> update(T oldObject, T newObject);
-
-    Publisher<R> update(int index, T newObject);
+    void update(R oldObject, T newObject);
 
     boolean delete(int index);
 
