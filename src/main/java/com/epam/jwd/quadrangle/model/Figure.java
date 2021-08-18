@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public interface Figure {
     int getId();
 
+    Figure withId(int id);
+
     ArrayList<Point> getPoints();
 
-    default int getNumberOfPoints() {
+    default Integer getNumberOfPoints() {
         return getPoints().size();
     }
 

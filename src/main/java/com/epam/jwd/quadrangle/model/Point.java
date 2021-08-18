@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 /**
- * The {@code Point} class is immutable. It implements the {@code Figure} interface
+ * The {@code Point} class implements the {@code Figure} interface
  *
  * @author Pavel Sidorovich
  * @see Figure
@@ -15,8 +15,8 @@ public class Point implements Figure {
     public static final FigureType FIGURE_TYPE = FigureType.POINT;
 
     private final int id;
-    private final double x;
-    private final double y;
+    private double x;
+    private double y;
 
     Point(double x, double y) {
         this.id = 0;
@@ -30,6 +30,20 @@ public class Point implements Figure {
         this.y = point.getY();
     }
 
+    public Point(int id, Point point) {
+        this.id = id;
+        this.x = point.getX();
+        this.y = point.getY();
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public double getX() {
         return x;
     }
@@ -39,13 +53,18 @@ public class Point implements Figure {
     }
 
     @Override
-    public int getNumberOfPoints() {
+    public Integer getNumberOfPoints() {
         return FIGURE_TYPE.getNumberOfPoints();
     }
 
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public Figure withId(int id) {
+        return new Point(id, this);
     }
 
     @Override

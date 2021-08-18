@@ -7,19 +7,18 @@ package com.epam.jwd.quadrangle.model;
  * @since 1.0
  */
 public class MathVector {
-    private final double x;
-    private final double y;
+    private final Point vector;
 
     public MathVector(Point point1, Point point2) {
-        x = point2.getX() - point1.getX();
-        y = point2.getY() - point1.getY();
+        vector = PointFactory.getInstance().of(point2.getX() - point1.getX(), point2.getY() - point1.getY());
     }
 
     public Double scalarProduct(MathVector secondVector) {
-        return this.x * secondVector.y - secondVector.x * this.y;
+        return vector.getX() * secondVector.vector.getY() - secondVector.vector.getX() * vector.getY();
     }
 
     public boolean perpendicular(MathVector secondVector) {
-        return Double.valueOf(0).equals(Math.abs(this.x * secondVector.x + this.y * secondVector.y));
+        return Double.valueOf(0).equals(Math.abs(vector.getX() * secondVector.vector.getX()
+                                                 + vector.getY() * secondVector.vector.getY()));
     }
 }

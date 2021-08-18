@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.action;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.MathVector;
 import com.epam.jwd.quadrangle.model.Point;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 /**
- * The {@code FigureActions2D} class contains methods which realise different actions applied to figures
+ * The {@code FigureActions2D} class contains methods which realises different actions applied to figures
  *
  * @author Pavel Sidorovich
  * @since 1.0
@@ -20,21 +21,26 @@ public class FigureActions2D implements FigureActions {
     private final Figure figure;
 
     public FigureActions2D(Figure figure) {
+        if (figure == null) {
+            throw new ArgumentNullException();
+        }
         this.figure = figure;
     }
 
-    public Double distanceBetweenTwoPoints(Point point1, Point point2) {
+    public Double distance(Point point1, Point point2) {
         return Math.sqrt(Math.pow((point2.getX() - point1.getX()), 2) + Math.pow((point2.getY() - point1.getY()), 2));
     }
 
     public Boolean isConvex() {
         boolean convex = true;
-        List<MathVector> vectors = figure.getVectors();
-        boolean negative = vectors.get(0).scalarProduct(vectors.get(1)) < 0;
 
         if (figure instanceof Point) {
             return true;
         }
+
+        List<MathVector> vectors = figure.getVectors();
+        boolean negative = vectors.get(0).scalarProduct(vectors.get(1)) < 0;
+
         for (int i = 0; i < vectors.size(); i++) {
             boolean tmp;
             if (i != vectors.size() - 1) {
@@ -47,7 +53,7 @@ public class FigureActions2D implements FigureActions {
                 break;
             }
         }
-        LOG.info(figure + ": " + convex);
+        LOG.trace(figure + ": " + convex);
         return convex;
     }
 
@@ -64,7 +70,7 @@ public class FigureActions2D implements FigureActions {
         }
         square += figure.getPoints().get(figure.getNumberOfPoints() - 1).getX() * figure.getPoints().get(0).getY()
                   - figure.getPoints().get(figure.getNumberOfPoints() - 1).getY() * figure.getPoints().get(0).getX();
-        LOG.info(figure + ": " + Math.abs(square / 2));
+        LOG.trace(figure + ": " + Math.abs(square / 2));
         return Math.abs(square / 2);
     }
 
@@ -76,12 +82,12 @@ public class FigureActions2D implements FigureActions {
             return 0;
         }
         for (int i = 0; i < figure.getNumberOfPoints() - 1; i++) {
-            perimeter += distanceBetweenTwoPoints(figure.getPoints().get(i),
-                                                  figure.getPoints().get(i + 1));
+            perimeter += distance(figure.getPoints().get(i),
+                                  figure.getPoints().get(i + 1));
         }
-        perimeter += distanceBetweenTwoPoints(figure.getPoints().get(figure.getNumberOfPoints() - 1),
-                                              figure.getPoints().get(0));
-        LOG.info(figure + ": " + perimeter);
+        perimeter += distance(figure.getPoints().get(figure.getNumberOfPoints() - 1),
+                              figure.getPoints().get(0));
+        LOG.trace(figure + ": " + perimeter);
         return perimeter;
     }
 

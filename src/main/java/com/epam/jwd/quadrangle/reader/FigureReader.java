@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.reader;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.exception.PointArgumentException;
 import com.epam.jwd.quadrangle.model.Figure;
@@ -31,9 +32,10 @@ public class FigureReader {
     private static final String FIGURE_CAN_NOT_BE_BUILT_MSG = "%s can't be built from coordinates: %s";
     private static final String SUCCESSFUL_INITIALIZATION_MSG = "%s was successfully initialized!";
     private static final String NOT_SUCCESSFUL_INITIALIZATION_MSG = "%s was not successfully initialized!";
+    private static final String WHITE_SPACES_REG_EX = "\\s+";
 
-    private Validator validator = null;
     private final FigureType figureType;
+    private Validator validator = null;
     private int numberOfFiguresInFile = 0;
     private int numberOfBuiltFigures = 0;
 
@@ -41,9 +43,10 @@ public class FigureReader {
         this.figureType = figureType;
         if (figureType != null) {
             validator = figureType.getValidator();
-            LOG.trace(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+            LOG.info(String.format(SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
         } else {
             LOG.warn(String.format(NOT_SUCCESSFUL_INITIALIZATION_MSG, getClass().getSimpleName()));
+            throw new ArgumentNullException();
         }
     }
 
@@ -60,66 +63,87 @@ public class FigureReader {
      *
      * @return list of built figures
      */
-    public ArrayList<? extends Figure> scanFigures(Scanner fileScanner) {
+    public ArrayList<Figure> scanFigures(Scanner fileScanner) {
         ArrayList<Figure> figureList = null;
-        PointFactory pointFactory = new PointFactory();
-        numberOfBuiltFigures = 0;
-        numberOfFiguresInFile = 0;
+        PointFactory pointFactory = PointFactory.getInstance();
 
         if (fileScanner != null && figureType != null
             && (2 * figureType.getNumberOfPoints() > 0)) {
             figureList = new ArrayList<>();
+            List<String[]> strings = splitStringsIntoCoordinates(makeListFromStrings(fileScanner));
+            fileScanner.close();
 
-            while (fileScanner.hasNext()) {
-                String line = fileScanner.nextLine();
-                String[] coordinates = line.split("\\s+");
+            for (String[] coordinates : strings) {
                 List<Point> points = new ArrayList<>();
 
-                numberOfFiguresInFile++;
                 try {
-                    if (!validator.isValid(line)) {
-                        String errorMsg = String.format(FIGURE_CAN_NOT_BE_BUILT_MSG, figureType.name(),
-                                                        new ArrayList<>(Arrays.asList(coordinates)));
-                        throw new PointArgumentException(errorMsg);
-                    }
-
                     makeListOfCoordinates(pointFactory, coordinates, points);
                     Figure figure = buildFigures(pointFactory, points);
                     figureList.add(figure);
-                } catch (PointArgumentException | FigureBuildException e) {
+                } catch (FigureBuildException e) {
                     LOG.error(e);
                 }
             }
-            LOG.trace(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
+            LOG.info(String.format(RESULT_MSG, getNumberOfFiguresInFile(), getNumberOfBuiltFigures()));
+        } else {
+            throw new ArgumentNullException();
         }
         return figureList;
+    }
+
+    private List<String[]> splitStringsIntoCoordinates(List<String> lines) {
+        List<String[]> coordinateList = new ArrayList<>();
+        for (String line : lines) {
+            try {
+                String[] coordinates = line.split(WHITE_SPACES_REG_EX);
+                if (!validator.isValid(line)) {
+                    String errorMsg = String.format(FIGURE_CAN_NOT_BE_BUILT_MSG, figureType.name(),
+                                                    new ArrayList<>(Arrays.asList(coordinates)));
+                    throw new PointArgumentException(errorMsg);
+                }
+                coordinateList.add(coordinates);
+            } catch (PointArgumentException e) {
+                LOG.error(e);
+            }
+        }
+        return coordinateList;
+    }
+
+    private List<String> makeListFromStrings(Scanner fileScanner) {
+        numberOfBuiltFigures = 0;
+        numberOfFiguresInFile = 0;
+        List<String> strings = new ArrayList<>();
+        while (fileScanner.hasNext()) {
+            strings.add(fileScanner.nextLine());
+        }
+        numberOfFiguresInFile = strings.size();
+        return strings;
     }
 
     private Figure buildFigures(FigureFactory figureFactory, List<Point> points) {
         Figure figure;
         switch (figureType) {
         case POINT:
-            figureFactory = new PointFactory();
+            figureFactory = PointFactory.getInstance();
             break;
         case LINE:
         case TRIANGLE:
             break;
         case QUADRANGLE:
-            figureFactory = new QuadrangleFactory();
+            figureFactory = QuadrangleFactory.getInstance();
             break;
         }
-        figure = figureFactory.newInstance(points);
+        figure = figureFactory.of(points);
         numberOfBuiltFigures++;
-        LOG.trace(String.format(FIGURE_WAS_BUILT_MSG,
-                                figure.getClass().getSimpleName(),
-                                figure.getPoints()));
+        LOG.info(String.format(FIGURE_WAS_BUILT_MSG,
+                               figure.getClass().getSimpleName(),
+                               figure.getPoints()));
         return figure;
     }
 
     private void makeListOfCoordinates(PointFactory figureFactory, String[] coordinates, List<Point> points) {
-
         for (int i = 0; i < coordinates.length; i += 2) {
-            points.add(figureFactory.newInstance(
+            points.add(figureFactory.of(
                     Double.parseDouble(coordinates[i]),
                     Double.parseDouble(coordinates[i + 1]))
             );

@@ -1,14 +1,14 @@
 package com.epam.jwd.quadrangle.model;
 
-import com.epam.jwd.quadrangle.validation.PointValidator;
+import com.epam.jwd.quadrangle.validation.PointBuildValidator;
 import com.epam.jwd.quadrangle.validation.QuadrangleBuildValidator;
 import com.epam.jwd.quadrangle.validation.Validator;
 
 public enum FigureType {
-    POINT(1, new PointValidator()),
+    POINT(1, PointBuildValidator.getInstance()),
     LINE(2, null),
     TRIANGLE(3, null),
-    QUADRANGLE(4, new QuadrangleBuildValidator()),
+    QUADRANGLE(4, QuadrangleBuildValidator.getInstance()),
     ;
 
     private final int numberOfPoints;

@@ -31,4 +31,89 @@
       <class name="com.epam.jwd.quadrangle.validation.QuadrangleBuildValidatorTest"/>
     </classes>
   </test>
+
+  <test name="test6">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.FigureRepositoryTest"/>
+    </classes>
+  </test>
+
+  <test name="test7">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresByPerimeterTest"/>
+    </classes>
+  </test>
+
+  <test name="test8">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresBySquareTest"/>
+    </classes>
+  </test>
+
+  <test name="test9">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureDistanceFromOriginTest"/>
+    </classes>
+  </test>
+
+  <test name="test10">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureIdTest"/>
+    </classes>
+  </test>
+
+  <test name="test11">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigurePerimeterRangeTest"/>
+    </classes>
+  </test>
+
+  <test name="test12">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureSquareRangeTest"/>
+    </classes>
+  </test>
+
+  <test name="test13">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.search.FindByFigureTypeTest"/>
+    </classes>
+  </test>
+
+  <test name="test14">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresByIdTest"/>
+    </classes>
+  </test>
+
+  <test name="test15">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresByXPointTest"/>
+    </classes>
+  </test>
+
+  <test name="test16">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.repository.sort.SortFiguresByYPointTest"/>
+    </classes>
+  </test>
+
+  <test name="test17">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.PointFactoryTest"/>
+    </classes>
+  </test>
+
+  <test name="test18">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.FigurePublisherTest"/>
+    </classes>
+  </test>
+
+  <test name="test19">
+    <classes>
+      <class name="com.epam.jwd.quadrangle.model.FigureSubscriberTest"/>
+    </classes>
+  </test>
+
 </suite>

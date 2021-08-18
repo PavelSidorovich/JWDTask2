@@ -18,8 +18,9 @@ import java.util.List;
  */
 public class QuadrangleActions extends FigureActions2D {
 
-    private static final int NUMBER_OF_DIAGONALS = 2;
     private static final Logger LOG = LogManager.getLogger(QuadrangleActions.class);
+
+    private static final int NUMBER_OF_DIAGONALS = 2;
 
     public QuadrangleActions(Figure figure) {
         super(figure);
@@ -67,12 +68,12 @@ public class QuadrangleActions extends FigureActions2D {
     }
 
     private boolean oppositeSidesOfFigureAreEqual() {
-        return distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
-                                                        getFigure().getPoints().get(3)))
-               && distanceBetweenTwoPoints(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
-                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
-                                                        getFigure().getPoints().get(0)));
+        return distance(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distance(getFigure().getPoints().get(2),
+                                        getFigure().getPoints().get(3)))
+               && distance(getFigure().getPoints().get(1), getFigure().getPoints().get(2))
+                       .equals(distance(getFigure().getPoints().get(3),
+                                        getFigure().getPoints().get(0)));
     }
 
     private boolean sidesOfTheFigureArePerpendicular(List<MathVector> vectors) {
@@ -81,14 +82,14 @@ public class QuadrangleActions extends FigureActions2D {
     }
 
     private boolean sidesOfTheFigureAreParallel() {
-        return distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(1),
-                                                        getFigure().getPoints().get(2)))
-               && distanceBetweenTwoPoints(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
-                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(3),
-                                                        getFigure().getPoints().get(0)))
-               && distanceBetweenTwoPoints(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
-                       .equals(distanceBetweenTwoPoints(getFigure().getPoints().get(2),
-                                                        getFigure().getPoints().get(3)));
+        return distance(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distance(getFigure().getPoints().get(1),
+                                        getFigure().getPoints().get(2)))
+               && distance(getFigure().getPoints().get(2), getFigure().getPoints().get(3))
+                       .equals(distance(getFigure().getPoints().get(3),
+                                        getFigure().getPoints().get(0)))
+               && distance(getFigure().getPoints().get(0), getFigure().getPoints().get(1))
+                       .equals(distance(getFigure().getPoints().get(2),
+                                        getFigure().getPoints().get(3)));
     }
 }

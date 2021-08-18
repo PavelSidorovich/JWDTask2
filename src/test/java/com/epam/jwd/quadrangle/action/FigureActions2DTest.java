@@ -1,7 +1,9 @@
 package com.epam.jwd.quadrangle.action;
 
+import com.epam.jwd.quadrangle.exception.ArgumentNullException;
 import com.epam.jwd.quadrangle.model.Figure;
 import com.epam.jwd.quadrangle.model.FigureType;
+import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -14,51 +16,21 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.testng.Assert.*;
+
 public class FigureActions2DTest {
 
     private FigureActions2D actions = null;
-    private List<? extends Figure> quadrangles = null;
+    private List<Figure> quadrangles = null;
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
+        assert url != null;
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         quadrangles = figureReader.scanFigures(fileScanner);
-    }
-
-    @Test(dataProvider = "PerimeterProvider")
-    public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
-        actions = new FigureActions2D(figure);
-
-        Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
-    }
-
-    @Test(dataProvider = "SquareProvider")
-    public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
-        actions = new FigureActions2D(figure);
-
-        Assert.assertEquals(actions.square(), square, 0.01);
-    }
-
-    @Test(dataProvider = "ConvexProvider")
-    public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
-        actions = new FigureActions2D(figure);
-
-        Assert.assertEquals(actions.isConvex(), isConvex);
-    }
-
-    @DataProvider(name = "ConvexProvider")
-    public Object[][] getConvexFromProvider() {
-        return new Object[][] {
-                { quadrangles.get(0), true },
-                { quadrangles.get(1), true },
-                { quadrangles.get(2), true },
-                { quadrangles.get(3), true },
-                { quadrangles.get(4), true },
-                { quadrangles.get(5), false },
-        };
     }
 
     @DataProvider(name = "PerimeterProvider")
@@ -73,6 +45,13 @@ public class FigureActions2DTest {
         };
     }
 
+    @Test(dataProvider = "PerimeterProvider")
+    public void perimeter_shouldReturnFigurePerimeter_always(Figure figure, Double perimeter) {
+        actions = new FigureActions2D(figure);
+
+        Assert.assertEquals(actions.perimeter(), perimeter, 0.01);
+    }
+
     @DataProvider(name = "SquareProvider")
     public Object[][] getSquaresFromProvider() {
         return new Object[][] {
@@ -83,5 +62,47 @@ public class FigureActions2DTest {
                 { quadrangles.get(4), 8.0 },
                 { quadrangles.get(5), 15.0 },
         };
+    }
+
+    @Test(dataProvider = "SquareProvider")
+    public void square_shouldReturnFigureSquare_always(Figure figure, Double square) {
+        actions = new FigureActions2D(figure);
+
+        Assert.assertEquals(actions.square(), square, 0.01);
+    }
+
+    @DataProvider(name = "ConvexProvider")
+    public Object[][] getConvexFromProvider() {
+        return new Object[][] {
+                { quadrangles.get(0), true },
+                { quadrangles.get(1), true },
+                { quadrangles.get(2), true },
+                { quadrangles.get(3), true },
+                { quadrangles.get(4), true },
+                { quadrangles.get(5), false },
+        };
+    }
+
+    @Test(dataProvider = "ConvexProvider")
+    public void isConvex_shouldReturnTrue_whenFigureIsConvex(Figure figure, Boolean isConvex) {
+        actions = new FigureActions2D(figure);
+
+        Assert.assertEquals(actions.isConvex(), isConvex);
+    }
+
+    @Test
+    public void distance_shouldReturnDistance_whenPointsAreValid() {
+        PointFactory pointFactory = PointFactory.getInstance();
+        actions = new FigureActions2D(pointFactory.of(1, 3));
+        Double distance = actions.distance(pointFactory.of(0, 0),
+                                           pointFactory.of(3, 0));
+
+        assertEquals(distance, 3.0, 0.0);
+    }
+
+    @Test(expectedExceptions = ArgumentNullException.class)
+    public void distance_shouldThrowException_whenPointsAreInvalid() {
+        actions = new FigureActions2D(null);
+        actions.distance(null, null);
     }
 }
