@@ -20,6 +20,26 @@ public class Quadrangle extends CommonFigureProperties {
         super(id, points);
     }
 
+    public void setPoint1(Point point){
+        getPoints().remove(0);
+        getPoints().add(0, point);
+    }
+
+    public void setPoint2(Point point){
+        getPoints().remove(1);
+        getPoints().add(1, point);
+    }
+
+    public void setPoint3(Point point){
+        getPoints().remove(2);
+        getPoints().add(2, point);
+    }
+
+    public void setPoint4(Point point){
+        getPoints().remove(3);
+        getPoints().add(3, point);
+    }
+
     @Override
     public Figure withId(int id) {
         return new Quadrangle(id, getPoints());
