@@ -6,6 +6,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
+/**
+ * Contains figureContext to be observed.
+ */
 public class FigureSubscriber implements Subscriber<Figure> {
     private static final Logger LOG = LogManager.getLogger(FigureSubscriber.class);
 
@@ -29,6 +32,11 @@ public class FigureSubscriber implements Subscriber<Figure> {
         subscription.request(1);
     }
 
+    /**
+     * Builds figureContext on provided figure
+     *
+     * @param figure figure
+     */
     @Override
     public void onNext(Figure figure) {
         figureContext = new FigureContext(figure);

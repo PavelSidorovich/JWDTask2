@@ -10,6 +10,9 @@ import java.util.concurrent.Flow.Publisher;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
+/**
+ * Contains figure to be subscribed by {@code FigureSubscriber}
+ */
 public class FigurePublisher implements Publisher<Figure> {
     private static final Logger LOG = LogManager.getLogger(FigurePublisher.class);
 

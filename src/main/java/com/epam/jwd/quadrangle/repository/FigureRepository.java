@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * This class contains figure subscribers to be observer.
+ */
 public class FigureRepository implements Repository<Figure, FigurePublisher> {
 
     private static final Logger LOG = LogManager.getLogger(FigureRepository.class);
@@ -32,6 +35,10 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         }
     }
 
+    /**
+     * Creates new subscriber in repository which observes provided figure publisher
+     * @param figurePublisher figurePublisher.
+     */
     @Override
     public void create(FigurePublisher figurePublisher) {
         if (figurePublisher != null) {
@@ -64,6 +71,11 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         return -1;
     }
 
+    /**
+     * Replaces figure described by its publisher with new figure
+     * @param publisher publisher which contains old figure
+     * @param newFigure new figure
+     */
     @Override
     public void update(FigurePublisher publisher, Figure newFigure) {
         if (publisher == null || newFigure == null) {
@@ -81,6 +93,11 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         throw new InvalidArgumentException();
     }
 
+    /**
+     * Deletes subscriber in repository described by provided index
+     * @param index subscriber(figure) index
+     * @return true if deleted
+     */
     @Override
     public boolean delete(int index) {
         try {
@@ -93,6 +110,11 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         }
     }
 
+    /**
+     * Deletes subscriber in repository described by provided figure
+     * @param figure figure to be deleted
+     * @return true if deleted
+     */
     @Override
     public boolean delete(Figure figure) {
         try {
@@ -117,6 +139,11 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         return figures;
     }
 
+    /**
+     * Finds all figures which suit provided specification
+     * @param specification specification
+     * @return list of found figures
+     */
     @Override
     public List<Figure> findBySpecification(SearchSpecification<Figure> specification) {
         List<Figure> foundFigures = new ArrayList<>();
@@ -130,6 +157,11 @@ public class FigureRepository implements Repository<Figure, FigurePublisher> {
         return foundFigures;
     }
 
+    /**
+     * Sorts all figures using provided comparator. It creates a new array to be returned.
+     * @param comparator comparator
+     * @return list of sorted figures
+     */
     @Override
     public List<Figure> sortByComparator(Comparator<Figure> comparator) {
         SortFigures sortFigures = new SortFigures();
