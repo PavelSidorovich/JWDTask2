@@ -1,13 +1,14 @@
 package com.epam.jwd.quadrangle.model;
 
 import com.epam.jwd.quadrangle.exception.ArgumentNullException;
+import com.epam.jwd.quadrangle.exception.PointNumberException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CommonFigureProperties implements Figure {
     private final int id;
-    private final List<Point> points;
+    protected final List<Point> points;
 
     public CommonFigureProperties(List<Point> points) {
         if (points == null) {
@@ -34,4 +35,6 @@ public abstract class CommonFigureProperties implements Figure {
     public ArrayList<Point> getPoints() {
         return new ArrayList<>(points);
     }
+
+    public abstract void setPoint(int numberOfPoint, Point point) throws PointNumberException;
 }

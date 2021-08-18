@@ -1,5 +1,6 @@
 package com.epam.jwd.quadrangle.model;
 
+import com.epam.jwd.quadrangle.exception.PointBuildException;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ public class PointFactoryTest {
         assertNotNull(pointFactory.of(new ArrayList<>(Collections.singletonList(pointFactory.of(2, 2)))));
     }
 
-    @Test
-    public void of_shouldReturnNull_whenNumberOfPointsIsInvalid() {
-        assertNull(pointFactory.of(new ArrayList<>(Arrays.asList(pointFactory.of(1, 2),
-                                                                 pointFactory.of(2, 2)))));
+    @Test(expectedExceptions = PointBuildException.class)
+    public void of_shouldThrowException_whenNumberOfPointsIsInvalid() {
+        pointFactory.of(new ArrayList<>(Arrays.asList(pointFactory.of(1, 2),
+                                                      pointFactory.of(2, 2))));
     }
 }

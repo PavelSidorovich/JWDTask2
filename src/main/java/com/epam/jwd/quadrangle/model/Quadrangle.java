@@ -1,5 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
+import com.epam.jwd.quadrangle.exception.PointNumberException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -20,24 +22,11 @@ public class Quadrangle extends CommonFigureProperties {
         super(id, points);
     }
 
-    public void setPoint1(Point point){
-        getPoints().remove(0);
-        getPoints().add(0, point);
-    }
-
-    public void setPoint2(Point point){
-        getPoints().remove(1);
-        getPoints().add(1, point);
-    }
-
-    public void setPoint3(Point point){
-        getPoints().remove(2);
-        getPoints().add(2, point);
-    }
-
-    public void setPoint4(Point point){
-        getPoints().remove(3);
-        getPoints().add(3, point);
+    @Override
+    public void setPoint(int numberOfPoint, Point point) throws PointNumberException {
+        if (numberOfPoint >= 0 && numberOfPoint < FigureType.QUADRANGLE.getNumberOfPoints()) {
+            points.set(numberOfPoint, point);
+        }
     }
 
     @Override
