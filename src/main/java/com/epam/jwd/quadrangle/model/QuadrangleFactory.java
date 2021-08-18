@@ -4,7 +4,6 @@ import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.validation.QuadrangleBuildValidator;
 
 import java.util.List;
-import java.util.concurrent.Flow.Publisher;
 
 /**
  * The {@code QuadrangleFactory} class is a fabric designed to create {@link Point} objects

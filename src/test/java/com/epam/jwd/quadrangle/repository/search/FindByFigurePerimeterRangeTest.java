@@ -19,7 +19,7 @@ import static org.testng.Assert.*;
 public class FindByFigurePerimeterRangeTest {
 
     private final FindByFigurePerimeterRange specification = new FindByFigurePerimeterRange(11, 24);
-    private FigureRepository figureRepository = new FigureRepository();
+    private final FigureRepository figureRepository = new FigureRepository();
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {

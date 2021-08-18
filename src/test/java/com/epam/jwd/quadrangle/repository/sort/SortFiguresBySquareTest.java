@@ -22,7 +22,7 @@ import static org.testng.Assert.*;
 public class SortFiguresBySquareTest {
 
     private final SortFiguresBySquare comparator = new SortFiguresBySquare();
-    private FigureRepository figureRepository = new FigureRepository();
+    private final FigureRepository figureRepository = new FigureRepository();
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {

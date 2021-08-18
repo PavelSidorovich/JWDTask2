@@ -61,13 +61,13 @@ public class ApplicationExecutor {
             repository.create(editableQuadrangle);
 
             LOG.debug("{}", repository.read(10));
-            LOG.debug("{}\n",repository.read(9));
+            LOG.debug("{}\n", repository.read(9));
 
             ((Point) editablePoint.getFigure()).setX(1);
             ((Quadrangle) editableQuadrangle.getFigure()).setPoint(2, POINT_FACTORY.of(1, 0));
 
             LOG.debug("{}", repository.read(10));
-            LOG.debug("{}\n",repository.read(9));
+            LOG.debug("{}\n", repository.read(9));
         } catch (FileNotFoundException | PointNumberException e) {
             LOG.error(e);
         }
