@@ -6,8 +6,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
-public class FigureSubscriber implements Subscriber<FigureContext> {
-    private static final Logger LOG = LogManager.getLogger(FigureSubscriber.class);
+public class FigureContextSubscriber implements Subscriber<FigureContext> {
+    private static final Logger LOG = LogManager.getLogger(FigureContextSubscriber.class);
 
     private static final String SUBSCRIPTION_COMPLETED_MSG = "Publisher or subscriber canceled the subscription!";
 
@@ -38,7 +38,7 @@ public class FigureSubscriber implements Subscriber<FigureContext> {
 
     @Override
     public String toString() {
-        return "FigureSubscriber{" +
+        return "FigureContextSubscriber{" +
                "contexts=" + context +
                '}';
     }
