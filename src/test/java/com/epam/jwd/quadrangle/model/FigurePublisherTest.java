@@ -12,16 +12,16 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-public class FigureContextPublisherTest {
+public class FigurePublisherTest {
 
     @Mock
     Point figure;
 
     @Mock
-    FigureContextSubscriber subscriber;
+    FigureSubscriber subscriber;
 
     @InjectMocks
-    private FigureContextPublisher publisher = new FigureContextPublisher(PointFactory.getInstance().of(1, 1));
+    private FigurePublisher publisher = new FigurePublisher(PointFactory.getInstance().of(1, 1));
 
     private AutoCloseable closeable;
 
@@ -37,7 +37,7 @@ public class FigureContextPublisherTest {
 
     @Test
     public void setFigure_shouldSetFigure_always() {
-        publisher = new FigureContextPublisher(figure);
+        publisher = new FigurePublisher(figure);
 
         publisher.subscribe(subscriber);
 
@@ -46,28 +46,28 @@ public class FigureContextPublisherTest {
 
     @Test
     public void getFigureContext_shouldReturnFigureContext_ifNotNull() {
-        publisher = new FigureContextPublisher(figure);
+        publisher = new FigurePublisher(figure);
 
-        assertNotNull(publisher.getFigureContext());
+        assertNotNull(publisher.getFigure());
     }
 
     @Test
     public void cancel_shouldCancelSubscriptions_always() {
-        publisher = new FigureContextPublisher(figure);
+        publisher = new FigurePublisher(figure);
 
         publisher.cancel();
     }
 
     @Test
     public void subscribe_shouldSubscribeSubscriber_whenSubscriberIsValid() {
-        publisher = new FigureContextPublisher(figure);
+        publisher = new FigurePublisher(figure);
 
         publisher.subscribe(subscriber);
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void subscribe_shouldThrowException_whenSubscriberIsInvalid() {
-        publisher = new FigureContextPublisher(figure);
+        publisher = new FigurePublisher(figure);
 
         publisher.subscribe(null);
     }

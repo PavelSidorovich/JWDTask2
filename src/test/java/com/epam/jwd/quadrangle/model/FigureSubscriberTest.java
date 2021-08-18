@@ -20,9 +20,6 @@ public class FigureSubscriberTest {
     @Mock
     private Subscription subscription;
 
-    @Mock
-    private FigureContext figureContext;
-
     @InjectMocks
     private FigureSubscriber subscriber;
 
@@ -54,7 +51,7 @@ public class FigureSubscriberTest {
 
         assertTrue(subscriber.toString().contains("null"));
 
-        subscriber.onNext(figureContext);
+        subscriber.onNext(PointFactory.getInstance().of(1, 0));
 
         assertFalse(subscriber.toString().contains("null"));
     }

@@ -1,20 +1,28 @@
 package com.epam.jwd.quadrangle.repository;
 
 import com.epam.jwd.quadrangle.exception.ArgumentNullException;
+import com.epam.jwd.quadrangle.exception.InvalidArgumentException;
 import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigurePublisher;
 import com.epam.jwd.quadrangle.model.PointFactory;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
+// FIXME: 8/18/2021
 public class FigureRepositoryTest {
 
     private final FigureRepository repository = new FigureRepository();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
     @Test
-    public void create_shouldReturnPublisher_whenFigureAddedToRepository() {
-        assertNotNull(repository.create(pointFactory.of(0, 0)));
+    public void create_shouldCreateFigureInRepository_whenFigurePublisherIsValid() {
+        FigurePublisher point = pointFactory.publisherOf(0, 0);
+
+        repository.create(point);
+
+        assertTrue(repository.read(point.getFigure()) >= 0);
     }
 
     @Test(expectedExceptions = ArgumentNullException.class)
@@ -23,57 +31,61 @@ public class FigureRepositoryTest {
     }
 
     @Test
-    public void read_shouldReturnPublisher_whenUpdateIsSuccessful() {
-        Figure figure = pointFactory.of(1, 1);
-        repository.create(pointFactory.of(0, 1));
-        repository.create(figure);
-        int index = repository.read(figure);
+    public void read_shouldReturnFigureOrIndex_whenFigureExistsInRepository() {
+        FigurePublisher point = pointFactory.publisherOf(1, 1);
+        repository.create(pointFactory.publisherOf(0, 1));
+        repository.create(point);
+        int index = repository.read(point.getFigure());
 
-        assertEquals(repository.read(index), figure);
+        assertEquals(repository.read(index), point.getFigure());
         assertSame(repository.read(-1), null);
         assertSame(repository.read(pointFactory.of(0, 33)), -1);
     }
 
     @Test
-    public void update_shouldReturnPublisher_whenIndexIsValid() {
-        Figure oldFigure = pointFactory.of(5, 2);
+    public void update_shouldUpdateFigure_whenPublisherIsValid() {
+        FigurePublisher oldFigure = pointFactory.publisherOf(5, 2);
         Figure newFigure = pointFactory.of(10, 10);
-        repository.create(pointFactory.of(2, 1));
-        repository.create(pointFactory.of(3, 5));
+        repository.create(pointFactory.publisherOf(2, 1));
+        repository.create(pointFactory.publisherOf(3, 5));
         repository.create(oldFigure);
-        int index = repository.read(oldFigure);
 
-        assertNotNull(repository.update(oldFigure, newFigure));
-        assertNotNull(repository.update(index, pointFactory.of(53, 5)));
+        repository.update(oldFigure, newFigure);
     }
 
-    @Test(expectedExceptions = IndexOutOfBoundsException.class)
-    public void update_shouldThrowException_whenIndexIsInvalid() {
-        Figure newFigure = pointFactory.of(16, 10);
+    @Test(expectedExceptions = InvalidArgumentException.class)
+    public void update_shouldThrowException_whenFigurePublisherDoesNotExistsInRepository() {
+        FigurePublisher figurePublisher = pointFactory.publisherOf(52, 62);
+        Figure newFigure = pointFactory.of(2, 62);
 
-        repository.update(-1, newFigure);
+        repository.update(figurePublisher, newFigure);
     }
 
-    @Test
-    public void update_shouldReturnNull_whenOldFigureIsInvalid() {
-        Figure newFigure = pointFactory.of(16, 10);
+    @DataProvider(name = "NullArgumentProvider")
+    public Object[][] getConstructorArgumentsFromProvider() {
+        return new Object[][] {
+                { null, pointFactory.of(36, 39) },
+                { null, null },
+        };
+    }
 
-        assertNull(repository.update(null, newFigure));
-        assertNull(repository.update(null, null));
+    @Test(dataProvider = "NullArgumentProvider", expectedExceptions = NullPointerException.class)
+    public void update_shouldReturnFalse_whenOldFigureIsInvalid(FigurePublisher publisher, Figure figure) {
+        repository.update(publisher, figure);
     }
 
     @Test
     public void delete_shouldReturnTrue_whenElementWasDeleted() {
-        Figure figure1 = pointFactory.of(30, 30);
-        Figure figure2 = pointFactory.of(40, 40);
-        repository.create(figure1);
-        repository.create(figure2);
+        FigurePublisher publisher1 = pointFactory.publisherOf(30, 30);
+        FigurePublisher publisher2 = pointFactory.publisherOf(40, 40);
+        repository.create(publisher1);
+        repository.create(publisher2);
 
         assertFalse(repository.delete(null));
         assertFalse(repository.delete(-1));
-        assertTrue(repository.delete(figure1));
+        assertTrue(repository.delete(publisher1.getFigure()));
 
-        int index = repository.read(figure2);
+        int index = repository.read(publisher2.getFigure());
 
         assertTrue(repository.delete(index));
     }
@@ -81,22 +93,5 @@ public class FigureRepositoryTest {
     @Test
     public void getAll_shouldReturnFiguresList_always() {
         assertNotNull(repository.getAll());
-    }
-
-    @Test
-    public void getPublisher_shouldReturnPublisher_whenParameterIsValid() {
-        Figure figure = pointFactory.of(230, 40);
-        Figure figure1 = pointFactory.of(6, 40);
-        repository.create(figure);
-        repository.create(figure1);
-
-        assertNotNull(repository.getPublisher(1));
-        assertNotNull(repository.getPublisher(figure));
-        assertNull(repository.getPublisher(null));
-    }
-
-    @Test(expectedExceptions = IndexOutOfBoundsException.class)
-    public void getPublisher_shouldThrowException_whenIndexIsInvalid() {
-        repository.getPublisher(-1);
     }
 }

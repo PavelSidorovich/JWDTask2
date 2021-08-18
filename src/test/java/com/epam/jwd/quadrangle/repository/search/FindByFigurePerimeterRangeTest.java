@@ -1,6 +1,7 @@
 package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigurePublisher;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.reader.FigureReader;
 import com.epam.jwd.quadrangle.repository.FigureRepository;
@@ -18,7 +19,7 @@ import static org.testng.Assert.*;
 public class FindByFigurePerimeterRangeTest {
 
     private final FindByFigurePerimeterRange specification = new FindByFigurePerimeterRange(11, 24);
-    private FigureRepository figureRepository = null;
+    private FigureRepository figureRepository = new FigureRepository();
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
@@ -27,7 +28,12 @@ public class FindByFigurePerimeterRangeTest {
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         List<Figure> quadrangles = figureReader.scanFigures(fileScanner);
-        figureRepository = new FigureRepository(quadrangles);
+        figureRepository.create(new FigurePublisher(quadrangles.get(0)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(1)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(2)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(3)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(4)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(5)));
     }
 
     @Test

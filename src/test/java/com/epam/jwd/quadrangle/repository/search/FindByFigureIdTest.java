@@ -18,10 +18,10 @@ public class FindByFigureIdTest {
 
     @BeforeClass
     public void setUp() {
-        figureRepository.create(pointFactory.of(1, 1));
-        figureRepository.create(pointFactory.of(2, 2));
-        figureRepository.create(pointFactory.of(3, 3));
-        figureRepository.create(pointFactory.of(4, 4));
+        figureRepository.create(pointFactory.publisherOf(1, 1));
+        figureRepository.create(pointFactory.publisherOf(2, 2));
+        figureRepository.create(pointFactory.publisherOf(3, 3));
+        figureRepository.create(pointFactory.publisherOf(4, 4));
     }
 
     @Test(dataProvider = "SpecificationProvider")

@@ -1,6 +1,7 @@
 package com.epam.jwd.quadrangle.repository.search;
 
 import com.epam.jwd.quadrangle.model.Figure;
+import com.epam.jwd.quadrangle.model.FigurePublisher;
 import com.epam.jwd.quadrangle.model.FigureType;
 import com.epam.jwd.quadrangle.model.PointFactory;
 import com.epam.jwd.quadrangle.reader.FigureReader;
@@ -19,21 +20,27 @@ import static org.testng.Assert.*;
 public class FindByFigureTypeTest {
 
     private final FindByFigureType specification = new FindByFigureType(FigureType.POINT);
-    private FigureRepository figureRepository = null;
+    private final FigureRepository figureRepository = new FigureRepository();
 
     @BeforeClass
     public void setUp() throws FileNotFoundException {
         URL url = Thread.currentThread().getContextClassLoader().getResource("quadrangles.txt");
+        assert url != null;
         File file = new File(url.getPath());
         Scanner fileScanner = new Scanner(file);
         FigureReader figureReader = new FigureReader(FigureType.QUADRANGLE);
         List<Figure> quadrangles = figureReader.scanFigures(fileScanner);
         PointFactory pointFactory = PointFactory.getInstance();
-        figureRepository = new FigureRepository(quadrangles);
+        figureRepository.create(new FigurePublisher(quadrangles.get(0)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(1)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(2)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(3)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(4)));
+        figureRepository.create(new FigurePublisher(quadrangles.get(5)));
 
-        figureRepository.create(pointFactory.of(0, 0));
-        figureRepository.create(pointFactory.of(1, 2));
-        figureRepository.create(pointFactory.of(2, 30));
+        figureRepository.create(pointFactory.publisherOf(0, 0));
+        figureRepository.create(pointFactory.publisherOf(1, 2));
+        figureRepository.create(pointFactory.publisherOf(2, 30));
     }
 
     @Test
