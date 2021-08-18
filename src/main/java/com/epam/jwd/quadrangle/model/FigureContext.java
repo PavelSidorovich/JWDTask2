@@ -2,15 +2,15 @@ package com.epam.jwd.quadrangle.model;
 
 import com.epam.jwd.quadrangle.action.FigureActions2D;
 
-public class FigureContext {
+public class FigureContext implements Cloneable {
     private final Figure figure;
     private final double square;
     private final double perimeter;
     private final boolean isConvex;
 
     public FigureContext(Figure figure) {
-        FigureActions2D actions = new FigureActions2D(figure);
         this.figure = figure;
+        FigureActions2D actions = new FigureActions2D(figure);
         perimeter = actions.perimeter();
         square = actions.square();
         isConvex = actions.isConvex();
@@ -18,6 +18,11 @@ public class FigureContext {
 
     public Figure getFigure() {
         return figure;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new FigureContext(figure);
     }
 
     @Override
