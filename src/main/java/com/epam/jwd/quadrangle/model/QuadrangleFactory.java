@@ -4,6 +4,7 @@ import com.epam.jwd.quadrangle.exception.FigureBuildException;
 import com.epam.jwd.quadrangle.validation.QuadrangleBuildValidator;
 
 import java.util.List;
+import java.util.concurrent.Flow.Publisher;
 
 /**
  * The {@code QuadrangleFactory} class is a fabric designed to create {@link Point} objects
@@ -43,6 +44,27 @@ public class QuadrangleFactory implements FigureFactory {
         if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {
             if (QuadrangleBuildValidator.getInstance().creatable(pointList)) {
                 return new Quadrangle(pointList);
+            } else {
+                throw new FigureBuildException(LINES_ARE_CROSSING_MSG + errorMsg);
+            }
+        } else {
+            throw new FigureBuildException(WRONG_NUMBER_OF_COORDINATES_MSG + errorMsg);
+        }
+    }
+
+    /**
+     * Creates new instance of {@code Quadrangle} class using {@code FigurePublisher}
+     *
+     * @param pointList list of points
+     * @return created object of {@code FigurePublisher} class
+     */
+    @Override
+    public FigurePublisher publisherOf(List<Point> pointList) {
+        String errorMsg = String.format(ARGUMENTS_ERROR_MSG, FigureType.QUADRANGLE.name(), pointList);
+
+        if (pointList.size() == FigureType.QUADRANGLE.getNumberOfPoints()) {
+            if (QuadrangleBuildValidator.getInstance().creatable(pointList)) {
+                return new FigurePublisher(new Quadrangle(pointList));
             } else {
                 throw new FigureBuildException(LINES_ARE_CROSSING_MSG + errorMsg);
             }

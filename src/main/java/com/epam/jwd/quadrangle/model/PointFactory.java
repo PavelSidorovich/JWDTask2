@@ -1,5 +1,7 @@
 package com.epam.jwd.quadrangle.model;
 
+import com.epam.jwd.quadrangle.exception.PointBuildException;
+
 import java.util.List;
 
 /**
@@ -37,8 +39,22 @@ public class PointFactory implements FigureFactory {
     public Point of(List<Point> pointList) {
         if (pointList.size() == FigureType.POINT.getNumberOfPoints()) {
             return new Point(pointList.get(0));
+        } else {
+            throw new PointBuildException();
         }
-        return null;
+    }
+
+    @Override
+    public FigurePublisher publisherOf(List<Point> pointList) {
+        if (pointList.size() == FigureType.POINT.getNumberOfPoints()) {
+            return new FigurePublisher(new Point(pointList.get(0)));
+        } else {
+            throw new PointBuildException();
+        }
+    }
+
+    public FigurePublisher publisherOf(double x, double y) {
+            return new FigurePublisher(new Point(x, y));
     }
 }
 
