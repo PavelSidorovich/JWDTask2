@@ -1,19 +1,25 @@
 package com.epam.jwd.texthandling.parser;
 
-public abstract class Parser {
-    private Parser next;
+import com.epam.jwd.texthandling.model.TextPart;
 
-    public abstract boolean parse(String text);
+import java.util.Collections;
+import java.util.List;
 
-    public Parser linkWith(Parser next){
+public abstract class TextParser {
+
+    private TextParser next;
+
+    public abstract List<TextPart> parse(String text);
+
+    public TextParser linkWith(TextParser next) {
         this.next = next;
         return next;
     }
 
-    protected boolean parseNext() {
-        if (next != null) {
-            return true;
+    protected List<TextPart> parseNext(String text) {
+        if (next == null) {
+            return Collections.emptyList();
         }
-        return next.parse();
+        return next.parse(text);
     }
 }
