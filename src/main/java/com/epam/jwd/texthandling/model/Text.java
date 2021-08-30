@@ -1,30 +1,29 @@
 package com.epam.jwd.texthandling.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Text implements TextPart {
 
-    private final List<TextPart> fromParts = new ArrayList<>();
+    private final List<TextPart> textParts;
+
+    public Text(List<TextPart> textParts) {
+        this.textParts = textParts;
+    }
+
+    @Override
+    public List<TextPart> getParts() {
+        return textParts;
+    }
+
+    public void addPart(TextPart textPart) {
+        textParts.add(textPart);
+    }
 
     @Override
     public int countWords() {
-        return fromParts.stream()
+        return textParts.stream()
                         .mapToInt(TextPart::countWords)
                         .sum();
     }
 
-//    public int countParagraphs() {
-//        return countParts(Paragraph.class);
-//    }
-//
-//    private int countParts(Class<?> partClass) {
-//        int count = 0;
-//        for (TextPart fromPart : fromParts) {
-//            if (partClass.isInstance(fromPart)) {
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
 }
