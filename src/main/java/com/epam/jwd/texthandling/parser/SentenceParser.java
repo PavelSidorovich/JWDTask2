@@ -1,6 +1,8 @@
 package com.epam.jwd.texthandling.parser;
 
-import com.epam.jwd.texthandling.model.Sentence;
+import com.epam.jwd.texthandling.model.Symbol;
+import com.epam.jwd.texthandling.model.TextComponent;
+import com.epam.jwd.texthandling.model.TextComposite;
 import com.epam.jwd.texthandling.model.TextPart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,12 +17,12 @@ public class SentenceParser extends TextParser {
     private static final Logger LOG = LogManager.getLogger(SentenceParser.class);
 
     private static final String SENTENCE_REGEX = "[.?!]+\\s?";
-    private static final String SENTENCE_ENDING_REGEX = "[.?!]";
+    private static final String SENTENCE_ENDING_REGEX = "[.?!]+";
     private static final String SENTENCE_PARSER_IS_WORKING_MSG =
             String.format("%s is working", SentenceParser.class);
 
     @Override
-    public List<TextPart> parse(String text) {
+    public List<TextComponent> parse(String text) {
         LOG.trace(SENTENCE_PARSER_IS_WORKING_MSG);
 
         List<String> endingsOfSentences = getSentencesEndings(text);
@@ -28,19 +30,20 @@ public class SentenceParser extends TextParser {
         return makeSentencesWithEndings(text, endingsOfSentences);
     }
 
-    private List<TextPart> makeSentencesWithEndings(String text, List<String> endingsOfSentences) {
+    private List<TextComponent> makeSentencesWithEndings(String text, List<String> endingsOfSentences) {
         String[] sentences = text.split(SENTENCE_REGEX);
-        List<TextPart> textParts = new ArrayList<>();
+        List<TextComponent> textComponents = new ArrayList<>();
 
         for (int i = 0; i < sentences.length; i++) {
             if (sentences[i].equals("\n")) {
                 continue;
             }
             // create all sentences entities with their endings
-            textParts.add(new Sentence(parseNext(sentences[i]),
-                                       endingsOfSentences.get(i)));
+            textComponents.add(new TextComposite(parseNext(sentences[i]),
+                                                 TextPart.SENTENCE));
+            textComponents.add(new Symbol(endingsOfSentences.get(i)));
         }
-        return textParts;
+        return textComponents;
     }
 
     private List<String> getSentencesEndings(String text) {
