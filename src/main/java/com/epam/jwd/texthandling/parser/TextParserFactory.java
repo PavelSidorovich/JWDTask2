@@ -7,8 +7,6 @@ public class TextParserFactory {
 
     private static final Logger LOG = LogManager.getLogger(TextParserFactory.class);
 
-    private static final String UNEXPECTED_VALUE_OF_PARSE_LEVEL = "Unexpected value of parse level: %s";
-
     private static TextParserFactory factory;
 
     private TextParserFactory() {
