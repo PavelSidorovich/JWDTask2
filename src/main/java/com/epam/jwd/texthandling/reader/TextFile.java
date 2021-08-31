@@ -11,10 +11,10 @@ import java.io.PrintWriter;
 
 public class TextFile {
 
+    private static final String NEW_LINE = "\n";
+
     private TextFile() {
     }
-
-    private static final String NEW_LINE = "\n";
 
     public static String read(String fileName) {
         StringBuilder sb = new StringBuilder();
