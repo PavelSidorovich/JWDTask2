@@ -6,6 +6,10 @@ public interface TextComponent {
 
     TextPart getType();
 
+    /**
+     * Lexeme - text part, surrounded by spaces
+     * @return lexeme length
+     */
     int getLexemeLength();
 
     int getMaxWord();
