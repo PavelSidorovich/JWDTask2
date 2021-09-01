@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
-public class TextComposite implements TextComponent, Cloneable {
+public class TextComposite implements TextComponent, Cloneable { // represents sentence, paragraph or text
 
     // contains only 3 white spaces because word will produce another one
     private static final String PARAGRAPH_TABULATION = "   ";
@@ -22,6 +22,14 @@ public class TextComposite implements TextComponent, Cloneable {
         return type;
     }
 
+    public List<TextComponent> getParts() {
+        return new ArrayList<>(textComponents);
+    }
+
+    public void addPart(TextComponent textComponent) {
+        textComponents.add(textComponent);
+    }
+
     @Override
     public int getMaxWord() { // only for sentence
         if (type == TextPart.SENTENCE) {
@@ -29,14 +37,6 @@ public class TextComposite implements TextComponent, Cloneable {
             return max.getAsInt();
         }
         return 0;
-    }
-
-    public void addPart(TextComponent textComponent) {
-        textComponents.add(textComponent);
-    }
-
-    public List<TextComponent> getParts() {
-        return new ArrayList<>(textComponents);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class TextComposite implements TextComponent, Cloneable {
 
     @Override
     public TextComposite clone() {
-        TextComposite clone = new TextComposite(new ArrayList<>(), type);//(TextComposite) super.clone();
+        TextComposite clone = new TextComposite(new ArrayList<>(), type);
         for (TextComponent textComponent : textComponents) {
             clone.addPart(textComponent.clone());
         }

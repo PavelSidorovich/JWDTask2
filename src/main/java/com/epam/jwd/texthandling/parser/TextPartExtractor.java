@@ -16,7 +16,7 @@ public class TextPartExtractor {
         extract(result, text.clone(), type);
 
         if (type == TextPart.SENTENCE) {
-            result = makeSentencesLinkWithSymbols(result);
+            result = linkSentencesWithSymbols(result);
         } else {
             result = result.stream().filter(part -> part.getLength() != 0).collect(Collectors.toList());
         }
@@ -24,25 +24,35 @@ public class TextPartExtractor {
         return result;
     }
 
+    /**
+     * Recursively extracts text parts of provided type from text
+     * @param result result list
+     * @param text text
+     * @param type type to be extracted
+     */
     private static void extract(List<TextComponent> result, TextComponent text, TextPart type) {
         if (text.getType() == type) {
             result.add(text);
-        } else if (text.getType() == TextPart.SENTENCE
+        } else if (text.getType() == TextPart.SENTENCE // if one of these types -> extract their parts
                    || text.getType() == TextPart.PARAGRAPH
                    || text.getType() == TextPart.TEXT) {
             for (TextComponent part : ((TextComposite) text).getParts()) {
                 extract(result, part, type);
             }
         } else if (text.getType() == TextPart.SYMBOL
-                   && text.toString().equals("!")
-                   || text.toString().equals("?")
-                   || text.toString().equals(".")
-                   || text.toString().equals("...")) {
+                   && ("!".equals(text.toString())
+                       || "?".equals(text.toString())
+                       || ".".equals(text.toString())
+                       || "...".equals(text.toString()))) {
+            // It is needed to include symbols in a result so that sentences remain with their endings
             result.add(text);
         }
     }
 
-    private static List<TextComponent> makeSentencesLinkWithSymbols(List<TextComponent> parts) {
+    /**
+     Method links sentences with symbols on a "word" level. It is needed to make right sort of sentences
+     */
+    private static List<TextComponent> linkSentencesWithSymbols(List<TextComponent> parts) {
         List<TextComponent> sentences = new ArrayList<>();
         for (int i = 0; i < parts.size() - 1; i += 2) {
             TextComponent p = parts.get(i);
