@@ -1,8 +1,10 @@
 package com.epam.jwd.texthandling.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 
-public class TextComposite implements TextComponent {
+public class TextComposite implements TextComponent, Cloneable {
 
     // contains only 3 white spaces because word will produce another one
     private static final String PARAGRAPH_TABULATION = "   ";
@@ -16,12 +18,25 @@ public class TextComposite implements TextComponent {
         this.type = type;
     }
 
+    public TextPart getType() {
+        return type;
+    }
+
+    @Override
+    public int getMaxWord() { // only for sentence
+        if (type == TextPart.SENTENCE) {
+            OptionalInt max = textComponents.stream().mapToInt(TextComponent::getLength).max();
+            return max.getAsInt();
+        }
+        return 0;
+    }
+
     public void addPart(TextComponent textComponent) {
         textComponents.add(textComponent);
     }
 
     public List<TextComponent> getParts() {
-        return textComponents;
+        return new ArrayList<>(textComponents);
     }
 
     @Override
@@ -40,5 +55,14 @@ public class TextComposite implements TextComponent {
             stringBuilder.append(NEW_LINE);
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public TextComposite clone() {
+        TextComposite clone = new TextComposite(new ArrayList<>(), type);//(TextComposite) super.clone();
+        for (TextComponent textComponent : textComponents) {
+            clone.addPart(textComponent.clone());
+        }
+        return clone;
     }
 }

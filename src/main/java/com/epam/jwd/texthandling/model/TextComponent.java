@@ -6,4 +6,10 @@ public interface TextComponent {
 
     String toString();
 
+    TextPart getType();
+
+    int getMaxWord();
+
+    TextComponent clone();
+
 }
