@@ -15,7 +15,7 @@ public class Word implements TextComponent, Cloneable {
     }
 
     @Override
-    public int getLength() {
+    public int getLexemeLength() {
         return word.length();
     }
 

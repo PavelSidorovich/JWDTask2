@@ -9,7 +9,7 @@ public class Symbol implements TextComponent, Cloneable {
     }
 
     @Override
-    public int getLength() {
+    public int getLexemeLength() {
         return 0;
     }
 

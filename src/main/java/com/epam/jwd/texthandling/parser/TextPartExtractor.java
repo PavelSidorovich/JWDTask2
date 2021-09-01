@@ -18,7 +18,7 @@ public class TextPartExtractor {
         if (type == TextPart.SENTENCE) {
             result = linkSentencesWithSymbols(result);
         } else {
-            result = result.stream().filter(part -> part.getLength() != 0).collect(Collectors.toList());
+            result = result.stream().filter(part -> part.getLexemeLength() != 0).collect(Collectors.toList());
         }
 
         return result;
