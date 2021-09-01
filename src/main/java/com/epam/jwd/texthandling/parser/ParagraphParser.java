@@ -28,7 +28,8 @@ public class ParagraphParser extends TextParser {
         paragraphs[0] = paragraphs[0].replaceAll(TABULATION_REGEX, "");
 
         for (String paragraph : paragraphs) {
-            paragraphList.add(new TextComposite(parseNext(paragraph), TextPart.PARAGRAPH)); // add paragraphs into text entity
+            paragraphList.add(
+                    new TextComposite(parseNext(paragraph), TextPart.PARAGRAPH)); // add paragraphs into text entity
         }
         return paragraphList;
     }
