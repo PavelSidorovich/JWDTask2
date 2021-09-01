@@ -1,11 +1,6 @@
 package com.epam.jwd.texthandling.parser;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class TextParserFactory {
-
-    private static final Logger LOG = LogManager.getLogger(TextParserFactory.class);
 
     private static TextParserFactory factory;
 
