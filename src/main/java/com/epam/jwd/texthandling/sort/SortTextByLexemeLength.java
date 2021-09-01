@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Sorts text both by word and lexeme length (specified by comparator)
+ * Sorts text both by word and lexeme (sentences) length (specified by comparator)
  */
 public class SortTextByLexemeLength implements SortService {
 
