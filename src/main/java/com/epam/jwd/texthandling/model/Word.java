@@ -1,7 +1,6 @@
 package com.epam.jwd.texthandling.model;
 
-public class Word implements TextComponent {
-
+public class Word implements TextComponent, Cloneable {
 
     private static final String WHITE_SPACE = " ";
 
@@ -17,7 +16,7 @@ public class Word implements TextComponent {
 
     @Override
     public int getLength() {
-        return 1;
+        return word.length();
     }
 
     @Override
@@ -25,12 +24,19 @@ public class Word implements TextComponent {
         return WHITE_SPACE + word;
     }
 
-    //    private void extractSymbols(String word) {
-//        Matcher matcher = Pattern.compile(WORD_WITH_SYMBOLS_REGEX).matcher(word);
-//
-//        while (matcher.find()) {
-//            this.word = matcher.group(1);
-//            this.symbol = matcher.group(2);
-//        }
-//    }
+    @Override
+    public TextPart getType() {
+        return TextPart.WORD;
+    }
+
+    @Override
+    public int getMaxWord() {
+        return 0;
+    }
+
+    @Override
+    public Word clone() {
+        return new Word(getWord());
+    }
+
 }
