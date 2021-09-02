@@ -15,9 +15,9 @@ public class TextParserFactory {
     }
 
     public TextParser of() {
-        TextParser textParser = new ParagraphParser();
-        textParser.linkWith(new SentenceParser())
-                  .linkWith(new WordParser());
+        TextParser textParser = ParagraphParser.getInstance();
+        textParser.linkWith(SentenceParser.getInstance())
+                  .linkWith(WordParser.getInstance());
         return textParser;
     }
 }

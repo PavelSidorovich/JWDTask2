@@ -21,6 +21,18 @@ public class SentenceParser extends TextParser {
     private static final String SENTENCE_PARSER_IS_WORKING_MSG =
             String.format("%s is working", SentenceParser.class);
 
+    private static SentenceParser instance;
+
+    private SentenceParser() {
+    }
+
+    public static SentenceParser getInstance() {
+        if (instance == null) {
+            instance = new SentenceParser();
+        }
+        return instance;
+    }
+
     @Override
     public List<TextComponent> parse(String text) {
         LOG.trace(SENTENCE_PARSER_IS_WORKING_MSG);

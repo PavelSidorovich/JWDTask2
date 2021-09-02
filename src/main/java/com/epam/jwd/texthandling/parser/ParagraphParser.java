@@ -17,6 +17,18 @@ public class ParagraphParser extends TextParser {
     private static final String PARAGRAPH_REGEX = "\n[ ]{4}";
     private static final String PARAGRAPH_PARSER_IS_WORKING_MSG = String.format("%s is working", ParagraphParser.class);
 
+    private static ParagraphParser instance;
+
+    private ParagraphParser() {
+    }
+
+    public static ParagraphParser getInstance() {
+        if (instance == null) {
+            instance = new ParagraphParser();
+        }
+        return instance;
+    }
+
     @Override
     public List<TextComponent> parse(String text) {
         LOG.trace(PARAGRAPH_PARSER_IS_WORKING_MSG);

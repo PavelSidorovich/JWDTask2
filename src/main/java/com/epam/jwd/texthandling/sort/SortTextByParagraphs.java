@@ -11,6 +11,18 @@ import java.util.stream.Collectors;
 
 public class SortTextByParagraphs implements SortService {
 
+    private static SortTextByParagraphs instance;
+
+    private SortTextByParagraphs() {
+    }
+
+    public static SortTextByParagraphs getInstance() {
+        if (instance == null) {
+            instance = new SortTextByParagraphs();
+        }
+        return instance;
+    }
+
     @Override
     public TextComposite sortText(TextComposite text, Comparator<TextComponent> comparator) {
         List<TextComponent> paragraphs = TextPartExtractor.extractParts(text, TextPart.PARAGRAPH);

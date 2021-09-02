@@ -13,10 +13,19 @@ public class TextFile {
 
     private static final String NEW_LINE = "\n";
 
+    private static TextFile instance;
+
     private TextFile() {
     }
 
-    public static String read(String fileName) {
+    public static TextFile getInstance() {
+        if (instance == null) {
+            instance = new TextFile();
+        }
+        return instance;
+    }
+
+    public String read(String fileName) {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(
                 new File(fileName).getAbsoluteFile()))) {
@@ -31,7 +40,7 @@ public class TextFile {
         return sb.toString();
     }
 
-    public static void write(String fileName, String text) {
+    public void write(String fileName, String text) {
         try (PrintWriter out = new PrintWriter(
                 new File(fileName).getAbsoluteFile())) {
             out.print(text);
