@@ -34,7 +34,9 @@ public class TextComposite implements TextComponent, Cloneable { // represents s
     public int getMaxWord() { // only for sentence
         if (type == TextPart.SENTENCE) {
             OptionalInt max = textComponents.stream().mapToInt(TextComponent::getLexemeLength).max();
-            return max.getAsInt();
+            if (max.isPresent()) {
+                return max.getAsInt();
+            }
         }
         return 0;
     }
