@@ -8,6 +8,7 @@ public interface TextComponent {
 
     /**
      * Lexeme - text part, surrounded by spaces
+     *
      * @return lexeme length
      */
     int getLexemeLength();
