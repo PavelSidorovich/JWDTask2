@@ -2,6 +2,7 @@ package com.epam.jwd.texthandling.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.OptionalInt;
 
 public class TextComposite implements TextComponent, Cloneable { // represents sentence, paragraph or text
@@ -66,5 +67,22 @@ public class TextComposite implements TextComponent, Cloneable { // represents s
             clone.addPart(textComponent.clone());
         }
         return clone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TextComposite that = (TextComposite) o;
+        return Objects.equals(textComponents, that.textComponents) && type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textComponents, type);
     }
 }
