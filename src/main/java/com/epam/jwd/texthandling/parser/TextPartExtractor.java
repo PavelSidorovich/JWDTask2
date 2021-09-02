@@ -26,9 +26,10 @@ public class TextPartExtractor {
 
     /**
      * Recursively extracts text parts of provided type from text
+     *
      * @param result result list
-     * @param text text
-     * @param type type to be extracted
+     * @param text   text
+     * @param type   type to be extracted
      */
     private static void extract(List<TextComponent> result, TextComponent text, TextPart type) {
         if (text.getType() == type) {
@@ -50,7 +51,7 @@ public class TextPartExtractor {
     }
 
     /**
-     Method links sentences with symbols on a "word" level. It is needed to make right sort of sentences
+     * Method links sentences with symbols on a "word" level. It is needed to make right sort of sentences
      */
     private static List<TextComponent> linkSentencesWithSymbols(List<TextComponent> parts) {
         List<TextComponent> sentences = new ArrayList<>();
