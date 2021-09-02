@@ -14,6 +14,18 @@ import java.util.stream.Collectors;
  */
 public class SortTextByLexemeLength implements SortService {
 
+    private static SortTextByLexemeLength instance;
+
+    private SortTextByLexemeLength() {
+    }
+
+    public static SortTextByLexemeLength getInstance() {
+        if (instance == null) {
+            instance = new SortTextByLexemeLength();
+        }
+        return instance;
+    }
+
     @Override
     public TextComposite sortText(TextComposite text, Comparator<TextComponent> comparator) {
         List<TextComponent> sentences =
