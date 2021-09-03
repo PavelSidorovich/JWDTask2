@@ -50,10 +50,11 @@ public class SentenceParser extends TextParser {
             if (sentences[i].equals("\n")) {
                 continue;
             }
-            // create all sentences entities with their endings
-            textComponents.add(new TextComposite(parseNext(sentences[i]),
-                                                 TextPart.SENTENCE));
-            textComponents.add(new Symbol(endingsOfSentences.get(i)));
+
+            List<TextComponent> sentence = parseNext(sentences[i]);
+            // create sentence entity with its ending
+            sentence.add(new Symbol(endingsOfSentences.get(i)));
+            textComponents.add(new TextComposite(sentence, TextPart.SENTENCE));
         }
         return textComponents;
     }
