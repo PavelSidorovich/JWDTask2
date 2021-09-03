@@ -22,11 +22,6 @@ public class Word implements TextComponent, Cloneable {
     }
 
     @Override
-    public String toString() {
-        return WHITE_SPACE + word;
-    }
-
-    @Override
     public TextPart getType() {
         return TextPart.WORD;
     }
@@ -39,6 +34,11 @@ public class Word implements TextComponent, Cloneable {
     @Override
     public Word clone() {
         return new Word(getWord());
+    }
+
+    @Override
+    public String toString() {
+        return WHITE_SPACE + word;
     }
 
     @Override
