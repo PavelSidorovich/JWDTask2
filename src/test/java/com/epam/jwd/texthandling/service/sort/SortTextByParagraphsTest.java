@@ -1,4 +1,4 @@
-package com.epam.jwd.texthandling.sort;
+package com.epam.jwd.texthandling.service.sort;
 
 import com.epam.jwd.texthandling.model.TextComponent;
 import com.epam.jwd.texthandling.model.TextComposite;

@@ -1,4 +1,4 @@
-package com.epam.jwd.texthandling.reader;
+package com.epam.jwd.texthandling.service.reader;
 
 import com.epam.jwd.texthandling.exception.FileReadException;
 import com.epam.jwd.texthandling.exception.FileWriteException;

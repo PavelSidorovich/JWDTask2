@@ -1,4 +1,4 @@
-package com.epam.jwd.texthandling.parser;
+package com.epam.jwd.texthandling.service.parser;
 
 public class TextParserFactory {
 
