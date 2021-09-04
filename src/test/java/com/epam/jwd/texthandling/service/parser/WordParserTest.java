@@ -1,7 +1,6 @@
-package com.epam.jwd.texthandling.parser;
+package com.epam.jwd.texthandling.service.parser;
 
 import com.epam.jwd.texthandling.model.TextPart;
-import com.epam.jwd.texthandling.service.parser.WordParser;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

@@ -1,7 +1,6 @@
-package com.epam.jwd.texthandling.service;
+package com.epam.jwd.texthandling.service.reader;
 
 import com.epam.jwd.texthandling.exception.FileReadException;
-import com.epam.jwd.texthandling.service.reader.TextFile;
 import org.testng.annotations.Test;
 
 import java.io.File;

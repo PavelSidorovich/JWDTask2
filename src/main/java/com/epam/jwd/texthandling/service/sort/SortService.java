@@ -1,4 +1,4 @@
-package com.epam.jwd.texthandling.sort;
+package com.epam.jwd.texthandling.service.sort;
 
 import com.epam.jwd.texthandling.exception.WrongTextComponentException;
 import com.epam.jwd.texthandling.model.TextComponent;
@@ -20,7 +20,7 @@ public interface SortService {
             if (text.getParts().get(0).getType() == TextPart.PARAGRAPH) {
                 return sortText(text, comparator);
             } else {
-                generateException(text, text.getClass());
+                generateException(text);
             }
         } catch (WrongTextComponentException e) {
             LOG.warn(e);
@@ -30,10 +30,10 @@ public interface SortService {
 
     TextComposite sortText(TextComposite text, Comparator<TextComponent> comparator);
 
-    default void generateException(TextComposite text, Class<?> clazz) {
+    default void generateException(TextComposite text) {
         String msg = String.format(WRONG_TEXT_COMPONENT_MSG,
-                                   clazz.getSimpleName(),
-                                   text.getType());
+                                   this.getClass().getSimpleName(),
+                                   text.getParts().get(0).getType());
         throw new WrongTextComponentException(msg);
     }
 }

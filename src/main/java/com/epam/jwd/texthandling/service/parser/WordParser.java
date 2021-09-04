@@ -1,9 +1,9 @@
-package com.epam.jwd.texthandling.parser;
+package com.epam.jwd.texthandling.service.parser;
 
-import com.epam.jwd.texthandling.interpreter.BitExpressionCalculator;
 import com.epam.jwd.texthandling.model.Symbol;
 import com.epam.jwd.texthandling.model.TextComponent;
 import com.epam.jwd.texthandling.model.Word;
+import com.epam.jwd.texthandling.service.interpreter.BitExpressionCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
