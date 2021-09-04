@@ -51,10 +51,12 @@ public class SentenceParser extends TextParser {
                 continue;
             }
 
-            List<TextComponent> sentence = parseNext(sentences[i]);
-            // create sentence entity with its ending
-            sentence.add(new Symbol(endingsOfSentences.get(i)));
-            textComponents.add(new TextComposite(sentence, TextPart.SENTENCE));
+            List<TextComponent> sentenceParts = parseNext(sentences[i]);
+            if (!sentenceParts.isEmpty()) {
+                // create sentence entity with its ending
+                sentenceParts.add(new Symbol(endingsOfSentences.get(i)));
+                textComponents.add(new TextComposite(sentenceParts, TextPart.SENTENCE));
+            }
         }
         return textComponents;
     }
