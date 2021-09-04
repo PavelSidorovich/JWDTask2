@@ -1,11 +1,10 @@
-package com.epam.jwd.texthandling.reader;
+package com.epam.jwd.texthandling.service;
 
 import com.epam.jwd.texthandling.exception.FileReadException;
-import com.epam.jwd.texthandling.exception.FileWriteException;
+import com.epam.jwd.texthandling.service.reader.TextFile;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 
 import static org.testng.Assert.*;
 
@@ -47,5 +46,6 @@ public class TextFileTest {
     public void write_shouldWriteTextIntoSpecifiedFile_whenFilepathIsValid() {
         String text = "Hello, Jimmy! How are you?";
         textFile.write("src\\test\\resources\\written.txt", text);
+        new File("src\\test\\resources\\written.txt").delete();
     }
 }

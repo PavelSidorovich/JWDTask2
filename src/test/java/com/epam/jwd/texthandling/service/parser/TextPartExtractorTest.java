@@ -5,6 +5,8 @@ import com.epam.jwd.texthandling.model.TextComponent;
 import com.epam.jwd.texthandling.model.TextComposite;
 import com.epam.jwd.texthandling.model.TextPart;
 import com.epam.jwd.texthandling.model.Word;
+import com.epam.jwd.texthandling.service.parser.TextParser;
+import com.epam.jwd.texthandling.service.parser.TextParserFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

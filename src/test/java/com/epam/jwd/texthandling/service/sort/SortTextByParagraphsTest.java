@@ -3,9 +3,9 @@ package com.epam.jwd.texthandling.sort;
 import com.epam.jwd.texthandling.model.TextComponent;
 import com.epam.jwd.texthandling.model.TextComposite;
 import com.epam.jwd.texthandling.model.TextPart;
-import com.epam.jwd.texthandling.parser.TextParser;
-import com.epam.jwd.texthandling.parser.TextParserFactory;
-import com.epam.jwd.texthandling.reader.TextFile;
+import com.epam.jwd.texthandling.service.parser.TextParser;
+import com.epam.jwd.texthandling.service.parser.TextParserFactory;
+import com.epam.jwd.texthandling.service.reader.TextFile;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
