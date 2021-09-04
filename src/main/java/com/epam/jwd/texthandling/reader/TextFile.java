@@ -27,12 +27,14 @@ public class TextFile {
 
     public String read(String fileName) {
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new FileReader(
-                new File(fileName).getAbsoluteFile()))) {
-            String s;
-            while ((s = in.readLine()) != null) {
-                sb.append(s);
-                sb.append(NEW_LINE);
+        try {
+            try (BufferedReader in = new BufferedReader(new FileReader(
+                    new File(fileName).getAbsoluteFile()))) {
+                String s;
+                while ((s = in.readLine()) != null) {
+                    sb.append(s);
+                    sb.append(NEW_LINE);
+                }
             }
         } catch (IOException e) {
             throw new FileReadException(e);
@@ -41,9 +43,11 @@ public class TextFile {
     }
 
     public void write(String fileName, String text) {
-        try (PrintWriter out = new PrintWriter(
-                new File(fileName).getAbsoluteFile())) {
-            out.print(text);
+        try {
+            try (PrintWriter out = new PrintWriter(
+                    new File(fileName).getAbsoluteFile())) {
+                out.print(text);
+            }
         } catch (IOException e) {
             throw new FileWriteException(e);
         }
