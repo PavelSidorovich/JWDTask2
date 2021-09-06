@@ -14,8 +14,7 @@ public class ReversePolishNotation {
 
     private static final String NUMBER_REGEX = "\\d+";
     private static final String OPERATOR_REGEX = "[~|&^()]|[<]{2}|[>]{2}";
-    //private static final String exp_REGEX = "\\d+[~|&^)]|[<]{2}|[>]{2}";
-    private static final String exp_REGEX = "\\d+([~|&^)]|[<]{2}|[>]{2}|$)";
+    private static final String RIGHT_POSITION_OF_NUMBER_REGEX = "\\d+([~|&^)]|[<]{2}|[>]{2}|$)";
 
     private static ReversePolishNotation instance;
 
@@ -117,7 +116,7 @@ public class ReversePolishNotation {
     }
 
     private boolean checkIfInputIsValid(int number, String str) {
-        Matcher matcher = Pattern.compile(exp_REGEX).matcher(str);
+        Matcher matcher = Pattern.compile(RIGHT_POSITION_OF_NUMBER_REGEX).matcher(str);
         int count = 0;
         while (matcher.find()) {
             count++;
